@@ -9,7 +9,7 @@ src/
   paper/   风格:纸面墨线
   flat/    风格:无隐喻的中性界面
   term/    风格:终端
-playground/  三种风格并排的演示页,也是本地验证用的
+docs/        文档站(Nuxt Content)。workspace 依赖本库,改组件和改文档在同一次提交里
 ```
 
 ## 风格
@@ -102,7 +102,7 @@ UI_LOCAL=~/code/ui pnpm dev
 1. 建 `src/<name>/`,写 `tokens.css`(定义全部契约变量)、`style.css`(`@import './tokens.css'`)、组件和 `index.ts`。
 2. 把名字加进 `src/core/contract.ts` 的 `STYLES`。
 3. 在 `package.json` 的 `exports` 里加三条(入口、`style.css`、`tokens.css`)。
-4. 在 `playground/src/App.vue` 加一个区块,`pnpm check` 确认契约齐全。
+4. 在 `docs/content/docs/` 加一页,放上 `::demo` 和 `::token-board`,`pnpm check` 确认契约齐全。
 
 ## 加一个组件
 
@@ -111,7 +111,13 @@ UI_LOCAL=~/code/ui pnpm dev
 ## 命令
 
 ```bash
-pnpm dev            # 演示页 http://localhost:5173
-pnpm build          # 构建演示页
+pnpm dev            # 文档站 http://localhost:3000
+pnpm generate       # 静态导出到仓库根的 dist/,和 Cloudflare Pages 的输出目录一致
 pnpm check          # lint + 类型检查 + token 契约检查
 ```
+
+## 文档站
+
+`docs/` 用 Nuxt Content。部署方式和 paper-landing 一样:Cloudflare Pages 连接这个 GitHub 仓库,生产分支 `main`,构建命令 `pnpm generate`,输出目录 `dist`,环境变量 `NODE_VERSION=22`。
+
+`nuxt generate` 在 Cloudflare 上会因为 `CF_PAGES=1` 把静态文件写到 `dist/`。文档站把 Nitro preset 固定成 `cloudflare-pages-static`,并把输出目录指到仓库根的 `dist/`,这样本地和线上是同一个目录。
