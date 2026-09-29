@@ -1,7 +1,7 @@
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  ignores: ['README.md', 'docs/**', 'dist/**'],
+  ignores: ['README.md', 'AGENTS.md', 'docs/**', 'dist/**'],
   pnpm: true,
   typescript: true,
   vue: true,
