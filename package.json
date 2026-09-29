@@ -25,11 +25,13 @@
     "src"
   ],
   "scripts": {
-    "dev": "pnpm --filter playground dev",
-    "build": "pnpm --filter playground build",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "typecheck": "vue-tsc --noEmit",
+    "dev": "pnpm --filter docs dev",
+    "generate": "pnpm --filter docs generate",
+    "build": "pnpm --filter docs generate",
+    "preview": "pnpm --filter docs preview",
+    "lint": "eslint . && pnpm --filter docs lint",
+    "lint:fix": "eslint . --fix && pnpm --filter docs lint:fix",
+    "typecheck": "vue-tsc --noEmit && pnpm --filter docs typecheck",
     "check:tokens": "jiti scripts/check-tokens.ts",
     "check": "pnpm lint && pnpm typecheck && pnpm check:tokens"
   },
@@ -48,7 +50,6 @@
     "eslint-plugin-format": "catalog:dev",
     "jiti": "catalog:dev",
     "typescript": "catalog:dev",
-    "vite": "catalog:dev",
     "vue": "catalog:prod",
     "vue-tsc": "catalog:dev"
   }
