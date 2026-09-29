@@ -1,0 +1,21 @@
+{
+  "name": "playground",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "catalog:prod",
+    "@fontsource-variable/geist-mono": "catalog:prod",
+    "@fontsource/instrument-serif": "catalog:prod",
+    "@froq/ui": "workspace:*",
+    "vue": "catalog:prod"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "catalog:dev",
+    "vite": "catalog:dev"
+  }
+}
