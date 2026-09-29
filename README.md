@@ -78,7 +78,7 @@ pnpm add github:0froq/ui#v0.1.0
 
 发版:改 `package.json` 的 `version`,提交,打同名 tag(`v0.1.0`),推上去。使用方锁在某个 tag 上,想用新版本时才升级,库的演进不会逼着所有项目同步。
 
-仓库目前是私有的。Cloudflare Pages 构建时要拉这个依赖,私有仓库需要在构建环境里配置访问权限;要省事就把仓库改成公开。
+仓库是公开的。构建环境拉这个依赖不用再配访问权限。
 
 ## 在项目里改库,又不用先推
 
@@ -117,6 +117,8 @@ pnpm check          # lint + 类型检查 + token 契约检查
 ```
 
 ## 文档站
+
+https://ui-a09.pages.dev
 
 `docs/` 用 Nuxt Content。部署方式和 paper-landing 一样:Cloudflare Pages 连接这个 GitHub 仓库,生产分支 `main`,构建命令 `pnpm generate`,输出目录 `dist`,环境变量 `NODE_VERSION=22`。
 
