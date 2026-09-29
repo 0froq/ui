@@ -70,32 +70,9 @@ export default defineNuxtConfig({
 })
 ```
 
-## 安装与版本
+## 放进别的项目
 
-```bash
-pnpm add github:0froq/ui#v0.1.0
-```
-
-发版:改 `package.json` 的 `version`,提交,打同名 tag(`v0.1.0`),推上去。使用方锁在某个 tag 上,想用新版本时才升级,库的演进不会逼着所有项目同步。
-
-仓库是公开的。构建环境拉这个依赖不用再配访问权限。
-
-## 在项目里改库,又不用先推
-
-克隆库到本地(比如 `~/code/ui`),在项目的构建配置里用环境变量切到本地目录。这份配置提交进仓库,线上没有这个变量,始终用锁定的版本:
-
-```ts
-// vite.config.ts
-resolve: {
-  alias: process.env.UI_LOCAL ? { '@froq/ui': `${process.env.UI_LOCAL}/src` } : {},
-}
-```
-
-```bash
-UI_LOCAL=~/code/ui pnpm dev
-```
-
-注意:线上构建看不到你本地没推的改动。顺序永远是:先在库里提交并打 tag,再回项目升级版本,最后推项目。
+别的项目自己带一份源码，放在 `vendor/ui`。本地 dev 和远端构建都编译项目提交里的这一份。给 agent 的步骤写在 [`AGENTS.md`](./AGENTS.md)。
 
 ## 加一个风格
 
