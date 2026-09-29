@@ -1,0 +1,28 @@
+/* flat: neutral surfaces, one blue accent, system fonts. The default when a project has no voice yet. */
+.ui-flat {
+  color-scheme: light dark;
+  --ui-bg: light-dark(#fff, #0b0b0c);
+  --ui-fg: light-dark(#0f0f10, #f4f4f5);
+  --ui-muted: light-dark(#71717a, #a1a1aa);
+  --ui-faint: light-dark(#f4f4f5, #1c1c1f);
+  --ui-line: light-dark(#e4e4e7, #2a2a2e);
+  --ui-accent: light-dark(#2f5bf2, #7d9bff);
+  --ui-font-display:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+  --ui-font-text:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+  --ui-font-meta: ui-monospace, sfmono-regular, menlo, consolas, monospace;
+  --ui-ease: cubic-bezier(0.2, 0, 0, 1);
+  --ui-dur: 0.2s;
+  --ui-radius: 8px;
+}
+
+.ui-flat[data-theme='light'],
+[data-theme='light'] .ui-flat {
+  color-scheme: light;
+}
+
+.ui-flat[data-theme='dark'],
+[data-theme='dark'] .ui-flat {
+  color-scheme: dark;
+}
