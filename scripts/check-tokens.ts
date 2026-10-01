@@ -1,25 +1,39 @@
-import { existsSync, readFileSync } from 'node:fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
-import { scopeClass, STYLES, TOKENS, tokenVar } from '../src/core/contract'
+import { TOKENS, tokenVar } from '../src/core/contract'
 
-const root = join(dirname(fileURLToPath(import.meta.url)), '..', 'src')
+const file = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'tokens.css')
+const css = readFileSync(file, 'utf8')
 const problems: string[] = []
+const allowed = new Set<string>(TOKENS.map(tokenVar))
+const source = dirname(file)
 
-for (const style of STYLES) {
-  const file = join(root, style, 'tokens.css')
-  if (!existsSync(file)) {
-    problems.push(`${style}: missing ${file}`)
-    continue
+function checkDirectory(directory: string): void {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    const path = join(directory, entry.name)
+    if (entry.isDirectory()) {
+      checkDirectory(path)
+      continue
+    }
+    if (!/\.(?:vue|css)$/.test(path) || path.endsWith('.demo.vue'))
+      continue
+    const content = readFileSync(path, 'utf8')
+    const styles = path.endsWith('.css') ? content : [...content.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/g)].map(match => match[1]).join('\n')
+    for (const match of styles.matchAll(/var\(\s*(--[\w-]+)/g)) {
+      if (!allowed.has(match[1]!))
+        problems.push(`${path.slice(source.length + 1)}: reads undeclared token ${match[1]}`)
+    }
   }
-  const css = readFileSync(file, 'utf8')
-  if (!css.includes(`.${scopeClass(style)}`))
-    problems.push(`${style}: no .${scopeClass(style)} scope`)
-  for (const token of TOKENS) {
-    if (!new RegExp(`${tokenVar(token)}\\s*:`).test(css))
-      problems.push(`${style}: missing ${tokenVar(token)}`)
-  }
+}
+checkDirectory(source)
+
+if (!/\.ui\s*\{/.test(css))
+  problems.push('tokens.css: no .ui scope')
+for (const token of TOKENS) {
+  if (!new RegExp(`${tokenVar(token)}\\s*:`).test(css))
+    problems.push(`tokens.css: missing ${tokenVar(token)}`)
 }
 
 if (problems.length) {
@@ -27,5 +41,5 @@ if (problems.length) {
   process.exitCode = 1
 }
 else {
-  process.stdout.write(`${STYLES.length} styles define all ${TOKENS.length} tokens\n`)
+  process.stdout.write(`tokens.css defines all ${TOKENS.length} tokens; component styles only read the contract\n`)
 }

@@ -4,22 +4,16 @@
   "version": "0.1.0",
   "private": false,
   "packageManager": "pnpm@10.15.0",
-  "description": "froq's UI library: shared logic and a token contract, several styles.",
+  "description": "froq's UI library: shared logic, a token contract, and the components.",
   "sideEffects": [
     "**/*.css"
   ],
   "exports": {
+    ".": "./src/index.ts",
+    "./style.css": "./src/style.css",
+    "./tokens.css": "./src/tokens.css",
     "./core": "./src/core/index.ts",
-    "./vue": "./src/vue/index.ts",
-    "./paper": "./src/paper/index.ts",
-    "./paper/style.css": "./src/paper/style.css",
-    "./paper/tokens.css": "./src/paper/tokens.css",
-    "./flat": "./src/flat/index.ts",
-    "./flat/style.css": "./src/flat/style.css",
-    "./flat/tokens.css": "./src/flat/tokens.css",
-    "./term": "./src/term/index.ts",
-    "./term/style.css": "./src/term/style.css",
-    "./term/tokens.css": "./src/term/tokens.css"
+    "./vue": "./src/vue/index.ts"
   },
   "files": [
     "src"
@@ -42,6 +36,10 @@
     "vue": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "@internationalized/date": "^3.12.4",
+    "reka-ui": "^2.10.5"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:dev",

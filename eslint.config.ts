@@ -17,4 +17,11 @@ export default antfu({
     html: true,
     markdown: 'dprint',
   },
+}, {
+  files: ['package.json'],
+  rules: {
+    // file: consumers cannot resolve this workspace's runtime catalog protocols.
+    // Keep runtime dependencies portable; catalog enforcement still covers dev tools.
+    'pnpm/json-enforce-catalog': ['error', { fields: ['devDependencies'] }],
+  },
 })

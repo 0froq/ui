@@ -1,60 +1,63 @@
 <script setup lang="ts">
-import { Choice } from '@froq/ui/paper'
-
-type Theme = 'light' | 'dark'
-
-const { site } = useAppConfig()
-const route = useRoute()
-const theme = ref<Theme>('light')
-const ready = ref(false)
-const themes = [
-  { value: 'light' as const, label: 'light' },
-  { value: 'dark' as const, label: 'dark' },
-]
-
-function current(to: string): 'page' | undefined {
-  return route.path === to ? 'page' : undefined
-}
-
-onMounted(() => {
-  theme.value = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
-  ready.value = true
-})
-
-watch(theme, (value) => {
-  if (!ready.value)
-    return
-  const dark = value === 'dark'
-  document.documentElement.dataset.theme = value
-  document.documentElement.classList.toggle('dark', dark)
-  localStorage.setItem('ui-theme', value)
-})
+const link = useSiteLink()
 </script>
 
 <template>
   <header class="l-top">
     <NuxtLink
       class="l-brand"
-      to="/"
+      :to="link('/')"
     >
-      froq/ui
+      froq/ui<span class="l-dot">.</span>
     </NuxtLink>
-    <nav class="l-nav">
-      <NuxtLink
-        v-for="item in site.nav"
-        :key="item.to"
-        :to="item.to"
-        :aria-current="current(item.to)"
-      >
-        {{ item.label }}
-      </NuxtLink>
-    </nav>
-    <ClientOnly>
-      <Choice
-        v-model="theme"
-        label="Theme"
-        :options="themes"
-      />
-    </ClientOnly>
+    <SiteNav class="l-nav" />
   </header>
 </template>
+
+<style scoped>
+.l-top {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 72px;
+  padding: 0 var(--pad);
+  font-size: 14px;
+}
+
+.l-brand {
+  grid-column: 1;
+  font-family: var(--ui-font-display);
+  font-size: calc(24px * var(--title-scale));
+  letter-spacing: -0.01em;
+}
+
+.l-dot {
+  color: var(--ui-accent);
+}
+
+.l-nav {
+  grid-column: 3;
+  justify-self: end;
+}
+
+@media (max-width: 860px) {
+  .l-top {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+    height: auto;
+    min-height: 72px;
+    padding-block: 20px;
+  }
+
+  .l-nav {
+    grid-column: 2;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px 16px;
+  }
+}
+</style>

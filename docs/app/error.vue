@@ -1,30 +1,40 @@
 <script setup lang="ts">
-defineProps<{
-  error: {
-    statusCode: number
-    statusMessage?: string
-    message?: string
-  }
-}>()
+import type { NuxtError } from '#app'
+
+defineProps<{ error: NuxtError }>()
+
+const { t } = useI18n()
+const link = useSiteLink()
+
+useHead({ title: () => t('notFound.title') })
 </script>
 
 <template>
-  <div class="site ui-paper">
-    <main class="l-main">
-      <header class="page-head">
-        <p class="kicker">
-          {{ error.statusCode }}
-        </p>
-        <h1>找不到这一页</h1>
-        <p class="lede">
-          {{ error.statusMessage || error.message }}
-        </p>
-      </header>
-      <p>
-        <NuxtLink to="/">
-          回到首页
-        </NuxtLink>
-      </p>
-    </main>
-  </div>
+  <NuxtLayout>
+    <div class="l-sheet">
+      <PageHead
+        :kicker="String(error.statusCode ?? 404)"
+        :title="t('notFound.title')"
+        :lede="error.statusMessage || error.message"
+        long
+      >
+        <template #meta>
+          <NuxtLink
+            class="l-cta"
+            :to="link('/')"
+            @click.prevent="clearError({ redirect: link('/') })"
+          >
+            {{ t('notFound.back') }}
+          </NuxtLink>
+        </template>
+      </PageHead>
+    </div>
+  </NuxtLayout>
 </template>
+
+<style scoped>
+.l-sheet {
+  position: relative;
+  z-index: 0;
+}
+</style>
