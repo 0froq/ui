@@ -111,10 +111,12 @@ pnpm check          # lint + 类型检查 + token 契约检查
 
 https://ui-a09.pages.dev
 
-`docs/` 用 Nuxt Content。部署方式和 paper-landing 一样:Cloudflare Pages 连接这个 GitHub 仓库,生产分支 `main`,构建命令 `pnpm generate`,输出目录 `dist`,环境变量 `NODE_VERSION=22`。
+`docs/` 用 Nuxt Content。静态产物在仓库根目录的 `dist/`。部署到 Cloudflare Workers（Worker 名 `ui`）：Workers Builds 连本仓库，生产分支 `main`，环境变量 `NODE_VERSION=22`，构建命令 `pnpm generate`，生产部署 `pnpm exec cf deploy`，非生产预览 `pnpm exec cf previews deploy`。
 
-`nuxt generate` 在 Cloudflare 上会因为 `CF_PAGES=1` 把静态文件写到 `dist/`。文档站把 Nitro preset 固定成 `cloudflare-pages-static`,并把输出目录指到仓库根的 `dist/`,这样本地和线上是同一个目录。
+`nuxt generate` 把静态文件写到仓库根的 `dist/`（与本地 `pnpm generate` 一致）。文档站在 `docs/` 子包，根目录的 `cf deploy` 不会自动跑 generate；`deploy` 脚本是 `pnpm generate`、再用 `wrangler build --experimental-new-config --x-cf-build-output` 打出 Build Output，最后 `cf deploy --prebuilt`。
 
-当前发布路径是纯静态文件，不是 Pages Functions：内容查询在客户端使用打包的 WASM SQLite 和 SQL dump。Nuxt Content 的 Cloudflare preset 仍可能打印 D1 提示，但不要因此给这份静态产物虚构数据库绑定；若改为服务端 `cloudflare-pages` 部署，才需要按官方步骤配置 D1。参见 [Nuxt Content 静态部署](https://content.nuxt.com/docs/deploy/static) 与 [Pages 服务端部署](https://content.nuxt.com/docs/deploy/cloudflare-pages)。本地生成通过不等于已经部署或验收线上页面。
+Workers Builds 建议拆成两步：构建 `pnpm generate && pnpm exec wrangler build --experimental-new-config --x-cf-build-output`；生产部署 `pnpm exec cf deploy --prebuilt`（预览 `pnpm exec cf previews deploy --prebuilt`）。不要单独跑裸的 `pnpm exec cf deploy`，否则会误走 Nuxt autoconfig。
+
+当前发布路径是纯静态文件：内容查询在客户端使用打包的 WASM SQLite 和 SQL dump。不要用 `cloudflare_pages` Nitro 预设；若将来改为服务端渲染，再按 Nuxt Content 官方步骤单独配置。参见 [Nuxt Content 静态部署](https://content.nuxt.com/docs/deploy/static)。本地生成通过不等于已经部署或验收线上页面。
 
 当前交付证据及待验收项见 [发布审计](docs/release-audit.md)。CI 按提交中的锁文件安装；不要依赖构建时重新解析版本来掩盖不兼容。

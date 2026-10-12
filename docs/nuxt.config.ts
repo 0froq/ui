@@ -82,7 +82,6 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'cloudflare-pages-static',
     prerender: {
       crawlLinks: true,
       routes: [
@@ -97,7 +96,7 @@ export default defineNuxtConfig({
 
   $production: {
     nitro: {
-      // Cloudflare Pages serves `dist`; dev must not empty that production output.
+      // Workers static assets read repo-root `dist`; dev must not empty that output.
       output: {
         dir: siteDist,
         publicDir: siteDist,
