@@ -7,8 +7,10 @@ const { data: releases } = await useAsyncData(
   () => queryCollection('changelog').where('path', 'LIKE', `${contentPath('/changelog')}/%`).order('date', 'DESC').all(),
 )
 
-useHead({ title: () => t('changelog.title') })
-useSeoMeta({ description: () => t('changelog.lede') })
+useShareMeta({
+  title: () => t('changelog.title'),
+  description: () => t('changelog.lede'),
+})
 </script>
 
 <template>

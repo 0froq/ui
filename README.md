@@ -111,7 +111,7 @@ pnpm check          # lint + 类型检查 + token 契约检查
 
 ## 文档站
 
-https://ui-a09.pages.dev
+https://ui.froq.me
 
 `docs/` 用 Nuxt Content。静态产物在仓库根目录的 `dist/`。部署到 Cloudflare Workers（Worker 名 `ui`）。Worker 配置在 `cloudflare.config.ts`，静态资源目录在 `wrangler.config.ts`。本地一次发布用 `pnpm deploy`。
 

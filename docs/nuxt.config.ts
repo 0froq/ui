@@ -1,6 +1,7 @@
 import { readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { componentFile } from './shared/component-files'
+import { OG_IMAGE_URL, SITE_DESCRIPTION, SITE_NAME, SITE_ORIGIN } from './shared/site'
 
 const siteDist = fileURLToPath(new URL('../dist', import.meta.url))
 const componentsRoot = fileURLToPath(new URL('../src/components', import.meta.url))
@@ -41,7 +42,26 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       link: [{ rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
-      meta: [{ name: 'color-scheme', content: 'light dark' }],
+      meta: [
+        { name: 'color-scheme', content: 'light dark' },
+        { name: 'description', content: SITE_DESCRIPTION },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: SITE_NAME },
+        { name: 'twitter:description', content: SITE_DESCRIPTION },
+        { name: 'twitter:image', content: OG_IMAGE_URL },
+        { name: 'twitter:image:alt', content: SITE_NAME },
+        { property: 'og:site_name', content: SITE_NAME },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:title', content: SITE_NAME },
+        { property: 'og:description', content: SITE_DESCRIPTION },
+        { property: 'og:url', content: SITE_ORIGIN },
+        { property: 'og:image', content: OG_IMAGE_URL },
+        { property: 'og:image:secure_url', content: OG_IMAGE_URL },
+        { property: 'og:image:type', content: 'image/png' },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:image:alt', content: SITE_NAME },
+      ],
       script: [{
         tagPosition: 'head',
         innerHTML: `try{var t=localStorage.getItem('ui-theme');var dark=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.dataset.theme=dark?'dark':'light';document.documentElement.classList.toggle('dark',dark)}catch(e){}`,
