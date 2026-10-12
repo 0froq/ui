@@ -82,6 +82,8 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    // Workers Builds sets WORKERS_CI; without this Nitro picks cloudflare-module.
+    preset: 'static',
     prerender: {
       crawlLinks: true,
       routes: [

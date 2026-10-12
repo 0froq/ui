@@ -117,7 +117,7 @@ https://ui-a09.pages.dev
 
 Workers Builds（GitHub 连接，仓库不放 API token）：`NODE_VERSION=22`，构建 `pnpm generate`，生产 `pnpm exec cf deploy`，预览 `pnpm exec cf previews deploy`。
 
-`nuxt generate` 把静态文件写到仓库根的 `dist/`（与本地 `pnpm generate` 一致）。文档站在 `docs/` 子包，根目录的 `cf deploy` 不会自动跑 generate，所以 `deploy` 是 `pnpm generate && cf deploy`，`preview:deploy` 是 `pnpm generate && cf previews deploy`。
+`nuxt generate` 把静态文件写到仓库根的 `dist/`（与本地 `pnpm generate` 一致）。文档站在 `docs/` 子包，根目录的 `cf deploy` 不会自动跑 generate，所以 `deploy` 是 `pnpm generate && cf deploy`，`preview:deploy` 是 `pnpm generate && cf previews deploy`。`cf` 在 workspace 根目录若检测到 Nuxt 会改跑 `pnpm nuxt build`；`docs` 把 `nuxt` 放在 peerDependencies，根目录的 `cf deploy` 才会用 Wrangler bundler 打包 `dist/`。
 
 当前发布路径是纯静态文件：内容查询在客户端使用打包的 WASM SQLite 和 SQL dump。不要用 `cloudflare_pages` Nitro 预设；若将来改为服务端渲染，再按 Nuxt Content 官方步骤单独配置。参见 [Nuxt Content 静态部署](https://content.nuxt.com/docs/deploy/static)。本地生成通过不等于已经部署或验收线上页面。
 
