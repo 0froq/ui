@@ -1,5 +1,5 @@
 /** Production origin of the docs site, as documented in the README. */
-export const SITE_ORIGIN = 'https://ui-a09.pages.dev'
+export const SITE_ORIGIN = 'https://ui.froq.me'
 
 export const SITE_NAME = 'froq/ui'
 
