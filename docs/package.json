@@ -11,6 +11,9 @@
     "lint:fix": "eslint . --cache --fix",
     "typecheck": "nuxt typecheck"
   },
+  "peerDependencies": {
+    "nuxt": "catalog:prod"
+  },
   "dependencies": {
     "@fontsource-variable/geist": "catalog:prod",
     "@fontsource-variable/geist-mono": "catalog:prod",
@@ -18,7 +21,6 @@
     "@froq/ui": "workspace:*",
     "@nuxt/content": "catalog:prod",
     "@nuxtjs/i18n": "catalog:prod",
-    "nuxt": "catalog:prod",
     "vue": "catalog:prod"
   },
   "devDependencies": {

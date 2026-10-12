@@ -103,7 +103,9 @@ export default defineNuxtConfig({
 
 ```bash
 pnpm dev            # 文档站 http://localhost:3000
-pnpm generate       # 静态导出到仓库根的 dist/,和 Cloudflare Pages 的输出目录一致
+pnpm generate       # 静态导出到仓库根的 dist/
+pnpm deploy         # 生成并 cf deploy
+pnpm preview:deploy # 生成并 cf previews deploy
 pnpm check          # lint + 类型检查 + token 契约检查
 ```
 
@@ -111,11 +113,11 @@ pnpm check          # lint + 类型检查 + token 契约检查
 
 https://ui-a09.pages.dev
 
-`docs/` 用 Nuxt Content。静态产物在仓库根目录的 `dist/`。部署到 Cloudflare Workers（Worker 名 `ui`）：Workers Builds 连本仓库，生产分支 `main`，环境变量 `NODE_VERSION=22`，构建命令 `pnpm generate`，生产部署 `pnpm exec cf deploy`，非生产预览 `pnpm exec cf previews deploy`。
+`docs/` 用 Nuxt Content。静态产物在仓库根目录的 `dist/`。部署到 Cloudflare Workers（Worker 名 `ui`）。Worker 配置在 `cloudflare.config.ts`，静态资源目录在 `wrangler.config.ts`。本地一次发布用 `pnpm deploy`。
 
-`nuxt generate` 把静态文件写到仓库根的 `dist/`（与本地 `pnpm generate` 一致）。文档站在 `docs/` 子包，根目录的 `cf deploy` 不会自动跑 generate；`deploy` 脚本是 `pnpm generate`、再用 `wrangler build --experimental-new-config --x-cf-build-output` 打出 Build Output，最后 `cf deploy --prebuilt`。
+Workers Builds（GitHub 连接，仓库不放 API token）：`NODE_VERSION=22`，构建 `pnpm generate`，生产 `pnpm exec cf deploy`，预览 `pnpm exec cf previews deploy`。
 
-Workers Builds 建议拆成两步：构建 `pnpm generate && pnpm exec wrangler build --experimental-new-config --x-cf-build-output`；生产部署 `pnpm exec cf deploy --prebuilt`（预览 `pnpm exec cf previews deploy --prebuilt`）。不要单独跑裸的 `pnpm exec cf deploy`，否则会误走 Nuxt autoconfig。
+`nuxt generate` 把静态文件写到仓库根的 `dist/`（与本地 `pnpm generate` 一致）。文档站在 `docs/` 子包，根目录的 `cf deploy` 不会自动跑 generate，所以 `deploy` 是 `pnpm generate && cf deploy`，`preview:deploy` 是 `pnpm generate && cf previews deploy`。`cf` 在 workspace 根目录若检测到 Nuxt 会改跑 `pnpm nuxt build`；`docs` 把 `nuxt` 放在 peerDependencies，根目录的 `cf deploy` 才会用 Wrangler bundler 打包 `dist/`。
 
 当前发布路径是纯静态文件：内容查询在客户端使用打包的 WASM SQLite 和 SQL dump。不要用 `cloudflare_pages` Nitro 预设；若将来改为服务端渲染，再按 Nuxt Content 官方步骤单独配置。参见 [Nuxt Content 静态部署](https://content.nuxt.com/docs/deploy/static)。本地生成通过不等于已经部署或验收线上页面。
 
