@@ -7,7 +7,7 @@ const { docFor } = await useComponentDocs()
 if (!concept.value)
   throw createError({ statusCode: 404, statusMessage: 'Not found', fatal: true })
 
-useShareMeta({
+usePaperOgImage({
   title: () => concept.value?.id,
   description: () => concept.value?.items.map(item => item.name).join(', '),
 })

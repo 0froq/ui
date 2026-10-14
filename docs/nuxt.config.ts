@@ -1,7 +1,10 @@
 import { readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
+import { countCardWords } from '@froq/og-covers-layer/card-words'
 import { componentFile } from './shared/component-files'
-import { OG_IMAGE_URL, SITE_DESCRIPTION, SITE_NAME, SITE_ORIGIN } from './shared/site'
+import { keepEmptyTitle } from './shared/empty-title'
+import { listPublicShareImages } from './shared/public-files'
+import { IMAGE_ORIGIN, SITE_DESCRIPTION, SITE_NAME } from './shared/site'
 
 const siteDist = fileURLToPath(new URL('../dist', import.meta.url))
 const componentsRoot = fileURLToPath(new URL('../src/components', import.meta.url))
@@ -24,13 +27,39 @@ function componentRoutes(): string[] {
 }
 
 export default defineNuxtConfig({
+  extends: [
+    ['github:0froq/og-layer#v0.1.0', { install: true }],
+  ],
+
   compatibilityDate: '2026-09-19',
+
+  hooks: {
+    'content:file:afterParse': ({ file, content }) => {
+      keepEmptyTitle(content, file.body)
+      if (typeof file.body === 'string')
+        (content as { words?: number }).words = countCardWords(file.body)
+    },
+  },
+
+  runtimeConfig: {
+    public: {
+      publicFiles: listPublicShareImages(),
+    },
+  },
 
   modules: [
     '@nuxt/content',
     '@nuxtjs/i18n',
     '@nuxt/eslint',
   ],
+
+  devtools: { enabled: true },
+
+  // `og:image` is absolute on this origin. `og:url` stays on ui.froq.me via useShareMeta.
+  site: {
+    url: IMAGE_ORIGIN,
+    name: SITE_NAME,
+  },
 
   css: [
     '~/assets/css/fonts.css',
@@ -45,22 +74,6 @@ export default defineNuxtConfig({
       meta: [
         { name: 'color-scheme', content: 'light dark' },
         { name: 'description', content: SITE_DESCRIPTION },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: SITE_NAME },
-        { name: 'twitter:description', content: SITE_DESCRIPTION },
-        { name: 'twitter:image', content: OG_IMAGE_URL },
-        { name: 'twitter:image:alt', content: SITE_NAME },
-        { property: 'og:site_name', content: SITE_NAME },
-        { property: 'og:type', content: 'website' },
-        { property: 'og:title', content: SITE_NAME },
-        { property: 'og:description', content: SITE_DESCRIPTION },
-        { property: 'og:url', content: SITE_ORIGIN },
-        { property: 'og:image', content: OG_IMAGE_URL },
-        { property: 'og:image:secure_url', content: OG_IMAGE_URL },
-        { property: 'og:image:type', content: 'image/png' },
-        { property: 'og:image:width', content: '1200' },
-        { property: 'og:image:height', content: '630' },
-        { property: 'og:image:alt', content: SITE_NAME },
       ],
       script: [{
         tagPosition: 'head',
@@ -99,6 +112,7 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
     detectBrowserLanguage: false,
+    baseUrl: IMAGE_ORIGIN,
   },
 
   nitro: {

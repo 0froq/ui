@@ -11,6 +11,9 @@ onlyBuiltDependencies:
   - unrs-resolver
   - workerd
 
+catalog:
+  '@froq/og-covers-layer': github:0froq/og-layer#v0.1.0
+
 catalogs:
   dev:
     '@antfu/eslint-config': ^9.5.1
@@ -20,6 +23,7 @@ catalogs:
     eslint: ^10.9.1
     eslint-plugin-format: ^2.0.1
     jiti: ^2.7.0
+    nuxtseo-devtools-host: ^1
     typescript: ~5.9.3
     vue-tsc: ^3.3.11
     wrangler: ^4.136.0
@@ -29,5 +33,5 @@ catalogs:
     '@fontsource/instrument-serif': ^5.3.0
     '@nuxt/content': ^3.16.1
     '@nuxtjs/i18n': ^10.6.0
-    nuxt: ^4.5.2
+    nuxt: ^4.6.1
     vue: ^3.5.43

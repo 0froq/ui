@@ -16,7 +16,7 @@ const { data: page } = await useAsyncData(
 if (!page.value)
   throw createError({ statusCode: 404, statusMessage: 'Not found', fatal: true })
 
-useShareMeta({
+useContentOgImage(page, 'pages', {
   title: () => page.value?.title,
   description: () => page.value?.description,
   type: 'article',

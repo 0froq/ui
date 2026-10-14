@@ -6,7 +6,7 @@ const props = defineProps<{ error: NuxtError }>()
 const { t } = useI18n()
 const link = useSiteLink()
 
-useShareMeta({
+usePaperOgImage({
   title: () => t('notFound.title'),
   description: () => props.error.statusMessage || props.error.message,
 })
