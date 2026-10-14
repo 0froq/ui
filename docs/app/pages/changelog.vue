@@ -7,7 +7,10 @@ const { data: releases } = await useAsyncData(
   () => queryCollection('changelog').where('path', 'LIKE', `${contentPath('/changelog')}/%`).order('date', 'DESC').all(),
 )
 
-useShareMeta({
+useCollectionIndexOgImage({
+  collection: 'changelog',
+  path: contentPath('/changelog'),
+}, {
   title: () => t('changelog.title'),
   description: () => t('changelog.lede'),
 })

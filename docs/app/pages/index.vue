@@ -9,10 +9,10 @@ const catalog = componentCatalog()
 const count = catalog.reduce((total, concept) => total + concept.items.length, 0)
 const options = computed(() => ['quiet', 'clear', 'loud'].map(value => ({ value, label: t(`hero.${value}`) })))
 
-useShareMeta({
+usePaperOgImage({
   title: 'froq/ui',
   description: () => t('hero.lede'),
-})
+}, { title: 'froq/ui' })
 </script>
 
 <template>

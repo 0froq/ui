@@ -3,7 +3,7 @@ const { t } = useI18n()
 const link = useSiteLink()
 const sections = componentSections()
 
-useShareMeta({
+usePaperOgImage({
   title: () => t('components.title'),
   description: () => t('components.lede'),
 })

@@ -10,7 +10,7 @@ if (!concept.value || !item.value)
 
 const hasApi = computed(() => Boolean(doc.value?.model || doc.value?.props?.length || doc.value?.slots?.length || doc.value?.events?.length))
 
-useShareMeta({
+usePaperOgImage({
   title: () => item.value?.name,
   description: () => doc.value?.description,
 })
