@@ -1,6 +1,18 @@
+minimumReleaseAgeExcludePrune: true
+trustPolicy: no-downgrade
+shellEmulator: true
+
 packages:
   - .
   - docs
+
+onlyBuiltDependencies:
+  - esbuild
+  - unrs-resolver
+  - workerd
+
+catalog:
+  '@froq/og-covers-layer': github:0froq/og-layer#v0.1.0
 
 catalogs:
   dev:
@@ -23,16 +35,3 @@ catalogs:
     '@nuxtjs/i18n': ^10.6.0
     nuxt: ^4.6.1
     vue: ^3.5.43
-
-minimumReleaseAgeExcludePrune: true
-
-onlyBuiltDependencies:
-  - esbuild
-  - unrs-resolver
-  - workerd
-
-shellEmulator: true
-
-trustPolicy: no-downgrade
-catalog:
-  '@froq/og-covers-layer': github:0froq/og-layer#v0.1.0
