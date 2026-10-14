@@ -6,8 +6,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "lint": "eslint . --cache",
-    "lint:fix": "eslint . --cache --fix",
+    "lint": "nuxt prepare && eslint . --cache",
+    "lint:fix": "nuxt prepare && eslint . --cache --fix",
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
