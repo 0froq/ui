@@ -1,10 +1,10 @@
 import { readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { countCardWords } from '@froq/og-covers-layer/card-words'
+import { IMAGE_ORIGIN, SITE_DESCRIPTION, SITE_NAME } from './app/utils/site'
 import { componentFile } from './shared/component-files'
 import { keepEmptyTitle } from './shared/empty-title'
 import { listPublicShareImages } from './shared/public-files'
-import { IMAGE_ORIGIN, SITE_DESCRIPTION, SITE_NAME } from './shared/site'
 
 const siteDist = fileURLToPath(new URL('../dist', import.meta.url))
 const componentsRoot = fileURLToPath(new URL('../src/components', import.meta.url))
