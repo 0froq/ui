@@ -1,6 +1,6 @@
 import type { MaybeRefOrGetter } from 'vue'
 import type { ShareMetaInput } from './useShareMeta'
-import { shareTitle, SITE_NAME } from '~/utils/site'
+import { shareTitle, SITE_DESCRIPTION, SITE_NAME } from '~/utils/site'
 
 function cardTitle(value: string | undefined): string {
   const titled = shareTitle(value)
@@ -18,6 +18,10 @@ export function usePaperOgImage(
 
   defineOgImage('Paper', {
     title: () => title.value,
+    description: () => {
+      const raw = share.description == null ? undefined : toValue(share.description)
+      return (typeof raw === 'string' ? raw.trim() : '') || SITE_DESCRIPTION
+    },
     words: 0,
   }, {
     alt: () => title.value,
@@ -57,6 +61,7 @@ export function useContentOgImage(
   if (override.value === undefined) {
     defineOgImage(ogComponentName(current.value), {
       title: () => paperFields(current.value).title,
+      description: () => paperFields(current.value, SITE_DESCRIPTION).description,
       evergreen: () => paperFields(current.value).evergreen,
       created: () => paperFields(current.value).created,
       updated: () => paperFields(current.value).updated,
@@ -84,6 +89,10 @@ export function useCollectionIndexOgImage(
   if (!override.value) {
     defineOgImage('Paper', {
       title: () => cardTitle(toValue(share.title)),
+      description: () => {
+        const raw = share.description == null ? undefined : toValue(share.description)
+        return (typeof raw === 'string' ? raw.trim() : '') || SITE_DESCRIPTION
+      },
       words: 0,
     }, {
       alt: () => cardTitle(toValue(share.title)),
