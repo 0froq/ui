@@ -3,7 +3,7 @@ import { existsSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const publicRoot = join(dirname(fileURLToPath(import.meta.url)), '../public')
+const publicRoot = join(dirname(fileURLToPath(import.meta.url)), '../../public')
 const SHARE_IMAGE = /\.(?:png|jpe?g|webp|gif|svg)$/i
 
 /** URL paths of files under `public/`, e.g. `/og.png`, `/covers/docs/en/install.png`. */
