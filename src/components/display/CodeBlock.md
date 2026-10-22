@@ -14,12 +14,12 @@ props:
     description: Source pieces. A span may carry its own color. Ignored when the default slot is set.
   - name: collapsible
     type: boolean
-    default: "false"
+    default: 'false'
     description: Fold the source behind the title. A frame without a title cannot fold. Starts closed.
 model:
   name: open
   type: boolean
-  default: "false"
+  default: 'false'
   description: Whether a collapsible frame is open. Ignored when collapsible is false.
 slots:
   - name: action

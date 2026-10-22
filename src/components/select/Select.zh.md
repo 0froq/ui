@@ -9,11 +9,11 @@ model:
 props:
   - name: native
     type: boolean
-    default: "true"
+    default: 'true'
     description: 使用原生 select；设为 false 使用紧凑的自定义下拉框。
   - name: hideLabel
     type: boolean
-    default: "false"
+    default: 'false'
     description: 隐藏可见标签，仍保留无障碍名称。
   - name: accent
     type: string
@@ -33,7 +33,7 @@ props:
     description: 表单字段名，两种模式均支持。
   - name: framed
     type: boolean
-    default: "false"
+    default: 'false'
     description: Full outline and token background; inherits the host font.
   - name: label
     type: string

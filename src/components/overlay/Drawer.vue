@@ -3,19 +3,22 @@ import { computed, useSlots } from 'vue'
 import Dialog from './Dialog.vue'
 
 defineOptions({ inheritAttrs: false })
-const props = withDefaults(defineProps<{
-  title: string
-  closeLabel: string
-  description?: string
-  triggerLabel?: string
-  showTrigger?: boolean
-  returnFocus?: HTMLElement
-  disabled?: boolean
-  dismissible?: boolean
-  closeOnOutside?: boolean
-  portalTo?: string | HTMLElement
-  side?: 'left' | 'right' | 'bottom'
-}>(), { side: 'right', showTrigger: true, disabled: false, dismissible: true, closeOnOutside: true })
+const props = withDefaults(
+  defineProps<{
+    title: string
+    closeLabel: string
+    description?: string
+    triggerLabel?: string
+    showTrigger?: boolean
+    returnFocus?: HTMLElement
+    disabled?: boolean
+    dismissible?: boolean
+    closeOnOutside?: boolean
+    portalTo?: string | HTMLElement
+    side?: 'left' | 'right' | 'bottom'
+  }>(),
+  { side: 'right', showTrigger: true, disabled: false, dismissible: true, closeOnOutside: true },
+)
 defineSlots<{
   trigger?: () => unknown
   default?: (scope: { close: () => void }) => unknown

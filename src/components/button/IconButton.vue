@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import Button from './Button.vue'
 
-withDefaults(defineProps<{
-  label: string
-  type?: 'button' | 'submit' | 'reset'
-}>(), { type: 'button' })
+withDefaults(
+  defineProps<{
+    label: string
+    type?: 'button' | 'submit' | 'reset'
+  }>(),
+  { type: 'button' },
+)
 defineSlots<{ default?: () => unknown }>()
 </script>
 
@@ -17,6 +20,7 @@ defineSlots<{ default?: () => unknown }>()
     <span
       class="ui-icon-button-glyph"
       aria-hidden="true"
-    ><slot /></span>
+      ><slot
+    /></span>
   </Button>
 </template>

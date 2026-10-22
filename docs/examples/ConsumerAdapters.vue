@@ -20,17 +20,19 @@ const variants: ChoiceOption<Variant>[] = [
   { value: 'dark-crisp', label: 'Dark / crisp' },
 ]
 const choice = useChoice(variants, variant)
-const paletteValue = computed(() => variant.value === 'light-soft' ? '#f3f1ed' : '#161616')
+const paletteValue = computed(() => (variant.value === 'light-soft' ? '#f3f1ed' : '#161616'))
 const clipboard = useClipboard(paletteValue)
-const copyLabel = computed(() => ({
-  idle: 'Copy palette value',
-  pending: 'Copying palette value',
-  copied: 'Palette value copied',
-  error: 'Copy failed',
-})[clipboard.status.value])
+const copyLabel = computed(
+  () =>
+    ({
+      idle: 'Copy palette value',
+      pending: 'Copying palette value',
+      copied: 'Palette value copied',
+      error: 'Copy failed',
+    })[clipboard.status.value],
+)
 function choose(next: Variant) {
-  if (!choice.isDisabled(next))
-    variant.value = next
+  if (!choice.isDisabled(next)) variant.value = next
 }
 
 // A person/entry is selected by multiple external buttons, not by the modal itself.
@@ -99,7 +101,9 @@ function showContents(event: MouseEvent) {
         role="status"
         aria-live="polite"
       >
-        {{ clipboard.status.value === 'copied' || clipboard.status.value === 'error' ? copyLabel : '' }}
+        {{
+          clipboard.status.value === 'copied' || clipboard.status.value === 'error' ? copyLabel : ''
+        }}
       </p>
     </section>
     <section id="details">
@@ -122,10 +126,15 @@ function showContents(event: MouseEvent) {
         <Tabs
           v-model="noteTab"
           label="Notes"
-          :items="[{ value: 'mine', label: 'My notes' }, { value: 'theirs', label: 'Their notes', disabled: selected === 'Lin' }]"
+          :items="[
+            { value: 'mine', label: 'My notes' },
+            { value: 'theirs', label: 'Their notes', disabled: selected === 'Lin' },
+          ]"
         >
           <template #default="{ item }">
-            <p>{{ item.value === 'mine' ? 'Consumer-owned impression' : 'Consumer-owned reply' }}</p>
+            <p>{{
+              item.value === 'mine' ? 'Consumer-owned impression' : 'Consumer-owned reply'
+            }}</p>
           </template>
         </Tabs>
       </Dialog>

@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: A group of collapsible panels with single or multiple open values.
 model:
   type: string[]
-  default: "[]"
+  default: '[]'
   description: Values of the open items.
 props:
   - name: items
@@ -13,11 +13,11 @@ props:
     description: Items with stable, unique values and labels; each may be disabled.
   - name: multiple
     type: boolean
-    default: "false"
+    default: 'false'
     description: Allow more than one item to be open at a time.
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: Disable toggling for every item.
 slots:
   - name: default

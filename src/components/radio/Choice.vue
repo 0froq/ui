@@ -20,7 +20,11 @@ const props = defineProps<{
 const model = defineModel<T>({ required: true })
 
 const labelId = useId()
-const { values, signature, isDisabled, tabindex, onKeydown } = useChoice(() => props.options, model, () => props.disabled ?? false)
+const { values, signature, isDisabled, tabindex, onKeydown } = useChoice(
+  () => props.options,
+  model,
+  () => props.disabled ?? false,
+)
 
 const DOT = 6
 const DOT_TOP = 12
@@ -39,7 +43,13 @@ function wordOf(value: T): HTMLElement | undefined {
 }
 
 function dot(word: HTMLElement): Shape {
-  return { left: word.offsetLeft + word.offsetWidth + 3, top: word.offsetTop + DOT_TOP, width: DOT, height: DOT, radius: DOT / 2 }
+  return {
+    left: word.offsetLeft + word.offsetWidth + 3,
+    top: word.offsetTop + DOT_TOP,
+    width: DOT,
+    height: DOT,
+    radius: DOT / 2,
+  }
 }
 
 function rule(word: HTMLElement, left = word.offsetLeft, width = word.offsetWidth): Shape {
@@ -85,27 +95,27 @@ function travel(from: T, to: T): void {
   const el = mark.value
   const a = wordOf(from)
   const b = wordOf(to)
-  if (!el || !a || !b)
-    return
+  if (!el || !a || !b) return
   const start = motion?.playState === 'running' ? current(el) : dot(a)
   motion?.cancel()
   settle()
-  if (prefersReducedMotion())
-    return
+  if (prefersReducedMotion()) return
   const left = Math.min(a.offsetLeft, b.offsetLeft)
   const right = Math.max(a.offsetLeft + a.offsetWidth, b.offsetLeft + b.offsetWidth)
-  motion = el.animate([
-    frame(start, 0, 'cubic-bezier(0.5, 0, 0.75, 0)'),
-    frame(rule(a), 0.2, 'cubic-bezier(0.45, 0, 0.55, 1)'),
-    frame(rule(b, left, right - left), 0.5, 'cubic-bezier(0.16, 1, 0.3, 1)'),
-    frame(rule(b), 0.78, 'cubic-bezier(0.7, 0, 0.84, 0)'),
-    frame(dot(b), 1, 'linear'),
-  ], { duration: 820 })
+  motion = el.animate(
+    [
+      frame(start, 0, 'cubic-bezier(0.5, 0, 0.75, 0)'),
+      frame(rule(a), 0.2, 'cubic-bezier(0.45, 0, 0.55, 1)'),
+      frame(rule(b, left, right - left), 0.5, 'cubic-bezier(0.16, 1, 0.3, 1)'),
+      frame(rule(b), 0.78, 'cubic-bezier(0.7, 0, 0.84, 0)'),
+      frame(dot(b), 1, 'linear'),
+    ],
+    { duration: 820 },
+  )
 }
 
 function choose(next: T): void {
-  if (isDisabled(next) || next === model.value)
-    return
+  if (isDisabled(next) || next === model.value) return
   const from = model.value
   model.value = next
   nextTick(() => travel(from, next))
@@ -123,8 +133,7 @@ onMounted(async () => {
   settle()
   addEventListener('resize', onResize)
   await document.fonts?.ready
-  if (disposed)
-    return
+  if (disposed) return
   settle()
 })
 
@@ -141,7 +150,8 @@ onBeforeUnmount(() => {
       v-if="label"
       :id="labelId"
       class="ui-choice-label"
-    >{{ label }}</span>
+      >{{ label }}</span
+    >
     <div
       class="ui-choice-options"
       role="radiogroup"
@@ -151,7 +161,11 @@ onBeforeUnmount(() => {
       <button
         v-for="(option, index) in options"
         :key="option.value"
-        :ref="el => { if (el) words[index] = el as HTMLElement }"
+        :ref="
+          el => {
+            if (el) words[index] = el as HTMLElement
+          }
+        "
         type="button"
         role="radio"
         class="ui-choice-word"

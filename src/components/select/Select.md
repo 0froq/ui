@@ -9,11 +9,11 @@ model:
 props:
   - name: native
     type: boolean
-    default: "true"
+    default: 'true'
     description: Use the native select; false enables the compact custom listbox.
   - name: hideLabel
     type: boolean
-    default: "false"
+    default: 'false'
     description: Hide the visible label while retaining an accessible name.
   - name: accent
     type: string
@@ -33,7 +33,7 @@ props:
     description: Form field name in either mode.
   - name: framed
     type: boolean
-    default: "false"
+    default: 'false'
     description: Full outline and token background; inherits the host font.
   - name: label
     type: string

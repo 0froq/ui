@@ -5,11 +5,11 @@ description: 浅色是纤维，深色是颗粒。每一档都可以关掉。
 props:
   - name: light
     type: boolean
-    default: "true"
+    default: 'true'
     description: 页面为浅色时画纤维。
   - name: dark
     type: boolean
-    default: "true"
+    default: 'true'
     description: 页面为深色时画颗粒。
 slots:
   - name: default

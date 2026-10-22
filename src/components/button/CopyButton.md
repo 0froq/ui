@@ -25,11 +25,11 @@ props:
     description: Accessible label shown while copying; defaults to label.
   - name: resetAfter
     type: number
-    default: "1600"
+    default: '1600'
     description: Delay in milliseconds before a copied or error state returns to idle. A non-positive or non-finite value keeps the result until the next click.
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: Disables copying. The button is also disabled while a copy is pending.
 events:
   - name: copy

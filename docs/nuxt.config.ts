@@ -12,14 +12,14 @@ const componentsRoot = fileURLToPath(new URL('../src/components', import.meta.ur
 function componentRoutes(): string[] {
   const routes: string[] = []
   for (const concept of readdirSync(componentsRoot, { withFileTypes: true })) {
-    if (!concept.isDirectory())
-      continue
+    if (!concept.isDirectory()) continue
     routes.push(`/components/${concept.name}`, `/zh/components/${concept.name}`)
-    const files = readdirSync(fileURLToPath(new URL(`../src/components/${concept.name}`, import.meta.url)))
+    const files = readdirSync(
+      fileURLToPath(new URL(`../src/components/${concept.name}`, import.meta.url)),
+    )
     for (const file of files) {
       const entry = componentFile(`${concept.name}/${file}`)
-      if (!entry || entry.demo)
-        continue
+      if (!entry || entry.demo) continue
       routes.push(entry.to, `/zh${entry.to}`)
     }
   }
@@ -27,9 +27,7 @@ function componentRoutes(): string[] {
 }
 
 export default defineNuxtConfig({
-  extends: [
-    ['github:0froq/og-layer#v0.2.1', { install: true }],
-  ],
+  extends: ['@froq/og-covers-layer'],
 
   compatibilityDate: '2026-09-19',
 
@@ -47,11 +45,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: [
-    '@nuxt/content',
-    '@nuxtjs/i18n',
-    '@nuxt/eslint',
-  ],
+  modules: ['@nuxt/content', '@nuxtjs/i18n'],
 
   devtools: { enabled: true },
 
@@ -61,11 +55,7 @@ export default defineNuxtConfig({
     name: SITE_NAME,
   },
 
-  css: [
-    '~/assets/css/fonts.css',
-    '@froq/ui/style.css',
-    '~/assets/css/site.css',
-  ],
+  css: ['~/assets/css/fonts.css', '@froq/ui/style.css', '~/assets/css/site.css'],
 
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
@@ -75,10 +65,12 @@ export default defineNuxtConfig({
         { name: 'color-scheme', content: 'light dark' },
         { name: 'description', content: SITE_DESCRIPTION },
       ],
-      script: [{
-        tagPosition: 'head',
-        innerHTML: `try{var t=localStorage.getItem('ui-theme');var dark=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.dataset.theme=dark?'dark':'light';document.documentElement.classList.toggle('dark',dark)}catch(e){}`,
-      }],
+      script: [
+        {
+          tagPosition: 'head',
+          innerHTML: `try{var t=localStorage.getItem('ui-theme');var dark=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.dataset.theme=dark?'dark':'light';document.documentElement.classList.toggle('dark',dark)}catch(e){}`,
+        },
+      ],
     },
   },
 
@@ -120,13 +112,7 @@ export default defineNuxtConfig({
     preset: 'static',
     prerender: {
       crawlLinks: true,
-      routes: [
-        '/',
-        '/zh',
-        '/components',
-        '/zh/components',
-        ...componentRoutes(),
-      ],
+      routes: ['/', '/zh', '/components', '/zh/components', ...componentRoutes()],
     },
   },
 
@@ -141,6 +127,4 @@ export default defineNuxtConfig({
   },
 
   typescript: { strict: true },
-
-  eslint: { config: { standalone: false } },
 })

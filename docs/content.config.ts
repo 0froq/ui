@@ -69,11 +69,15 @@ export default defineContentConfig({
         model: field.omit({ name: true }).optional(),
         props: z.array(field).default([]),
         slots: z.array(field.omit({ type: true, required: true, default: true })).default([]),
-        events: z.array(z.object({
-          name: z.string(),
-          payload: z.string(),
-          description: z.string(),
-        })).default([]),
+        events: z
+          .array(
+            z.object({
+              name: z.string(),
+              payload: z.string(),
+              description: z.string(),
+            }),
+          )
+          .default([]),
         ...card,
       }),
     }),

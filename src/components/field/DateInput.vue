@@ -18,6 +18,6 @@ const { wrapperAttrs, controlAttrs } = useControlAttrs()
       v-model="model"
       class="ui-field-control"
       type="date"
-    >
+    />
   </label>
 </template>

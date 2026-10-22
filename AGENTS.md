@@ -133,7 +133,7 @@ git subtree pull --prefix=vendor/ui https://github.com/0froq/ui.git main --squas
 
 用户定了之后再改代码，让它在库里和项目里都能运行。不要把项目文件原样复制进 `vendor/ui`。指向页面组件、项目 store、路由、项目类名和项目色值的地方，改成 props、slot，或库里已有的函数；样式改读 `--ui-*`。调用处仍由项目传入文案和数据。改完后，原来的页面还要能渲染。外观如果用了 token 契约里没有的颜色或字体，而且不能改写成那十二个变量，停下来告诉用户缺哪一个，不要给这个组件单开一套变量。
 
-写库里的代码之前，读 `vendor/ui/AGENTS.md` 的「代码规范」，并对照同一层已有文件。规范一节还没有细则时，以同一目录里已有组件为准，并让库的 eslint 通过。不要另起一套写法。
+写库里的代码之前，读 `vendor/ui/AGENTS.md` 的「代码规范」，并对照同一层已有文件。规范一节还没有细则时，以同一目录里已有组件为准，并让库的 `pnpm lint` 通过。不要另起一套写法。
 
 1. 定名字和 props。库里已有同一种控件就沿用现有名字，例如 `Choice`、`Toggle`。新控件不要带项目名。props 只保留交互需要的，例如 `v-model`、`options`、`label`。项目专属参数留在本项目里包一层。
 2. 行为。不依赖 DOM 结构的逻辑放进 `vendor/ui/src/core/`，不要引用 Vue。需要 Vue、但不关心样子的逻辑放进 `vendor/ui/src/vue/`，并从 `vendor/ui/src/vue/index.ts` 导出。已有 `useChoice` 或其他函数能用就用，不要复制一份。有动效时用 `vendor/ui/src/core` 里的 `prefersReducedMotion`。
@@ -161,7 +161,7 @@ git subtree pull --prefix=vendor/ui https://github.com/0froq/ui.git main --squas
 
 抽进库的代码要符合这一节。移植前先读这里，再对照同一层已有文件。
 
-eslint 使用 `@antfu/eslint-config`。Vue 单行和多行都是每个属性单独一行。改完在库仓库里跑 `pnpm lint`，或在项目里对 `vendor/ui` 跑同一套配置。不要为了迁就项目原来的格式去关规则。
+库仓库使用 Oxlint 与 Oxfmt（Vite+ `vp lint` / `vp fmt`）。Vue 单行和多行都是每个属性单独一行。改完在库仓库里跑 `pnpm lint` 与 `pnpm fmt:check`，或在项目里对 `vendor/ui` 跑同一套配置。不要为了迁就项目原来的格式去关规则。
 
 ### 细则
 

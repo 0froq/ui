@@ -12,8 +12,7 @@ const props = defineProps<{
 const mark = computed(() => {
   const text = props.title ?? ''
   const found = text.match(/^(.*?)([.。])$/)
-  if (found)
-    return { body: found[1] ?? '', stop: found[2] ?? '' }
+  if (found) return { body: found[1] ?? '', stop: found[2] ?? '' }
   return { body: text, stop: text ? '.' : '' }
 })
 </script>
@@ -29,10 +28,12 @@ const mark = computed(() => {
       class="l-page-title"
       :class="{ 'is-long': long }"
     >
-      {{ mark.body }}<span
+      {{ mark.body
+      }}<span
         v-if="mark.stop"
         class="l-mark"
-      >{{ mark.stop }}</span>
+        >{{ mark.stop }}</span
+      >
     </h1>
     <div class="l-page-foot">
       <p

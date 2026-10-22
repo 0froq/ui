@@ -7,12 +7,17 @@ const tone = ref('clear')
 const enabled = ref(true)
 const catalog = componentCatalog()
 const count = catalog.reduce((total, concept) => total + concept.items.length, 0)
-const options = computed(() => ['quiet', 'clear', 'loud'].map(value => ({ value, label: t(`hero.${value}`) })))
+const options = computed(() =>
+  ['quiet', 'clear', 'loud'].map(value => ({ value, label: t(`hero.${value}`) })),
+)
 
-usePaperOgImage({
-  title: 'froq/ui',
-  description: () => t('hero.lede'),
-}, { title: 'froq/ui' })
+usePaperOgImage(
+  {
+    title: 'froq/ui',
+    description: () => t('hero.lede'),
+  },
+  { title: 'froq/ui' },
+)
 </script>
 
 <template>
@@ -44,9 +49,7 @@ usePaperOgImage({
           <span aria-hidden="true">01 / 02</span>
         </figcaption>
         <div class="home-sample">
-          <p class="home-sample-name">
-            Choice
-          </p>
+          <p class="home-sample-name"> Choice </p>
           <Choice
             v-model="tone"
             :label="t('hero.tone')"
@@ -60,9 +63,7 @@ usePaperOgImage({
           </p>
         </div>
         <div class="home-sample home-switch">
-          <p class="home-sample-name">
-            Toggle
-          </p>
+          <p class="home-sample-name"> Toggle </p>
           <p class="home-sentence">
             {{ t('hero.switchBefore') }}
             <Toggle

@@ -13,19 +13,22 @@ import { useSlots, useTemplateRef } from 'vue'
 import { useFocusReturn, usePortalTarget } from '../../vue'
 
 defineOptions({ inheritAttrs: false })
-const props = withDefaults(defineProps<{
-  title: string
-  closeLabel: string
-  description?: string
-  triggerLabel?: string
-  showTrigger?: boolean
-  returnFocus?: HTMLElement
-  disabled?: boolean
-  dismissible?: boolean
-  closeOnOutside?: boolean
-  portalTo?: string | HTMLElement
-}>(), { showTrigger: true, disabled: false, dismissible: true, closeOnOutside: true })
-const emit = defineEmits<{ openAutoFocus: [event: Event], closeAutoFocus: [event: Event] }>()
+const props = withDefaults(
+  defineProps<{
+    title: string
+    closeLabel: string
+    description?: string
+    triggerLabel?: string
+    showTrigger?: boolean
+    returnFocus?: HTMLElement
+    disabled?: boolean
+    dismissible?: boolean
+    closeOnOutside?: boolean
+    portalTo?: string | HTMLElement
+  }>(),
+  { showTrigger: true, disabled: false, dismissible: true, closeOnOutside: true },
+)
+const emit = defineEmits<{ openAutoFocus: [event: Event]; closeAutoFocus: [event: Event] }>()
 defineSlots<{
   trigger?: () => unknown
   default?: (scope: { close: () => void }) => unknown
@@ -35,7 +38,11 @@ const model = defineModel<boolean>({ default: false })
 const slots = useSlots()
 const scope = useTemplateRef<HTMLElement>('scope')
 const target = usePortalTarget(scope)
-const focusReturn = useFocusReturn(model, () => props.returnFocus, () => !props.showTrigger)
+const focusReturn = useFocusReturn(
+  model,
+  () => props.returnFocus,
+  () => !props.showTrigger,
+)
 function opening(event: Event) {
   focusReturn.capture(event)
   emit('openAutoFocus', event)
@@ -48,8 +55,7 @@ function close() {
   model.value = false
 }
 function outside(event: Event) {
-  if (!props.dismissible || !props.closeOnOutside)
-    event.preventDefault()
+  if (!props.dismissible || !props.closeOnOutside) event.preventDefault()
 }
 </script>
 

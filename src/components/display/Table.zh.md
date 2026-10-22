@@ -48,9 +48,7 @@ interface DocumentRow {
   status: string
 }
 
-const rows: DocumentRow[] = [
-  { id: 'one', title: 'Tokens and typography', status: 'Published' },
-]
+const rows: DocumentRow[] = [{ id: 'one', title: 'Tokens and typography', status: 'Published' }]
 const columns: TableColumn<DocumentRow>[] = [
   { key: 'title', label: 'Document' },
   { key: 'status', label: 'Status', align: 'end' },
@@ -73,9 +71,7 @@ const columns: TableColumn<DocumentRow>[] = [
           {{ value }}
         </template>
       </template>
-      <template #empty>
-        No documents yet.
-      </template>
+      <template #empty> No documents yet. </template>
     </Table>
   </div>
 </template>

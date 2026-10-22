@@ -4,7 +4,9 @@ import FormField from './FormField.vue'
 
 const value = ref('')
 const touched = ref(false)
-const error = computed(() => touched.value && !value.value.trim() ? 'Enter a document title.' : undefined)
+const error = computed(() =>
+  touched.value && !value.value.trim() ? 'Enter a document title.' : undefined,
+)
 </script>
 
 <template>
@@ -22,7 +24,7 @@ const error = computed(() => touched.value && !value.value.trim() ? 'Enter a doc
         type="text"
         name="title"
         @blur="touched = true"
-      >
+      />
     </template>
   </FormField>
 </template>

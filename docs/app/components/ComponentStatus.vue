@@ -1,7 +1,10 @@
 <script setup lang="ts">
-withDefaults(defineProps<{
-  explain?: boolean
-}>(), { explain: false })
+withDefaults(
+  defineProps<{
+    explain?: boolean
+  }>(),
+  { explain: false },
+)
 
 const { t } = useI18n()
 </script>
@@ -11,11 +14,13 @@ const { t } = useI18n()
     <span
       class="design-status-badge"
       :title="t('components.draftDescription')"
-    >{{ t('components.draft') }}</span>
+      >{{ t('components.draft') }}</span
+    >
     <span
       v-if="explain"
       class="design-status-description"
-    >{{ t('components.draftDescription') }}</span>
+      >{{ t('components.draftDescription') }}</span
+    >
   </span>
 </template>
 

@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: A modal confirmation dialog with explicit confirm and cancel actions.
 model:
   type: boolean
-  default: "false"
+  default: 'false'
   description: Whether the dialog is open. Supports v-model.
 props:
   - name: title
@@ -28,15 +28,15 @@ props:
     description: Trigger text when no trigger slot is provided; defaults to title.
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: Disables the trigger only. A parent can still open the dialog through the model.
   - name: pending
     type: boolean
-    default: "false"
+    default: 'false'
     description: Disables confirmation and sets aria-busy on the content. Cancel and Escape remain available.
   - name: confirmDisabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: Disables the confirm button independently of pending.
   - name: portalTo
     type: string | HTMLElement
@@ -93,9 +93,7 @@ function confirm() {
       </template>
       <p>Delete the current draft?</p>
     </AlertDialog>
-    <p v-if="confirmed">
-      Deletion confirmed in this example; no request was sent.
-    </p>
+    <p v-if="confirmed"> Deletion confirmed in this example; no request was sent. </p>
   </div>
 </template>
 ```

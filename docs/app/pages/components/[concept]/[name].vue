@@ -3,12 +3,21 @@ const { t } = useI18n()
 const link = useSiteLink()
 const { concept, item } = useComponentRoute()
 const { docFor } = await useComponentDocs()
-const doc = computed(() => concept.value && item.value ? docFor(concept.value.id, item.value.name) : undefined)
+const doc = computed(() =>
+  concept.value && item.value ? docFor(concept.value.id, item.value.name) : undefined,
+)
 
 if (!concept.value || !item.value)
   throw createError({ statusCode: 404, statusMessage: 'Not found', fatal: true })
 
-const hasApi = computed(() => Boolean(doc.value?.model || doc.value?.props?.length || doc.value?.slots?.length || doc.value?.events?.length))
+const hasApi = computed(() =>
+  Boolean(
+    doc.value?.model ||
+    doc.value?.props?.length ||
+    doc.value?.slots?.length ||
+    doc.value?.events?.length,
+  ),
+)
 
 usePaperOgImage({
   title: () => item.value?.name,

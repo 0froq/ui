@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: A labeled native single-thumb range input.
 model:
   type: number
-  default: "50"
+  default: '50'
   description: The controlled slider value. Displayed values are clamped to the normalized bounds.
 props:
   - name: label
@@ -13,15 +13,15 @@ props:
     description: Visible text label for the range input.
   - name: min
     type: number
-    default: "0"
+    default: '0'
     description: Minimum bound. A non-finite value falls back to zero.
   - name: max
     type: number
-    default: "100"
+    default: '100'
     description: Maximum bound. A non-finite value falls back to the greater of min and 100; a finite value below min is normalized to min.
   - name: step
     type: number | 'any'
-    default: "1"
+    default: '1'
     description: Native range step. A non-finite or non-positive number falls back to 1; any disables step granularity.
 ---
 

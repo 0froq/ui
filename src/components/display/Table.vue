@@ -10,7 +10,7 @@ defineProps<{
 }>()
 defineSlots<{
   header?: (scope: { column: TableColumn<T> }) => unknown
-  cell?: (scope: { row: T, column: TableColumn<T>, value: T[keyof T], index: number }) => unknown
+  cell?: (scope: { row: T; column: TableColumn<T>; value: T[keyof T]; index: number }) => unknown
   empty?: () => unknown
 }>()
 </script>

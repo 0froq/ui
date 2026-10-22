@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: An accessible menu with optional nested submenus.
 model:
   type: boolean
-  default: "false"
+  default: 'false'
   description: Whether the menu is open. Supports v-model.
 props:
   - name: label
@@ -17,11 +17,11 @@ props:
     description: Menu entries and optional nested submenu entries.
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: Disables the trigger only; disable individual entries on their MenuItem.
   - name: modal
     type: boolean
-    default: "true"
+    default: 'true'
     description: Controls whether interaction outside the open menu is modal.
   - name: dir
     type: "'ltr' | 'rtl'"
@@ -36,7 +36,7 @@ props:
     description: Preferred alignment against the trigger; collision handling may reposition the menu.
   - name: sideOffset
     type: number
-    default: "8"
+    default: '8'
     description: Distance in pixels between the trigger and menu content.
   - name: portalTo
     type: string | HTMLElement

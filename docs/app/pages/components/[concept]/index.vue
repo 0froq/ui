@@ -4,8 +4,7 @@ const link = useSiteLink()
 const { concept } = useComponentRoute()
 const { docFor } = await useComponentDocs()
 
-if (!concept.value)
-  throw createError({ statusCode: 404, statusMessage: 'Not found', fatal: true })
+if (!concept.value) throw createError({ statusCode: 404, statusMessage: 'Not found', fatal: true })
 
 usePaperOgImage({
   title: () => concept.value?.id,

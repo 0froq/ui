@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: 锚定在触发按钮或外部元素上的非模态浮层面板。
 model:
   type: boolean
-  default: "false"
+  default: 'false'
   description: 浮层是否打开。
 props:
   - name: reference
@@ -23,7 +23,7 @@ props:
     description: 未提供 trigger 插槽时的按钮文案，默认使用 label。
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: 禁用触发按钮。
   - name: side
     type: "'top' | 'right' | 'bottom' | 'left'"
@@ -35,7 +35,7 @@ props:
     description: 相对触发按钮的首选对齐方式；发生碰撞时位置可能调整。
   - name: sideOffset
     type: number
-    default: "8"
+    default: '8'
     description: 触发按钮与内容之间的像素距离。
   - name: portalTo
     type: string | HTMLElement
@@ -82,9 +82,7 @@ const open = ref(false)
       </template>
       <template #default="{ close }">
         <p>本文档仍是草稿。</p>
-        <Button @click="close">
-          知道了
-        </Button>
+        <Button @click="close"> 知道了 </Button>
       </template>
     </Popover>
   </div>

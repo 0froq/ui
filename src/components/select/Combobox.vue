@@ -1,26 +1,40 @@
 <script setup lang="ts" generic="T extends string | string[] = string | string[]">
 import type { ChoiceOption } from '../../vue'
-import { ComboboxAnchor, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxItemIndicator, ComboboxPortal, ComboboxRoot, ComboboxTrigger, ComboboxViewport } from 'reka-ui'
+import {
+  ComboboxAnchor,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxItemIndicator,
+  ComboboxPortal,
+  ComboboxRoot,
+  ComboboxTrigger,
+  ComboboxViewport,
+} from 'reka-ui'
 import { computed, useId, useTemplateRef } from 'vue'
 import { useControlAttrs, usePortalTarget } from '../../vue'
 
 defineOptions({ inheritAttrs: false })
-const props = withDefaults(defineProps<{
-  label: string
-  options: ChoiceOption[]
-  toggleLabel: string
-  clearLabel: string
-  emptyLabel: string
-  placeholder?: string
-  multiple?: boolean
-  disabled?: boolean
-  ignoreFilter?: boolean
-  name?: string
-  dir?: 'ltr' | 'rtl'
-  portalTo?: string | HTMLElement
-}>(), { multiple: false, disabled: false, ignoreFilter: false })
+const props = withDefaults(
+  defineProps<{
+    label: string
+    options: ChoiceOption[]
+    toggleLabel: string
+    clearLabel: string
+    emptyLabel: string
+    placeholder?: string
+    multiple?: boolean
+    disabled?: boolean
+    ignoreFilter?: boolean
+    name?: string
+    dir?: 'ltr' | 'rtl'
+    portalTo?: string | HTMLElement
+  }>(),
+  { multiple: false, disabled: false, ignoreFilter: false },
+)
 defineSlots<{
-  option?: (scope: { option: ChoiceOption, selected: boolean }) => unknown
+  option?: (scope: { option: ChoiceOption; selected: boolean }) => unknown
   empty?: () => unknown
 }>()
 type ModelValue = T extends string[] ? T : T | ''
@@ -35,10 +49,18 @@ const { wrapperAttrs, controlAttrs } = useControlAttrs()
 const value = computed<string | string[]>(() => {
   const selected = model.value as string | string[]
   return props.multiple
-    ? Array.isArray(selected) ? selected : selected ? [selected] : []
-    : Array.isArray(selected) ? selected[0] ?? '' : selected
+    ? Array.isArray(selected)
+      ? selected
+      : selected
+        ? [selected]
+        : []
+    : Array.isArray(selected)
+      ? (selected[0] ?? '')
+      : selected
 })
-const selectedValues = computed(() => Array.isArray(value.value) ? value.value : value.value ? [value.value] : [])
+const selectedValues = computed(() =>
+  Array.isArray(value.value) ? value.value : value.value ? [value.value] : [],
+)
 function labelFor(value: string) {
   return props.options.find(option => option.value === value)?.label ?? value
 }
@@ -46,19 +68,22 @@ function displayValue(value: unknown) {
   return typeof value === 'string' ? labelFor(value) : ''
 }
 function update(next: unknown) {
-  if (props.disabled)
-    return
-  model.value = (props.multiple
-    ? Array.isArray(next) ? next.filter((item): item is string => typeof item === 'string') : []
-    : typeof next === 'string' ? next : '') as ModelValue
+  if (props.disabled) return
+  model.value = (
+    props.multiple
+      ? Array.isArray(next)
+        ? next.filter((item): item is string => typeof item === 'string')
+        : []
+      : typeof next === 'string'
+        ? next
+        : ''
+  ) as ModelValue
 }
 function updateOpen(next: boolean) {
-  if (!props.disabled || !next)
-    open.value = next
+  if (!props.disabled || !next) open.value = next
 }
 function clear() {
-  if (props.disabled)
-    return
+  if (props.disabled) return
   // The clear button becomes disabled after this update; keep keyboard focus usable.
   input.value?.$el.focus({ preventScroll: true })
   update(props.multiple ? [] : '')
@@ -76,7 +101,8 @@ function clear() {
     <label
       :for="id"
       class="ui-field-label"
-    >{{ label }}</label>
+      >{{ label }}</label
+    >
     <ComboboxRoot
       :model-value="value"
       :open="open && !disabled"
@@ -122,7 +148,8 @@ function clear() {
           v-for="selected in selectedValues"
           :key="selected"
           class="ui-combobox-value"
-        >{{ labelFor(selected) }}</span>
+          >{{ labelFor(selected) }}</span
+        >
       </div>
       <ComboboxPortal
         :to="portalTo ?? target"
@@ -154,11 +181,10 @@ function clear() {
                   name="option"
                   :option="option"
                   :selected="selectedValues.includes(option.value)"
-                >{{ option.label }}</slot>
+                  >{{ option.label }}</slot
+                >
               </span>
-              <ComboboxItemIndicator aria-hidden="true">
-                ✓
-              </ComboboxItemIndicator>
+              <ComboboxItemIndicator aria-hidden="true"> ✓ </ComboboxItemIndicator>
             </ComboboxItem>
           </ComboboxViewport>
         </ComboboxContent>

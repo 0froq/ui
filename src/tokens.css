@@ -8,11 +8,13 @@
   --ui-line: light-dark(rgb(26 25 23 / 12%), rgb(242 240 234 / 10%));
   --ui-accent: light-dark(#e8431f, #ff6242);
   --ui-font-display:
-    'Instrument Serif', 'Iowan Old Style', georgia, 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', serif;
+    'Instrument Serif', 'Iowan Old Style', georgia, 'Songti SC', 'Noto Serif SC',
+    'Source Han Serif SC', serif;
   --ui-font-text:
-    'Geist Variable', 'Geist', ui-sans-serif, system-ui, -apple-system, 'PingFang SC', 'Hiragino Sans GB',
-    'Noto Sans SC', sans-serif;
-  --ui-font-meta: 'Geist Mono Variable', 'Geist Mono', ui-monospace, sfmono-regular, menlo, monospace;
+    'Geist Variable', 'Geist', ui-sans-serif, system-ui, -apple-system, 'PingFang SC',
+    'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+  --ui-font-meta:
+    'Geist Mono Variable', 'Geist Mono', ui-monospace, sfmono-regular, menlo, monospace;
   --ui-ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ui-dur: 0.35s;
   --ui-radius: 2px;

@@ -14,14 +14,14 @@ Font readiness is a separate issue: hiding text still uses fallback metrics. Pre
 
 Source inspected on `main`. `void` and `gallery` use clean local HEADs; other repositories use GitHub snapshots. All six inspected manifests use Vue/Nuxt. This does not prove every dependency/runtime version is compatible yet.
 
-| Repository / revision | Actual source examples | Library candidates | Keep outside library |
-| --- | --- | --- | --- |
-| `void` / `4921c063985389d121b7b7a160eb0e60d9b4f0de` | `app/components/CopyCommand.vue`, `SectionNav.vue`, `content/Step.vue` | CopyButton, Navigation, Sidebar | `useInstalled`, install flow, page Sheet, content/layout |
-| `lig` / `e0d69dc6d5e94611b5dfce73d0761c1ec9ac89e1` | `app/components/CopyCommand.vue`, `SectionNav.vue` | CopyButton, Navigation, Sidebar | Palette/product data, install state, site layout |
-| `circle` / `e491b4dc191837c41ce802072d7dbbca23da9c20` | `app/components/CopyCommand.vue`, `SectionNav.vue`, `content/Faq.vue` | CopyButton, Navigation; disclosure only if actual behavior warrants it | Template sections, install flow |
-| `1000-observations` / `a73d4134927d1bdece7d96b48e18ab9b3bed9b1d` | `app/components/CopyCommand.vue`, `SectionNav.vue`, root README/package | Same template-family candidates | Product content/layout |
-| `0froq.github.io` / `00d16f5462da612e23ab7061a7a77cfe8e77b791` | `app/components/ColorSchemeToggle.vue`, `TableOfContents.vue`, `SiteLikeButton.vue`, `ScrapReactInline.vue` | Button, Navigation, Sidebar, Collapsible; later Drawer, ToggleGroup, Tooltip/Popover if their interactions match | Color-scheme persistence, heading collection/scroll spy, anonymous ID, reaction API/store and data models |
-| `gallery` / `6155921c8ae9c77e52c30d2bf00a7b784f53a6b8` | `app/components/WorkStage.vue`, `app/pages/index.vue`, `gallery/[slug].vue` | Button/Navigation, media loading composed with Skeleton; potential preview shell in v1.0 | ASCII art, stage/media model, morph choreography, page composition |
+| Repository / revision                                            | Actual source examples                                                                                      | Library candidates                                                                                               | Keep outside library                                                                                      |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `void` / `4921c063985389d121b7b7a160eb0e60d9b4f0de`              | `app/components/CopyCommand.vue`, `SectionNav.vue`, `content/Step.vue`                                      | CopyButton, Navigation, Sidebar                                                                                  | `useInstalled`, install flow, page Sheet, content/layout                                                  |
+| `lig` / `e0d69dc6d5e94611b5dfce73d0761c1ec9ac89e1`               | `app/components/CopyCommand.vue`, `SectionNav.vue`                                                          | CopyButton, Navigation, Sidebar                                                                                  | Palette/product data, install state, site layout                                                          |
+| `circle` / `e491b4dc191837c41ce802072d7dbbca23da9c20`            | `app/components/CopyCommand.vue`, `SectionNav.vue`, `content/Faq.vue`                                       | CopyButton, Navigation; disclosure only if actual behavior warrants it                                           | Template sections, install flow                                                                           |
+| `1000-observations` / `a73d4134927d1bdece7d96b48e18ab9b3bed9b1d` | `app/components/CopyCommand.vue`, `SectionNav.vue`, root README/package                                     | Same template-family candidates                                                                                  | Product content/layout                                                                                    |
+| `0froq.github.io` / `00d16f5462da612e23ab7061a7a77cfe8e77b791`   | `app/components/ColorSchemeToggle.vue`, `TableOfContents.vue`, `SiteLikeButton.vue`, `ScrapReactInline.vue` | Button, Navigation, Sidebar, Collapsible; later Drawer, ToggleGroup, Tooltip/Popover if their interactions match | Color-scheme persistence, heading collection/scroll spy, anonymous ID, reaction API/store and data models |
+| `gallery` / `6155921c8ae9c77e52c30d2bf00a7b784f53a6b8`           | `app/components/WorkStage.vue`, `app/pages/index.vue`, `gallery/[slug].vue`                                 | Button/Navigation, media loading composed with Skeleton; potential preview shell in v1.0                         | ASCII art, stage/media model, morph choreography, page composition                                        |
 
 The maintainer confirmed `1000o = 1000-observations` on 2026-10-01. `circle` and `1000-observations` identify themselves as `paper-landing` templates in the original inventory. Repeated template files are useful duplication evidence, not independent demand votes. Later entries below are historical checkpoints; their unresolved-identity notes are superseded by this confirmation.
 
@@ -35,22 +35,22 @@ The 2026-10-01 [interaction/API mapping](consumer-mapping.md) supersedes the sam
 
 14 components. Existing names retain their APIs; each must meet the release gates below. New names are proposed, not yet API-frozen. Prioritize Skeleton and CopyButton, then navigation/disclosure; do not turn every site section into a library component.
 
-| Component | Concept | Current state | Remaining work / rationale |
-| --- | --- | --- | --- |
-| Button | button | Exported + demo + reference | Audit disabled/focus/native semantics; root button already receives fallthrough attributes |
-| Checkbox | checkbox | Exported + demo + reference; native attrs forwarded | Manual disabled/required/form submission acceptance |
-| TextInput | field | Exported + demo + reference; native attrs forwarded | Manual dynamic disabled, input events, placeholder and form acceptance |
-| TextArea | field | Exported + demo + reference; native attrs forwarded | Manual native attributes and resize behavior |
-| Select | select | Exported + demo + reference; native attrs forwarded | Manual disabled/name/required and empty selection; retain native select |
-| Choice | radio | Exported + demo + reference; source-audited | Manual disabled item/group, arrow/Home/End, invalid model and focus acceptance; no automatic native form value |
-| ChoiceCircle | radio | Exported + demo + reference; source-audited | Same disabled/keyboard contract; preserve visual variant, not duplicate behavior |
-| Toggle | toggle | Exported + demo + reference; switch semantics + disabled | Manual keyboard, parent-driven model, inline measurement and reduced motion |
-| Sidebar | navigation | Extracted + source-checked | Manual acceptance for folding, nested links, route adapter and moving frame |
-| Paper | paper | Exported + demo + reference | Manual theme/reduced-motion acceptance; texture is not a page layout |
-| Skeleton | feedback | Implemented + demo + bilingual reference | Manual whole-region surface, dimensions, hidden keyboard controls, reduced motion and theme acceptance |
-| CopyButton | button | Implemented + demo + bilingual reference | Manual clipboard success/denial, keyboard, disabled and stable-width acceptance; text and translated labels are consumer-owned |
-| Navigation | navigation | Implemented + demo + bilingual reference | Manual header navigation, nested-page section state, locale, external links and wrapping acceptance; no route/scroll ownership |
-| Collapsible | disclosure | Implemented + demo + bilingual reference | Manual controlled open, native/custom trigger, disabled, focus return and persistent panel acceptance |
+| Component    | Concept    | Current state                                            | Remaining work / rationale                                                                                                     |
+| ------------ | ---------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Button       | button     | Exported + demo + reference                              | Audit disabled/focus/native semantics; root button already receives fallthrough attributes                                     |
+| Checkbox     | checkbox   | Exported + demo + reference; native attrs forwarded      | Manual disabled/required/form submission acceptance                                                                            |
+| TextInput    | field      | Exported + demo + reference; native attrs forwarded      | Manual dynamic disabled, input events, placeholder and form acceptance                                                         |
+| TextArea     | field      | Exported + demo + reference; native attrs forwarded      | Manual native attributes and resize behavior                                                                                   |
+| Select       | select     | Exported + demo + reference; native attrs forwarded      | Manual disabled/name/required and empty selection; retain native select                                                        |
+| Choice       | radio      | Exported + demo + reference; source-audited              | Manual disabled item/group, arrow/Home/End, invalid model and focus acceptance; no automatic native form value                 |
+| ChoiceCircle | radio      | Exported + demo + reference; source-audited              | Same disabled/keyboard contract; preserve visual variant, not duplicate behavior                                               |
+| Toggle       | toggle     | Exported + demo + reference; switch semantics + disabled | Manual keyboard, parent-driven model, inline measurement and reduced motion                                                    |
+| Sidebar      | navigation | Extracted + source-checked                               | Manual acceptance for folding, nested links, route adapter and moving frame                                                    |
+| Paper        | paper      | Exported + demo + reference                              | Manual theme/reduced-motion acceptance; texture is not a page layout                                                           |
+| Skeleton     | feedback   | Implemented + demo + bilingual reference                 | Manual whole-region surface, dimensions, hidden keyboard controls, reduced motion and theme acceptance                         |
+| CopyButton   | button     | Implemented + demo + bilingual reference                 | Manual clipboard success/denial, keyboard, disabled and stable-width acceptance; text and translated labels are consumer-owned |
+| Navigation   | navigation | Implemented + demo + bilingual reference                 | Manual header navigation, nested-page section state, locale, external links and wrapping acceptance; no route/scroll ownership |
+| Collapsible  | disclosure | Implemented + demo + bilingual reference                 | Manual controlled open, native/custom trigger, disabled, focus return and persistent panel acceptance                          |
 
 Do not force a Skeleton prop onto every primitive. Compose it around asynchronous regions; a static button or server-rendered nav has nothing to load. Known content may supply geometry, but unknown data requires an explicit layout reservation rather than guessing future row count.
 
@@ -67,15 +67,15 @@ Do not force a Skeleton prop onto every primitive. Compose it around asynchronou
 
 This is additional planned coverage, not a claim that v1.0 is implemented. Native HTML and plain CSS remain valid; utility/layout wrappers are not required to inflate the count.
 
-| Family | Required basic coverage beyond v0.1 | Required behavior |
-| --- | --- | --- |
-| Actions / form | IconButton, ToggleGroup/segmented choice, RadioGroup-compatible Choice, FormField, NumberInput, Slider, Combobox, multi-select, FileUpload | Accessible labels/errors/descriptions, disabled/read-only/required/name, keyboard and controlled values; keep native Select distinct from searchable Combobox |
-| Navigation / disclosure | Tabs, Accordion, Breadcrumb, Pagination | Link-versus-tab distinction; active/focus semantics, IDs and keyboard; no route ownership |
-| Overlay | Dialog, AlertDialog, Drawer, Popover, Menu, ContextMenu, Tooltip, HoverCard/preview | Escape/outside dismissal policy, focus entry/return/trap where modal, placement/overflow, layering, nested overlays, SSR and cleanup |
-| Feedback | Alert, Toast, Progress, Spinner, EmptyState | Status/error naming, determinate/indeterminate progress, announcement policy and dismissibility |
-| Data display | Badge, Avatar, Separator, Card, Table, AspectRatio / media loading | Semantic HTML, fallback content and stable image geometry; table cell slots without business schema |
-| Date / time | DateInput and basic DatePicker/Calendar | Locale-aware labels, keyboard, min/max/disabled dates and controlled dates; range/time extensions only when demanded |
-| Shared behavior | Focus scope/return, dismissable layer, roving focus, presence, clipboard, controllable state | Reuse across components; no copies of page-specific DOM queries |
+| Family                  | Required basic coverage beyond v0.1                                                                                                        | Required behavior                                                                                                                                             |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Actions / form          | IconButton, ToggleGroup/segmented choice, RadioGroup-compatible Choice, FormField, NumberInput, Slider, Combobox, multi-select, FileUpload | Accessible labels/errors/descriptions, disabled/read-only/required/name, keyboard and controlled values; keep native Select distinct from searchable Combobox |
+| Navigation / disclosure | Tabs, Accordion, Breadcrumb, Pagination                                                                                                    | Link-versus-tab distinction; active/focus semantics, IDs and keyboard; no route ownership                                                                     |
+| Overlay                 | Dialog, AlertDialog, Drawer, Popover, Menu, ContextMenu, Tooltip, HoverCard/preview                                                        | Escape/outside dismissal policy, focus entry/return/trap where modal, placement/overflow, layering, nested overlays, SSR and cleanup                          |
+| Feedback                | Alert, Toast, Progress, Spinner, EmptyState                                                                                                | Status/error naming, determinate/indeterminate progress, announcement policy and dismissibility                                                               |
+| Data display            | Badge, Avatar, Separator, Card, Table, AspectRatio / media loading                                                                         | Semantic HTML, fallback content and stable image geometry; table cell slots without business schema                                                           |
+| Date / time             | DateInput and basic DatePicker/Calendar                                                                                                    | Locale-aware labels, keyboard, min/max/disabled dates and controlled dates; range/time extensions only when demanded                                          |
+| Shared behavior         | Focus scope/return, dismissable layer, roving focus, presence, clipboard, controllable state                                               | Reuse across components; no copies of page-specific DOM queries                                                                                               |
 
 Advanced data grids, charts, rich-text editors, drag/drop canvases, full schedulers, domain-specific galleries and ASCII/rendering engines are outside basic v1.0. A plain Table does not claim sortable/virtualized grid support. Color editing may be needed for `lig`; inspect the actual palette interaction before adding ColorPicker.
 
@@ -83,80 +83,80 @@ Overlay behavior uses Reka UI 2.10.5 (runtime dependency), whose primitives hand
 
 ### Implemented v1.0 expansion (not the completed release)
 
-| Component | Implementation | Manual acceptance |
-| --- | --- | --- |
-| Tabs | `navigation`; `useTabs`, controlled value, horizontal/vertical + RTL keys, disabled items, automatic/manual activation, persistent panels | Arrow/Home/End, manual activation, external model changes, focus leaving hidden panel, both layouts |
-| Accordion | `disclosure`; composes Collapsible, single/multiple string-array model, item/group disabled | All closed, single/multiple changes, keyboard button activation and close-from-panel focus return |
-| Progress | `feedback`; native progress, finite value clamping and positive maximum normalization, indeterminate state | Browser skins, accessible name, progress updates, reduced motion |
-| Spinner | `feedback`; named status, fixed-size ring, reduced-motion alternative | Loading announcement, inline alignment, theme and motion preference |
-| Alert | `feedback`; optional title, announcement policy, consumer-owned dismissal | Announcement timing, dismiss focus restoration, narrow content |
-| Dialog | `overlay`; Reka modal, named title/description, dismissal policy, trigger/body/footer slots | Focus entry/trap/return, nesting, Escape/outside policies, overflow and portal theme |
-| Popover | `overlay`; Reka non-modal anchored panel, placement/collisions, trigger/content slots | Focus/outside behavior, viewport collisions, nesting, custom portal and theme |
+| Component | Implementation                                                                                                                            | Manual acceptance                                                                                   |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Tabs      | `navigation`; `useTabs`, controlled value, horizontal/vertical + RTL keys, disabled items, automatic/manual activation, persistent panels | Arrow/Home/End, manual activation, external model changes, focus leaving hidden panel, both layouts |
+| Accordion | `disclosure`; composes Collapsible, single/multiple string-array model, item/group disabled                                               | All closed, single/multiple changes, keyboard button activation and close-from-panel focus return   |
+| Progress  | `feedback`; native progress, finite value clamping and positive maximum normalization, indeterminate state                                | Browser skins, accessible name, progress updates, reduced motion                                    |
+| Spinner   | `feedback`; named status, fixed-size ring, reduced-motion alternative                                                                     | Loading announcement, inline alignment, theme and motion preference                                 |
+| Alert     | `feedback`; optional title, announcement policy, consumer-owned dismissal                                                                 | Announcement timing, dismiss focus restoration, narrow content                                      |
+| Dialog    | `overlay`; Reka modal, named title/description, dismissal policy, trigger/body/footer slots                                               | Focus entry/trap/return, nesting, Escape/outside policies, overflow and portal theme                |
+| Popover   | `overlay`; Reka non-modal anchored panel, placement/collisions, trigger/content slots                                                     | Focus/outside behavior, viewport collisions, nesting, custom portal and theme                       |
 
 All seven have real root exports, demos and bilingual references. Remaining v1.0 families above are still gaps, not implied by dependency availability. No external repository was changed.
 
 ### Segmented toggle expansion
 
-| Component | Implementation | Manual acceptance |
-| --- | --- | --- |
+| Component   | Implementation                                                                                                                                              | Manual acceptance                                                                                                               |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | ToggleGroup | `toggle`; named group of pressed buttons, single string/multiple array model, typed option slot, Reka roving focus, orientation/RTL/loop and disabled items | Single clear, multiple toggle, mode changes, disabled options/group, focus-only arrows, Enter/Space, Home/End, RTL and wrapping |
 
 It is not a Tabs panel controller or required native radio input. Display normalizes the selected value shape without changing the parent state; activation writes the appropriate shape. Keep values unique and non-empty. Native required-radio behavior stays in RadioGroup.
 
 ### Context menu and supplementary preview expansion
 
-| Component | Implementation | Manual acceptance |
-| --- | --- | --- |
-| ContextMenu | `overlay`; named focusable target, context/long-press and explicit Shift+F10/Menu-key opening, recursive shared MenuItems, cancelable selection and openChange | Target/child keyboard, disabled native menu, submenu pointer travel/typeahead, outside focus, RTL and clipping |
-| HoverCard | `overlay`; genuine link, delayed nonessential preview, boolean model, normalized delays, disabled preview and disposal state guard | Focus/hover delays, pointer travel/text selection, touch link navigation, disabled preview, late disposal updates and theme |
+| Component   | Implementation                                                                                                                                                 | Manual acceptance                                                                                                           |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| ContextMenu | `overlay`; named focusable target, context/long-press and explicit Shift+F10/Menu-key opening, recursive shared MenuItems, cancelable selection and openChange | Target/child keyboard, disabled native menu, submenu pointer travel/typeahead, outside focus, RTL and clipping              |
+| HoverCard   | `overlay`; genuine link, delayed nonessential preview, boolean model, normalized delays, disabled preview and disposal state guard                             | Focus/hover delays, pointer travel/text selection, touch link navigation, disabled preview, late disposal updates and theme |
 
 Reka ContextMenuRoot does not accept a controlled open prop, so this wrapper exposes openChange rather than a fake v-model. HoverCard content is hidden from assistive technology and cannot hold essential information or controls; preserve everything important on the link target. Its disposal guard prevents late parent model writes, not a claim that upstream timers are synchronously cleared.
 
 ### Drawer and confirmation expansion
 
-| Component | Implementation | Manual acceptance |
-| --- | --- | --- |
-| Drawer | `overlay`; composes Dialog, left/right/bottom fixed-edge skin, shared title/dismissal behavior | Focus trap/return, side placement, long-content scroll, physical RTL edges, outside/Escape and custom portal |
+| Component   | Implementation                                                                                                                                        | Manual acceptance                                                                                                           |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Drawer      | `overlay`; composes Dialog, left/right/bottom fixed-edge skin, shared title/dismissal behavior                                                        | Focus trap/return, side placement, long-content scroll, physical RTL edges, outside/Escape and custom portal                |
 | AlertDialog | `overlay`; actual Reka alert-dialog semantics, required title/description, safe cancel focus, cancelable confirmation and consumer-controlled pending | Initial cancel focus, outside blocking, Escape/cancel, prevented/async confirmation, disabled confirmation and focus return |
 
 Drawer is a modal edge panel, not a swipe/gesture component. AlertDialog emits intent, not request success; callers must synchronously prevent confirmation's default before awaiting work and coordinate request cancellation if the dialog closes.
 
 ### Breadcrumb and Pagination expansion
 
-| Component | Implementation | Manual acceptance |
-| --- | --- | --- |
-| Breadcrumb | `navigation`; named landmark, ordered list, route-neutral items, text/link current page and router link slot | Current identity, native modified clicks, router adapter, long labels and narrow wrapping |
+| Component  | Implementation                                                                                                                                | Manual acceptance                                                                                                                       |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Breadcrumb | `navigation`; named landmark, ordered list, route-neutral items, text/link current page and router link slot                                  | Current identity, native modified clicks, router adapter, long labels and narrow wrapping                                               |
 | Pagination | `navigation`; native buttons or consumer-generated hrefs, one-based controlled page, normalized display, core window/gaps, typed control slot | Zero/one/many pages, disabled state, external out-of-range model, native keyboard, modified links, translated labels and router adapter |
 
 Neither component derives routes, owns requests or moves focus to new page content. Pagination does not use tablist-style roving keys. Library rendering does not rewrite an invalid parent model; consumer owns subsequent state synchronization.
 
 ### Command menu and tooltip expansion
 
-| Component | Implementation | Manual acceptance |
-| --- | --- | --- |
-| Menu | `overlay`; recursive command items, separator hints, disabled items, cancelable selection, themed submenus, Reka keyboard and focus | Arrow/typeahead/Escape, submenu pointer travel, prevented selection, RTL, modal/nonmodal, theme and custom trigger |
-| Tooltip | `overlay`; plain text description over one focusable trigger, delayed pointer opening, controlled state and collision placement | Keyboard focus, hover between trigger/content, Escape, disabled behavior, trigger naming and portal scope |
+| Component | Implementation                                                                                                                      | Manual acceptance                                                                                                  |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Menu      | `overlay`; recursive command items, separator hints, disabled items, cancelable selection, themed submenus, Reka keyboard and focus | Arrow/typeahead/Escape, submenu pointer travel, prevented selection, RTL, modal/nonmodal, theme and custom trigger |
+| Tooltip   | `overlay`; plain text description over one focusable trigger, delayed pointer opening, controlled state and collision placement     | Keyboard focus, hover between trigger/content, Escape, disabled behavior, trigger naming and portal scope          |
 
 These wrappers do not implement checkbox/radio menu items, router links, interactive tooltip content or shared timing across Tooltip instances. Consumer actions and trigger names remain outside the wrappers.
 
 ### Native form and display expansion
 
-| Component | Implementation | Manual acceptance |
-| --- | --- | --- |
-| FormField | `field`; stable label/description/error IDs, typed control slot props, no validation engine | Label activation, required/error association, custom native control binding |
-| NumberInput | `field`; native number input, optional numeric model, native min/max/step constraints | Empty/invalid drafts, decimals, arrows, required/bounds and form state reset |
-| DateInput | `field`; native date-only ISO string, consumer min/max/step/native attrs | Localized display, clear/bounds, mobile date UI, no timezone conversion |
-| Slider | `field`; native single-thumb range, normalized finite limits, native stepping | Arrow/Home/End, off-step external values, labels, disabled and form submission |
-| FileUpload | `field`; visible native file input, change File[], explicit clear/resetKey | Select/cancel/reselect, multiple/accept hint, disabled, required and form reset |
-| RadioGroup | `radio`; native fieldset/legend/input radios and form name/required association | Native keyboard, disabled options/group, native validation, external form and model reset |
-| IconButton | `button`; reuses Button, named button and hidden decorative glyph | Focus/name, pressed attributes, disabled, icon dimensions |
-| EmptyState | `feedback`; named section, description/content/action slots, no automatic announcement | Heading context, action focus and narrow content |
-| Badge | `display`; text label with muted/accent skin, no interaction/status role | Inline alignment, theme contrast and long labels |
-| Avatar | `display`; fixed-size image region composed with Skeleton and fallback | SSR cached completion, loading/error, source changes, label and consumer size overrides |
-| Separator | `display`; decorative/semantic divider and orientation | Vertical parent sizing and optional accessibility semantics |
-| Card | `display`; header/content/footer surface, no page/business layout | Slot spacing, borders, theme and nested controls |
-| AspectRatio | `display`; positive ratio reservation and cover/contain media | Different widths, crop/contain, iframe title and overflowing slot content |
-| Table | `display`; typed data/columns, stable row key function, native caption/headers, cell slots | Scroll keyboard, custom cells, empty content and stable keys on row updates |
+| Component   | Implementation                                                                              | Manual acceptance                                                                         |
+| ----------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| FormField   | `field`; stable label/description/error IDs, typed control slot props, no validation engine | Label activation, required/error association, custom native control binding               |
+| NumberInput | `field`; native number input, optional numeric model, native min/max/step constraints       | Empty/invalid drafts, decimals, arrows, required/bounds and form state reset              |
+| DateInput   | `field`; native date-only ISO string, consumer min/max/step/native attrs                    | Localized display, clear/bounds, mobile date UI, no timezone conversion                   |
+| Slider      | `field`; native single-thumb range, normalized finite limits, native stepping               | Arrow/Home/End, off-step external values, labels, disabled and form submission            |
+| FileUpload  | `field`; visible native file input, change File[], explicit clear/resetKey                  | Select/cancel/reselect, multiple/accept hint, disabled, required and form reset           |
+| RadioGroup  | `radio`; native fieldset/legend/input radios and form name/required association             | Native keyboard, disabled options/group, native validation, external form and model reset |
+| IconButton  | `button`; reuses Button, named button and hidden decorative glyph                           | Focus/name, pressed attributes, disabled, icon dimensions                                 |
+| EmptyState  | `feedback`; named section, description/content/action slots, no automatic announcement      | Heading context, action focus and narrow content                                          |
+| Badge       | `display`; text label with muted/accent skin, no interaction/status role                    | Inline alignment, theme contrast and long labels                                          |
+| Avatar      | `display`; fixed-size image region composed with Skeleton and fallback                      | SSR cached completion, loading/error, source changes, label and consumer size overrides   |
+| Separator   | `display`; decorative/semantic divider and orientation                                      | Vertical parent sizing and optional accessibility semantics                               |
+| Card        | `display`; header/content/footer surface, no page/business layout                           | Slot spacing, borders, theme and nested controls                                          |
+| AspectRatio | `display`; positive ratio reservation and cover/contain media                               | Different widths, crop/contain, iframe title and overflowing slot content                 |
+| Table       | `display`; typed data/columns, stable row key function, native caption/headers, cell slots  | Scroll keyboard, custom cells, empty content and stable keys on row updates               |
 
 These fourteen implementations add actual baseline coverage; they do not cover searchable selection, multi-thumb ranges, calendar date restrictions, or data-grid behavior. FileUpload cannot programmatically prefill files; native form reset must be coordinated with consumer Vue state. Choice/ChoiceCircle remain their existing animated button-radio controls rather than acquiring a fake native form guarantee.
 

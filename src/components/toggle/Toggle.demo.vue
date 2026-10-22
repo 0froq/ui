@@ -7,7 +7,8 @@ const on = ref(false)
 
 <template>
   <p class="demo-sentence">
-    Read it <Toggle
+    Read it
+    <Toggle
       v-model="on"
       label="sound"
       off-label="quiet"

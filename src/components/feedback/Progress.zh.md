@@ -12,7 +12,7 @@ props:
     description: 当前进度。省略或传入非有限数值时为不确定进度；有限数值会被限制在零到 max 之间。
   - name: max
     type: number
-    default: "100"
+    default: '100'
     description: 进度上限。非有限或非正数值会回退为 100。
 ---
 

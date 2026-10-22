@@ -25,11 +25,11 @@ props:
     description: 复制中显示的无障碍名称，默认使用 label。
   - name: resetAfter
     type: number
-    default: "1600"
+    default: '1600'
     description: 复制成功或失败后回到空闲状态前的毫秒数。小于等于零或非有限值时，结果会保留到下一次点击。
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: 禁用复制。复制请求处理中按钮也会禁用。
 events:
   - name: copy

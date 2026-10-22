@@ -12,9 +12,7 @@ import Drawer from './Drawer.vue'
   >
     <p>Metadata and document actions stay in the caller.</p>
     <template #footer="{ close }">
-      <Button @click="close">
-        Done
-      </Button>
+      <Button @click="close"> Done </Button>
     </template>
   </Drawer>
 </template>

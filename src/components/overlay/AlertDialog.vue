@@ -14,17 +14,20 @@ import { usePortalTarget } from '../../vue'
 import Button from '../button/Button.vue'
 
 defineOptions({ inheritAttrs: false })
-const props = withDefaults(defineProps<{
-  title: string
-  description: string
-  cancelLabel: string
-  confirmLabel: string
-  triggerLabel?: string
-  disabled?: boolean
-  pending?: boolean
-  confirmDisabled?: boolean
-  portalTo?: string | HTMLElement
-}>(), { disabled: false, pending: false, confirmDisabled: false })
+const props = withDefaults(
+  defineProps<{
+    title: string
+    description: string
+    cancelLabel: string
+    confirmLabel: string
+    triggerLabel?: string
+    disabled?: boolean
+    pending?: boolean
+    confirmDisabled?: boolean
+    portalTo?: string | HTMLElement
+  }>(),
+  { disabled: false, pending: false, confirmDisabled: false },
+)
 const emit = defineEmits<{ confirm: [event: MouseEvent] }>()
 defineSlots<{
   trigger?: () => unknown
@@ -35,11 +38,9 @@ const slots = useSlots()
 const scope = useTemplateRef<HTMLElement>('scope')
 const target = usePortalTarget(scope)
 function confirm(event: MouseEvent) {
-  if (props.pending || props.confirmDisabled)
-    return
+  if (props.pending || props.confirmDisabled) return
   emit('confirm', event)
-  if (!event.defaultPrevented)
-    model.value = false
+  if (!event.defaultPrevented) model.value = false
 }
 </script>
 

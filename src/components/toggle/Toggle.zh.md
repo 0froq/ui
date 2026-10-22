@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: 两个词共用一个开关。控件只和当前这个词一样宽。
 model:
   type: boolean
-  default: "false"
+  default: 'false'
   description: 开关是否打开。
 props:
   - name: label
@@ -13,15 +13,15 @@ props:
     description: 无障碍名称，页面上不显示。
   - name: offLabel
     type: string
-    default: "off"
+    default: 'off'
     description: 关闭时显示的词。
   - name: onLabel
     type: string
-    default: "on"
+    default: 'on'
     description: 打开时显示的词。
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: 阻止用户点击切换开关。
 ---
 

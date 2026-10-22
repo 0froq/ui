@@ -3,24 +3,32 @@ import { computed } from 'vue'
 import { useControlAttrs } from '../../vue'
 
 defineOptions({ inheritAttrs: false })
-const props = withDefaults(defineProps<{
-  label: string
-  min?: number
-  max?: number
-  step?: number | 'any'
-}>(), { min: 0, max: 100, step: 1 })
+const props = withDefaults(
+  defineProps<{
+    label: string
+    min?: number
+    max?: number
+    step?: number | 'any'
+  }>(),
+  { min: 0, max: 100, step: 1 },
+)
 const model = defineModel<number>({ default: 50 })
 const { wrapperAttrs, controlAttrs } = useControlAttrs()
-const minimum = computed(() => Number.isFinite(props.min) ? props.min : 0)
-const maximum = computed(() => Number.isFinite(props.max) ? Math.max(minimum.value, props.max) : Math.max(minimum.value, 100))
-const increment = computed(() => props.step === 'any' ? 'any' : Number.isFinite(props.step) && props.step > 0 ? props.step : 1)
-const value = computed(() => Number.isFinite(model.value)
-  ? Math.min(maximum.value, Math.max(minimum.value, model.value))
-  : minimum.value / 2 + maximum.value / 2)
+const minimum = computed(() => (Number.isFinite(props.min) ? props.min : 0))
+const maximum = computed(() =>
+  Number.isFinite(props.max) ? Math.max(minimum.value, props.max) : Math.max(minimum.value, 100),
+)
+const increment = computed(() =>
+  props.step === 'any' ? 'any' : Number.isFinite(props.step) && props.step > 0 ? props.step : 1,
+)
+const value = computed(() =>
+  Number.isFinite(model.value)
+    ? Math.min(maximum.value, Math.max(minimum.value, model.value))
+    : minimum.value / 2 + maximum.value / 2,
+)
 function update(event: Event): void {
   const next = (event.currentTarget as HTMLInputElement).valueAsNumber
-  if (Number.isFinite(next))
-    model.value = next
+  if (Number.isFinite(next)) model.value = next
 }
 </script>
 
@@ -39,6 +47,6 @@ function update(event: Event): void {
       :max="maximum"
       :step="increment"
       @input="update"
-    >
+    />
   </label>
 </template>

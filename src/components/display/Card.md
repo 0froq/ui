@@ -30,9 +30,7 @@ import '@froq/ui/style.css'
       <h2>Observations</h2>
       <p>Small observations, collected over time.</p>
       <template #footer>
-        <Button type="button">
-          Read notes
-        </Button>
+        <Button type="button"> Read notes </Button>
       </template>
     </Card>
   </div>

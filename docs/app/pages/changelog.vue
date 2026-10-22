@@ -4,22 +4,35 @@ const contentPath = useContentPath()
 
 const { data: releases } = await useAsyncData(
   () => `changelog-${locale.value}`,
-  () => queryCollection('changelog').where('path', 'LIKE', `${contentPath('/changelog')}/%`).order('date', 'DESC').all(),
+  () =>
+    queryCollection('changelog')
+      .where('path', 'LIKE', `${contentPath('/changelog')}/%`)
+      .order('date', 'DESC')
+      .all(),
 )
 
-useCollectionIndexOgImage({
-  collection: 'changelog',
-  path: contentPath('/changelog'),
-}, {
-  title: () => t('changelog.title'),
-  description: () => t('changelog.lede'),
-})
+useCollectionIndexOgImage(
+  {
+    collection: 'changelog',
+    path: contentPath('/changelog'),
+  },
+  {
+    title: () => t('changelog.title'),
+    description: () => t('changelog.lede'),
+  },
+)
 </script>
 
 <template>
   <SectionLayout>
     <template #nav>
-      <Sidebar :groups="(releases ?? []).map(release => ({ items: [{ label: release.version, to: `#${release.version}` }] }))" />
+      <Sidebar
+        :groups="
+          (releases ?? []).map(release => ({
+            items: [{ label: release.version, to: `#${release.version}` }],
+          }))
+        "
+      />
     </template>
     <template #banner>
       <PageHead
@@ -41,9 +54,7 @@ useCollectionIndexOgImage({
       class="l-release"
     >
       <p class="l-kicker">
-        {{ release.date }}<template v-if="index === 0">
-          · {{ t('changelog.latest') }}
-        </template>
+        {{ release.date }}<template v-if="index === 0"> · {{ t('changelog.latest') }} </template>
       </p>
       <h2 class="l-entry-title">
         {{ release.title }}

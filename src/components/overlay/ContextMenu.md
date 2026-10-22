@@ -13,17 +13,17 @@ props:
     description: Menu entries with optional disabled items, separators, and nested submenus.
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: Suppress opening interactions on the target without disabling its child content.
   - name: modal
     type: boolean
-    default: "true"
+    default: 'true'
     description: Whether the open menu is modal relative to outside interaction.
   - name: dir
     type: "'ltr' | 'rtl'"
     description: Menu text and keyboard direction; defaults to the Reka UI direction context, then ltr.
   - name: portalTo
-    type: "string | HTMLElement"
+    type: 'string | HTMLElement'
     description: Teleport target. Defaults to the closest consumer element with class ui, or renders inline when none exists.
 events:
   - name: openChange
@@ -92,9 +92,7 @@ function selectItem(item: MenuItem, event: Event) {
       @select="selectItem"
       @open-change="open => console.info('Menu open:', open)"
     >
-      <div class="document-preview">
-        Right-click or focus this region and press Shift+F10.
-      </div>
+      <div class="document-preview"> Right-click or focus this region and press Shift+F10. </div>
       <template #item="{ item }">
         {{ item.label }}
       </template>

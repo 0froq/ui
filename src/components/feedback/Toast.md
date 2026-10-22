@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: A dismissible, timed notification managed by a ToastRegion.
 model:
   type: boolean
-  default: "false"
+  default: 'false'
   description: Whether this toast is open.
 props:
   - name: title
@@ -26,7 +26,7 @@ props:
     default: foreground
     description: Announcement urgency. Foreground uses assertive live announcement; background uses polite.
   - name: action
-    type: "{ label: string, altText: string }"
+    type: '{ label: string, altText: string }'
     description: Optional action button label and alternate description for assistive technology.
 events:
   - name: action
