@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: 固定在左、右或底部边缘的对话框面板。
 model:
   type: boolean
-  default: "false"
+  default: 'false'
   description: 抽屉是否打开。
 props:
   - name: title
@@ -24,25 +24,25 @@ props:
     description: 未提供 trigger 插槽时的触发按钮文案，默认使用 title。
   - name: showTrigger
     type: boolean
-    default: "true"
+    default: 'true'
     description: 是否渲染内置触发器及 trigger 插槽；为 false 时两者都不渲染。
   - name: returnFocus
     type: HTMLElement
     description: 关闭后接收焦点的可选可聚焦元素，优先于捕获到的打开前焦点。
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: 仅禁用触发按钮；父组件仍可通过模型打开抽屉。
   - name: dismissible
     type: boolean
-    default: "true"
+    default: 'true'
     description: 显示内置关闭按钮，并允许 Escape 或外部交互关闭。
   - name: closeOnOutside
     type: boolean
-    default: "true"
+    default: 'true'
     description: dismissible 为 true 时，是否允许外部交互关闭抽屉。
   - name: portalTo
-    type: "string | HTMLElement"
+    type: 'string | HTMLElement'
     description: Teleport 目标。默认使用最近的 ui 类祖先；找不到时客户端内联渲染。
   - name: side
     type: "'left' | 'right' | 'bottom'"

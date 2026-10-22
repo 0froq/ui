@@ -21,7 +21,7 @@ const { wrapperAttrs, controlAttrs } = useControlAttrs()
       v-model="model"
       type="checkbox"
       class="ui-check-input"
-    >
+    />
     <span
       class="ui-check-mark"
       aria-hidden="true"

@@ -11,7 +11,11 @@ const props = defineProps<{
 }>()
 const model = defineModel<T>({ required: true })
 
-const { values, signature, isDisabled, tabindex, onKeydown } = useChoice(() => props.options, model, () => props.disabled ?? false)
+const { values, signature, isDisabled, tabindex, onKeydown } = useChoice(
+  () => props.options,
+  model,
+  () => props.disabled ?? false,
+)
 
 const words: HTMLElement[] = []
 const box = reactive({ x: 0, y: 0, w: 0, h: 0 })
@@ -35,8 +39,7 @@ function place(): void {
 }
 
 function choose(next: T): void {
-  if (isDisabled(next) || next === model.value)
-    return
+  if (isDisabled(next) || next === model.value) return
   model.value = next
   drawn.value++
 }
@@ -48,8 +51,7 @@ onMounted(async () => {
   place()
   addEventListener('resize', place)
   await document.fonts?.ready
-  if (disposed)
-    return
+  if (disposed) return
   place()
 })
 
@@ -69,7 +71,11 @@ onBeforeUnmount(() => {
     <button
       v-for="(option, index) in options"
       :key="option.value"
-      :ref="el => { if (el) words[index] = el as HTMLElement }"
+      :ref="
+        el => {
+          if (el) words[index] = el as HTMLElement
+        }
+      "
       type="button"
       role="radio"
       class="ui-circle-word"

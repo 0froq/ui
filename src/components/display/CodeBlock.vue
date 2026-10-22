@@ -3,17 +3,20 @@ import type { CodeSpan } from '../../vue'
 import { computed, useId, useTemplateRef, watch } from 'vue'
 import { useDisclosure } from '../../vue'
 
-const props = withDefaults(defineProps<{
-  /** Visible title, usually a filename. A blank label draws no title row. */
-  label?: string
-  code?: string
-  spans?: readonly CodeSpan[]
-  /** Fold the source behind the title. A frame without a title cannot fold. */
-  collapsible?: boolean
-}>(), {
-  label: '',
-  collapsible: false,
-})
+const props = withDefaults(
+  defineProps<{
+    /** Visible title, usually a filename. A blank label draws no title row. */
+    label?: string
+    code?: string
+    spans?: readonly CodeSpan[]
+    /** Fold the source behind the title. A frame without a title cannot fold. */
+    collapsible?: boolean
+  }>(),
+  {
+    label: '',
+    collapsible: false,
+  },
+)
 defineSlots<{
   action?: () => unknown
   default?: () => unknown
@@ -27,11 +30,9 @@ const panelId = `${id}-panel`
 const panel = useTemplateRef<HTMLElement>('panel')
 const { toggle } = useDisclosure(open)
 
-watch(open, (value) => {
-  if (!foldable.value || value || typeof document === 'undefined')
-    return
-  if (panel.value?.contains(document.activeElement))
-    document.getElementById(triggerId)?.focus()
+watch(open, value => {
+  if (!foldable.value || value || typeof document === 'undefined') return
+  if (panel.value?.contains(document.activeElement)) document.getElementById(triggerId)?.focus()
 })
 </script>
 

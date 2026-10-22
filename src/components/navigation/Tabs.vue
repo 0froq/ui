@@ -3,31 +3,38 @@ import type { ChoiceOption } from '../../vue'
 import { useId, useTemplateRef, watch } from 'vue'
 import { useTabs } from '../../vue'
 
-const props = withDefaults(defineProps<{
-  items: ChoiceOption<T>[]
-  label: string
-  orientation?: 'horizontal' | 'vertical'
-  activation?: 'automatic' | 'manual'
-}>(), { orientation: 'horizontal', activation: 'automatic' })
+const props = withDefaults(
+  defineProps<{
+    items: ChoiceOption<T>[]
+    label: string
+    orientation?: 'horizontal' | 'vertical'
+    activation?: 'automatic' | 'manual'
+  }>(),
+  { orientation: 'horizontal', activation: 'automatic' },
+)
 defineSlots<{
-  label?: (scope: { item: ChoiceOption<T>, active: boolean }) => unknown
-  default?: (scope: { item: ChoiceOption<T>, active: boolean }) => unknown
+  label?: (scope: { item: ChoiceOption<T>; active: boolean }) => unknown
+  default?: (scope: { item: ChoiceOption<T>; active: boolean }) => unknown
 }>()
 const model = defineModel<T>({ required: true })
 const id = useId()
-const { tabindex, select, onKeydown } = useTabs(() => props.items, model, () => props.orientation, () => props.activation)
+const { tabindex, select, onKeydown } = useTabs(
+  () => props.items,
+  model,
+  () => props.orientation,
+  () => props.activation,
+)
 const itemId = (value: T) => `${id}-${encodeURIComponent(value)}`
 const root = useTemplateRef<HTMLElement>('root')
 watch(model, (next, previous) => {
-  if (typeof document === 'undefined')
-    return
+  if (typeof document === 'undefined') return
   const panel = document.getElementById(`${itemId(previous)}-panel`)
   if (panel?.contains(document.activeElement)) {
-    const target = props.items.find(item => item.value === next && !item.disabled) ?? props.items.find(item => !item.disabled)
-    if (target)
-      document.getElementById(`${itemId(target.value)}-tab`)?.focus()
-    else
-      root.value?.focus()
+    const target =
+      props.items.find(item => item.value === next && !item.disabled) ??
+      props.items.find(item => !item.disabled)
+    if (target) document.getElementById(`${itemId(target.value)}-tab`)?.focus()
+    else root.value?.focus()
   }
 })
 </script>

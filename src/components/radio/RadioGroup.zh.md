@@ -11,7 +11,7 @@ props:
     required: true
     description: 为单选组命名的 legend 文字。
   - name: options
-    type: "ChoiceOption<T>[]"
+    type: 'ChoiceOption<T>[]'
     required: true
     description: 含 value、label 和可选禁用状态的选项。
   - name: name
@@ -19,11 +19,11 @@ props:
     description: 原生表单提交键；省略或为空时使用自动生成的唯一名称。
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: 禁用 fieldset 及其中所有单选输入。
   - name: required
     type: boolean
-    default: "false"
+    default: 'false'
     description: 对该单选组应用原生必填约束。
   - name: form
     type: string

@@ -11,7 +11,7 @@ props:
     required: true
     description: Legend text naming the radio group.
   - name: options
-    type: "ChoiceOption<T>[]"
+    type: 'ChoiceOption<T>[]'
     required: true
     description: Options with values, labels, and optional disabled state.
   - name: name
@@ -19,11 +19,11 @@ props:
     description: Native submission key. If omitted or empty, a unique generated name is used.
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: Disable the fieldset and all its radio inputs.
   - name: required
     type: boolean
-    default: "false"
+    default: 'false'
     description: Apply the native required constraint to the radio group.
   - name: form
     type: string

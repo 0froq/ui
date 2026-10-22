@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: Two words share one switch. The control is only as wide as the word that is on.
 model:
   type: boolean
-  default: "false"
+  default: 'false'
   description: Whether the switch is on.
 props:
   - name: label
@@ -13,15 +13,15 @@ props:
     description: Accessible name. It is not shown.
   - name: offLabel
     type: string
-    default: "off"
+    default: 'off'
     description: The word shown while the switch is off.
   - name: onLabel
     type: string
-    default: "on"
+    default: 'on'
     description: The word shown while the switch is on.
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: Prevent user clicks from changing the switch.
 ---
 

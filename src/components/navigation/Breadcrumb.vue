@@ -8,7 +8,7 @@ const props = defineProps<{
   current?: string
 }>()
 defineSlots<{
-  link?: (scope: { item: NavigationItem, props: BreadcrumbLinkProps }) => unknown
+  link?: (scope: { item: NavigationItem; props: BreadcrumbLinkProps }) => unknown
 }>()
 const currentValue = computed(() => props.current ?? props.items.at(-1)?.value)
 function linkProps(item: NavigationItem): BreadcrumbLinkProps {
@@ -38,7 +38,8 @@ function linkProps(item: NavigationItem): BreadcrumbLinkProps {
           v-if="index"
           class="ui-breadcrumb-separator"
           aria-hidden="true"
-        >/</span>
+          >/</span
+        >
         <slot
           v-if="item.href"
           name="link"
@@ -51,7 +52,8 @@ function linkProps(item: NavigationItem): BreadcrumbLinkProps {
           v-else
           class="ui-breadcrumb-text"
           :aria-current="item.value === currentValue ? 'page' : undefined"
-        >{{ item.label }}</span>
+          >{{ item.label }}</span
+        >
       </li>
     </ol>
   </nav>

@@ -36,14 +36,18 @@ import { ref } from 'vue'
 import '@froq/ui/style.css'
 
 const active = ref('install')
-const groups: SidebarGroup[] = [{
-  label: '指南',
-  items: [{
-    value: 'start',
-    label: '开始使用',
-    children: [{ value: 'install', label: '安装' }],
-  }],
-}]
+const groups: SidebarGroup[] = [
+  {
+    label: '指南',
+    items: [
+      {
+        value: 'start',
+        label: '开始使用',
+        children: [{ value: 'install', label: '安装' }],
+      },
+    ],
+  },
+]
 </script>
 
 <template>

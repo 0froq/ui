@@ -1,15 +1,51 @@
 <script setup lang="ts">
 import type { MenuItem } from '../../../vue'
-import { ContextMenuItem, ContextMenuPortal, ContextMenuSeparator, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger, DropdownMenuItem, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger } from 'reka-ui'
+import {
+  ContextMenuItem,
+  ContextMenuPortal,
+  ContextMenuSeparator,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+} from 'reka-ui'
 import { computed } from 'vue'
 import MenuItems from './MenuItems.vue'
 
-const props = withDefaults(defineProps<{ items: MenuItem[], portalTo?: string | HTMLElement, kind?: 'dropdown' | 'context' }>(), { kind: 'dropdown' })
+const props = withDefaults(
+  defineProps<{
+    items: MenuItem[]
+    portalTo?: string | HTMLElement
+    kind?: 'dropdown' | 'context'
+  }>(),
+  { kind: 'dropdown' },
+)
 const emit = defineEmits<{ select: [item: MenuItem, event: Event] }>()
 defineSlots<{ item?: (scope: { item: MenuItem }) => unknown }>()
-const parts = computed(() => props.kind === 'context'
-  ? { item: ContextMenuItem, portal: ContextMenuPortal, separator: ContextMenuSeparator, sub: ContextMenuSub, subContent: ContextMenuSubContent, subTrigger: ContextMenuSubTrigger }
-  : { item: DropdownMenuItem, portal: DropdownMenuPortal, separator: DropdownMenuSeparator, sub: DropdownMenuSub, subContent: DropdownMenuSubContent, subTrigger: DropdownMenuSubTrigger })
+const parts = computed(() =>
+  props.kind === 'context'
+    ? {
+        item: ContextMenuItem,
+        portal: ContextMenuPortal,
+        separator: ContextMenuSeparator,
+        sub: ContextMenuSub,
+        subContent: ContextMenuSubContent,
+        subTrigger: ContextMenuSubTrigger,
+      }
+    : {
+        item: DropdownMenuItem,
+        portal: DropdownMenuPortal,
+        separator: DropdownMenuSeparator,
+        sub: DropdownMenuSub,
+        subContent: DropdownMenuSubContent,
+        subTrigger: DropdownMenuSubTrigger,
+      },
+)
 </script>
 
 <template>
@@ -43,7 +79,8 @@ const parts = computed(() => props.kind === 'context'
         <span
           class="ui-menu-chevron"
           aria-hidden="true"
-        >›</span>
+          >›</span
+        >
       </component>
       <component
         :is="parts.portal"

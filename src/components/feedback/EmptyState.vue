@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useId } from 'vue'
 
-defineProps<{ title: string, description?: string }>()
-defineSlots<{ default?: () => unknown, actions?: () => unknown }>()
+defineProps<{ title: string; description?: string }>()
+defineSlots<{ default?: () => unknown; actions?: () => unknown }>()
 const id = useId()
 </script>
 

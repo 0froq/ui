@@ -5,7 +5,7 @@ description: A single placeholder surface that preserves a component's layout wh
 props:
   - name: loading
     type: boolean
-    default: "true"
+    default: 'true'
     description: Show the placeholder surface and hide slot content while loading.
   - name: shape
     type: "'block' | 'text' | 'circle'"

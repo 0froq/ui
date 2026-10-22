@@ -12,7 +12,7 @@ props:
     description: Current progress. Omit it or pass a non-finite number for indeterminate progress; finite values are clamped between zero and max.
   - name: max
     type: number
-    default: "100"
+    default: '100'
     description: Upper bound for progress. Non-finite or non-positive values fall back to 100.
 ---
 

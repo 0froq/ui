@@ -15,7 +15,8 @@ const others = computed(() => locales.value.filter(item => item.code !== locale.
         :key="item.code"
         :to="switchLocalePath(item.code)"
         :lang="item.language"
-      >{{ item.name }}</NuxtLink>
+        >{{ item.name }}</NuxtLink
+      >
       <button
         v-if="ready"
         type="button"

@@ -34,9 +34,7 @@ import '@froq/ui/style.css'
       description="Save a document to find it here later."
     >
       <template #actions>
-        <Button type="button">
-          Explore documents
-        </Button>
+        <Button type="button"> Explore documents </Button>
       </template>
     </EmptyState>
   </div>

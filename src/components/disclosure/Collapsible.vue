@@ -3,12 +3,15 @@ import type { CollapsibleTriggerProps } from '../../vue'
 import { computed, useId, useTemplateRef, watch } from 'vue'
 import { useDisclosure } from '../../vue'
 
-const props = withDefaults(defineProps<{
-  label: string
-  disabled?: boolean
-}>(), { disabled: false })
+const props = withDefaults(
+  defineProps<{
+    label: string
+    disabled?: boolean
+  }>(),
+  { disabled: false },
+)
 defineSlots<{
-  trigger?: (scope: { open: boolean, props: CollapsibleTriggerProps }) => unknown
+  trigger?: (scope: { open: boolean; props: CollapsibleTriggerProps }) => unknown
   default?: (scope: { open: boolean }) => unknown
 }>()
 const model = defineModel<boolean>({ default: false })
@@ -28,7 +31,7 @@ const triggerProps = computed<CollapsibleTriggerProps>(() => ({
 }))
 
 // Default pre-flush runs before the panel becomes hidden. Never steal outside focus.
-watch(model, (open) => {
+watch(model, open => {
   if (!open && typeof document !== 'undefined' && panel.value?.contains(document.activeElement))
     document.getElementById(triggerId)?.focus()
 })

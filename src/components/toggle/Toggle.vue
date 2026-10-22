@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import { nextTick, onMounted, ref, watch } from 'vue'
 
-const props = withDefaults(defineProps<{
-  label: string
-  onLabel?: string
-  offLabel?: string
-  disabled?: boolean
-}>(), {
-  onLabel: 'on',
-  offLabel: 'off',
-  disabled: false,
-})
+const props = withDefaults(
+  defineProps<{
+    label: string
+    onLabel?: string
+    offLabel?: string
+    disabled?: boolean
+  }>(),
+  {
+    onLabel: 'on',
+    offLabel: 'off',
+    disabled: false,
+  },
+)
 const model = defineModel<boolean>({ default: false })
 
 const off = ref<HTMLElement>()
@@ -44,10 +47,12 @@ onMounted(async () => {
     <span
       ref="off"
       :class="{ 'is-on': !model }"
-    >{{ offLabel }}</span>
+      >{{ offLabel }}</span
+    >
     <span
       ref="on"
       :class="{ 'is-on': model }"
-    >{{ onLabel }}</span>
+      >{{ onLabel }}</span
+    >
   </button>
 </template>

@@ -17,9 +17,7 @@ const infoOpen = ref(false)
     </template>
     <template #default="{ close }">
       <p>This document is still a draft.</p>
-      <Button @click="close">
-        Understood
-      </Button>
+      <Button @click="close"> Understood </Button>
     </template>
   </Popover>
   <button

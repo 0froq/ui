@@ -51,4 +51,18 @@ export { default as Combobox } from './components/select/Combobox.vue'
 export { default as Select } from './components/select/Select.vue'
 export { default as Toggle } from './components/toggle/Toggle.vue'
 export { default as ToggleGroup } from './components/toggle/ToggleGroup.vue'
-export type { BreadcrumbLinkProps, ChoiceOption, CodeSpan, CollapsibleTriggerProps, FieldControlProps, MenuItem, NavigationItem, NavigationLinkProps, PaginationControlProps, SidebarGroup, SidebarItem, SidebarLinkProps, TableColumn } from './vue'
+export type {
+  BreadcrumbLinkProps,
+  ChoiceOption,
+  CodeSpan,
+  CollapsibleTriggerProps,
+  FieldControlProps,
+  MenuItem,
+  NavigationItem,
+  NavigationLinkProps,
+  PaginationControlProps,
+  SidebarGroup,
+  SidebarItem,
+  SidebarLinkProps,
+  TableColumn,
+} from './vue'

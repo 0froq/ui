@@ -32,15 +32,15 @@ props:
     description: 输入框占位文字。
   - name: multiple
     type: boolean
-    default: "false"
+    default: 'false'
     description: 启用多选；model 为字符串数组，已选项以只读 chip 显示。
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: 禁用组合框及其选择和清除操作。
   - name: ignoreFilter
     type: boolean
-    default: "false"
+    default: 'false'
     description: 禁用内置选项过滤，供调用方提供已筛选的选项。
   - name: name
     type: string

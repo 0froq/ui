@@ -9,7 +9,7 @@ props:
     description: 分隔线方向。垂直分隔线会拉伸到父元素高度。
   - name: decorative
     type: boolean
-    default: "true"
+    default: 'true'
     description: 为 true 时使用 presentation 语义；否则暴露带方向的 separator。
 ---
 

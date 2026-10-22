@@ -5,7 +5,7 @@ description: A fixed-ratio frame for media or other positioned content.
 props:
   - name: ratio
     type: number
-    default: "16 / 9"
+    default: '16 / 9'
     description: Width-to-height ratio. Non-finite or non-positive values fall back to 1.
   - name: fit
     type: "'cover' | 'contain'"
@@ -43,7 +43,7 @@ import '@froq/ui/style.css'
         src="/media/cover.webp"
         alt="Mountain reflected in a lake"
         loading="lazy"
-      >
+      />
     </AspectRatio>
   </div>
 </template>

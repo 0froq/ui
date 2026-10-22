@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: 为现有链接提供延迟显示的非交互预览。
 model:
   type: boolean
-  default: "false"
+  default: 'false'
   description: 预览打开状态。disabled 会隐藏预览，但不会改写此模型。
 props:
   - name: label
@@ -17,15 +17,15 @@ props:
     description: 触发链接的目标地址。
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: 阻止打开预览，但不禁用链接或改变模型。
   - name: openDelay
     type: number
-    default: "700"
+    default: '700'
     description: 打开前的毫秒延迟。有限值会限制为不小于零；无效值回退为 700。
   - name: closeDelay
     type: number
-    default: "300"
+    default: '300'
     description: 关闭前的毫秒延迟。有限值会限制为不小于零；无效值回退为 300。
   - name: side
     type: "'top' | 'right' | 'bottom' | 'left'"
@@ -37,7 +37,7 @@ props:
     description: 相对链接的首选对齐方式；碰撞处理可能重新定位预览。
   - name: sideOffset
     type: number
-    default: "8"
+    default: '8'
     description: 链接与预览之间的像素距离。
   - name: portalTo
     type: string | HTMLElement

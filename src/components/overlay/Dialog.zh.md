@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: 受控开关并可配置关闭方式的模态对话框。
 model:
   type: boolean
-  default: "false"
+  default: 'false'
   description: 对话框是否打开。
 props:
   - name: title
@@ -24,25 +24,25 @@ props:
     description: 未提供 trigger 插槽时显示的触发按钮文字，默认使用 title。
   - name: showTrigger
     type: boolean
-    default: "true"
+    default: 'true'
     description: 是否渲染内置触发器及 trigger 插槽；为 false 时两者都不渲染。
   - name: returnFocus
     type: HTMLElement
     description: 关闭后接收焦点的可选可聚焦元素，优先于捕获到的打开前焦点。
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: 禁用触发按钮；父组件仍可通过模型打开对话框。
   - name: dismissible
     type: boolean
-    default: "true"
+    default: 'true'
     description: 是否显示内置关闭按钮并允许 Escape 或点击外部关闭。
   - name: closeOnOutside
     type: boolean
-    default: "true"
+    default: 'true'
     description: dismissible 为 true 时，是否允许外部交互关闭对话框。
   - name: portalTo
-    type: "string | HTMLElement"
+    type: 'string | HTMLElement'
     description: Teleport 目标。默认使用最近的 ui 类祖先；找不到时客户端内联渲染。
 slots:
   - name: trigger

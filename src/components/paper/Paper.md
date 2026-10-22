@@ -5,11 +5,11 @@ description: Fibre on a light sheet, specks on a dark one. Either side can be le
 props:
   - name: light
     type: boolean
-    default: "true"
+    default: 'true'
     description: Draw the fibre while the page is light.
   - name: dark
     type: boolean
-    default: "true"
+    default: 'true'
     description: Draw the specks while the page is dark.
 slots:
   - name: default

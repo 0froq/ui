@@ -9,7 +9,7 @@ props:
     description: Divider direction. A vertical separator stretches to the parent's height.
   - name: decorative
     type: boolean
-    default: "true"
+    default: 'true'
     description: Uses presentation semantics when true; otherwise exposes a separator with its orientation.
 ---
 

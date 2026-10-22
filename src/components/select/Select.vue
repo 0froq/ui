@@ -1,23 +1,37 @@
 <script setup lang="ts">
 import type { ChoiceOption } from '../../vue'
-import { SelectContent, SelectIcon, SelectItem, SelectItemIndicator, SelectItemText, SelectPortal, SelectRoot, SelectTrigger, SelectValue, SelectViewport } from 'reka-ui'
+import {
+  SelectContent,
+  SelectIcon,
+  SelectItem,
+  SelectItemIndicator,
+  SelectItemText,
+  SelectPortal,
+  SelectRoot,
+  SelectTrigger,
+  SelectValue,
+  SelectViewport,
+} from 'reka-ui'
 import { useId, useTemplateRef } from 'vue'
 import { useControlAttrs } from '../../vue'
 
 defineOptions({ inheritAttrs: false })
 
-withDefaults(defineProps<{
-  label: string
-  options: ChoiceOption[]
-  framed?: boolean
-  native?: boolean
-  hideLabel?: boolean
-  accent?: string
-  disabled?: boolean
-  required?: boolean
-  name?: string
-  align?: 'start' | 'center' | 'end'
-}>(), { native: true, align: 'start' })
+withDefaults(
+  defineProps<{
+    label: string
+    options: ChoiceOption[]
+    framed?: boolean
+    native?: boolean
+    hideLabel?: boolean
+    accent?: string
+    disabled?: boolean
+    required?: boolean
+    name?: string
+    align?: 'start' | 'center' | 'end'
+  }>(),
+  { native: true, align: 'start' },
+)
 defineSlots<{ option?: (scope: { option: ChoiceOption }) => unknown }>()
 
 const model = defineModel<string>({ required: true })
@@ -26,8 +40,7 @@ const portal = useTemplateRef<HTMLElement>('portal')
 const id = useId()
 
 function preventRepeatedSelection(event: MouseEvent): void {
-  if (event.detail > 1)
-    event.preventDefault()
+  if (event.detail > 1) event.preventDefault()
 }
 </script>
 
@@ -42,7 +55,8 @@ function preventRepeatedSelection(event: MouseEvent): void {
       v-if="!hideLabel"
       :for="String(controlAttrs().id ?? id)"
       class="ui-field-label"
-    >{{ label }}</label>
+      >{{ label }}</label
+    >
     <span
       v-if="native"
       class="ui-select-control"

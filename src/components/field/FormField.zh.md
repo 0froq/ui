@@ -18,7 +18,7 @@ props:
     description: 调用方提供的错误文字；非空值将控件标记为无效。
   - name: required
     type: boolean
-    default: "false"
+    default: 'false'
     description: 可见必填标记及原生、ARIA 必填控件属性。
 slots:
   - name: default
@@ -58,7 +58,7 @@ const error = ref<string>()
           class="ui-field-control"
           type="text"
           name="title"
-        >
+        />
       </template>
     </FormField>
   </div>

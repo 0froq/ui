@@ -18,7 +18,7 @@ props:
     description: Consumer-provided error text; a nonempty value marks the control invalid.
   - name: required
     type: boolean
-    default: "false"
+    default: 'false'
     description: Visible required marker and native/ARIA required control props.
 slots:
   - name: default
@@ -58,7 +58,7 @@ const error = ref<string>()
           class="ui-field-control"
           type="text"
           name="title"
-        >
+        />
       </template>
     </FormField>
   </div>

@@ -25,9 +25,7 @@ import '@froq/ui/style.css'
 <template>
   <div class="ui">
     <Badge>草稿</Badge>
-    <Badge tone="accent">
-      已更新
-    </Badge>
+    <Badge tone="accent"> 已更新 </Badge>
   </div>
 </template>
 ```

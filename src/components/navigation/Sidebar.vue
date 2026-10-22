@@ -5,14 +5,17 @@ import { prefersReducedMotion } from '../../core'
 import { useNavigation, useSidebar } from '../../vue'
 import SidebarTree from './Sidebar.vue'
 
-const props = withDefaults(defineProps<{
-  groups: SidebarGroup[]
-  foldable?: boolean
-  /** Internal recursion level; consumers only pass groups and foldable. */
-  nested?: boolean
-}>(), { foldable: false, nested: false })
+const props = withDefaults(
+  defineProps<{
+    groups: SidebarGroup[]
+    foldable?: boolean
+    /** Internal recursion level; consumers only pass groups and foldable. */
+    nested?: boolean
+  }>(),
+  { foldable: false, nested: false },
+)
 defineSlots<{
-  link?: (scope: { item: SidebarItem, props: SidebarLinkProps }) => unknown
+  link?: (scope: { item: SidebarItem; props: SidebarLinkProps }) => unknown
 }>()
 const model = defineModel<string>({ default: '' })
 const { isActive, activate } = useNavigation(model)
@@ -35,15 +38,16 @@ function linkProps(item: SidebarItem): SidebarLinkProps {
 const groupElements = useTemplateRef<HTMLElement[]>('groupElements')
 
 function updateSelection(animate = true): void {
-  if (props.nested)
-    return
+  if (props.nested) return
   for (const group of groupElements.value ?? []) {
     const selection = group.querySelector<HTMLElement>(':scope > .ui-sidebar-selection')
-    const candidates = Array.from(group.querySelectorAll<HTMLElement>('.ui-sidebar-link[aria-current], .is-current-branch > .ui-sidebar-link'))
-      .filter(element => element.getClientRects().length)
+    const candidates = Array.from(
+      group.querySelectorAll<HTMLElement>(
+        '.ui-sidebar-link[aria-current], .is-current-branch > .ui-sidebar-link',
+      ),
+    ).filter(element => element.getClientRects().length)
     const active = candidates.find(element => element.hasAttribute('aria-current')) ?? candidates[0]
-    if (!selection)
-      continue
+    if (!selection) continue
     if (!active) {
       group.classList.remove('has-selection')
       selection.hidden = true
@@ -54,9 +58,15 @@ function updateSelection(animate = true): void {
     const transform = `translate(${rect.left - bounds.left}px, ${rect.top - bounds.top}px)`
     const width = `${rect.width}px`
     const height = `${rect.height}px`
-    if (!selection.hidden && selection.style.transform === transform && selection.style.width === width && selection.style.height === height)
+    if (
+      !selection.hidden &&
+      selection.style.transform === transform &&
+      selection.style.width === width &&
+      selection.style.height === height
+    )
       continue
-    selection.style.transition = animate && !selection.hidden && !prefersReducedMotion() ? '' : 'none'
+    selection.style.transition =
+      animate && !selection.hidden && !prefersReducedMotion() ? '' : 'none'
     selection.style.transform = transform
     selection.style.width = width
     selection.style.height = height
@@ -70,22 +80,24 @@ function updateSelection(animate = true): void {
 let resizeObserver: ResizeObserver | undefined
 function observeGroups(): void {
   resizeObserver?.disconnect()
-  for (const group of groupElements.value ?? [])
-    resizeObserver?.observe(group)
+  for (const group of groupElements.value ?? []) resizeObserver?.observe(group)
 }
 onMounted(async () => {
   updateSelection(false)
-  if (props.nested)
-    return
+  if (props.nested) return
   resizeObserver = new ResizeObserver(() => updateSelection(false))
   observeGroups()
   await document.fonts?.ready
   updateSelection(false)
 })
-watch([model, () => props.groups, () => props.foldable, expanded], () => {
-  observeGroups()
-  updateSelection()
-}, { flush: 'post' })
+watch(
+  [model, () => props.groups, () => props.foldable, expanded],
+  () => {
+    observeGroups()
+    updateSelection()
+  },
+  { flush: 'post' },
+)
 onBeforeUnmount(() => resizeObserver?.disconnect())
 </script>
 
@@ -118,7 +130,11 @@ onBeforeUnmount(() => resizeObserver?.disconnect())
           v-for="item in group.items"
           :key="item.value"
           class="ui-sidebar-branch"
-          :class="{ 'has-children': item.children?.length, 'is-current-branch': containsCurrent(item), 'is-foldable': canFold(item) }"
+          :class="{
+            'has-children': item.children?.length,
+            'is-current-branch': containsCurrent(item),
+            'is-foldable': canFold(item),
+          }"
         >
           <slot
             name="link"

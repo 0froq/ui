@@ -7,5 +7,6 @@ defineSlots<{ default?: () => unknown }>()
   <span
     class="ui-badge"
     :class="{ 'is-accent': tone === 'accent' }"
-  ><slot /></span>
+    ><slot
+  /></span>
 </template>

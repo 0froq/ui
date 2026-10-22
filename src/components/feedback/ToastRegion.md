@@ -13,7 +13,7 @@ props:
     description: Non-empty accessible name for the notification viewport; supports the {hotkey} placeholder.
   - name: duration
     type: number
-    default: "5000"
+    default: '5000'
     description: Default auto-dismiss delay in milliseconds for child Toast components.
   - name: hotkey
     type: string[]
@@ -24,7 +24,7 @@ props:
     default: bottom-end
     description: Logical viewport position using inline start and end.
   - name: portalTo
-    type: "string | HTMLElement"
+    type: 'string | HTMLElement'
     description: Teleport target. Defaults to the nearest ancestor with class ui; without one, viewport content renders inline on the client.
 slots:
   - name: default

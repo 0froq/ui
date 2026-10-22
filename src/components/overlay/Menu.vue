@@ -1,22 +1,30 @@
 <script setup lang="ts">
 import type { MenuItem } from '../../vue'
-import { DropdownMenuContent, DropdownMenuPortal, DropdownMenuRoot, DropdownMenuTrigger } from 'reka-ui'
+import {
+  DropdownMenuContent,
+  DropdownMenuPortal,
+  DropdownMenuRoot,
+  DropdownMenuTrigger,
+} from 'reka-ui'
 import { useSlots, useTemplateRef } from 'vue'
 import { usePortalTarget } from '../../vue'
 import MenuItems from './_internal/MenuItems.vue'
 
 defineOptions({ inheritAttrs: false })
-withDefaults(defineProps<{
-  label: string
-  items: MenuItem[]
-  disabled?: boolean
-  modal?: boolean
-  dir?: 'ltr' | 'rtl'
-  side?: 'top' | 'right' | 'bottom' | 'left'
-  align?: 'start' | 'center' | 'end'
-  sideOffset?: number
-  portalTo?: string | HTMLElement
-}>(), { disabled: false, modal: true, side: 'bottom', align: 'start', sideOffset: 8 })
+withDefaults(
+  defineProps<{
+    label: string
+    items: MenuItem[]
+    disabled?: boolean
+    modal?: boolean
+    dir?: 'ltr' | 'rtl'
+    side?: 'top' | 'right' | 'bottom' | 'left'
+    align?: 'start' | 'center' | 'end'
+    sideOffset?: number
+    portalTo?: string | HTMLElement
+  }>(),
+  { disabled: false, modal: true, side: 'bottom', align: 'start', sideOffset: 8 },
+)
 const emit = defineEmits<{ select: [item: MenuItem, event: Event] }>()
 defineSlots<{
   trigger?: () => unknown
