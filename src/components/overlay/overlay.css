@@ -105,7 +105,8 @@
 
 /* Floating lists share one control-tier surface: hairline, square, no soft elevation. */
 .ui-menu-content,
-.ui-select-content {
+.ui-select-content,
+.ui-combobox-content {
   box-sizing: border-box;
   z-index: 1001;
   min-width: min(9.5rem, calc(100vw - 24px));
