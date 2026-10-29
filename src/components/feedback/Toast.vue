@@ -1,18 +1,28 @@
 <script setup lang="ts">
 import type { ComponentPublicInstance } from 'vue'
-import { injectToastProviderContext, ToastAction, ToastClose, ToastDescription, ToastRoot, ToastTitle } from 'reka-ui'
+import {
+  injectToastProviderContext,
+  ToastAction,
+  ToastClose,
+  ToastDescription,
+  ToastRoot,
+  ToastTitle,
+} from 'reka-ui'
 import { computed, useSlots, useTemplateRef } from 'vue'
 import { useAutoDismiss } from '../../vue'
 
 defineOptions({ inheritAttrs: false })
-const props = withDefaults(defineProps<{
-  title: string
-  closeLabel: string
-  description?: string
-  duration?: number
-  type?: 'foreground' | 'background'
-  action?: { label: string, altText: string }
-}>(), { type: 'foreground' })
+const props = withDefaults(
+  defineProps<{
+    title: string
+    closeLabel: string
+    description?: string
+    duration?: number
+    type?: 'foreground' | 'background'
+    action?: { label: string; altText: string }
+  }>(),
+  { type: 'foreground' },
+)
 const emit = defineEmits<{ action: [event: MouseEvent] }>()
 defineSlots<{ default?: () => unknown }>()
 const open = defineModel<boolean>({ default: false })
@@ -23,7 +33,11 @@ let globalEscape = false
 
 function close() {
   const element = root.value?.$el
-  if (typeof HTMLElement !== 'undefined' && element instanceof HTMLElement && element.contains(document.activeElement))
+  if (
+    typeof HTMLElement !== 'undefined' &&
+    element instanceof HTMLElement &&
+    element.contains(document.activeElement)
+  )
     provider.viewport.value?.focus()
   open.value = false
 }
@@ -34,12 +48,9 @@ useAutoDismiss(open, {
   onDismiss: close,
 })
 function update(next: boolean) {
-  if (!next && globalEscape)
-    return
-  if (next)
-    open.value = true
-  else
-    close()
+  if (!next && globalEscape) return
+  if (next) open.value = true
+  else close()
 }
 // Reka 2.10.5 listens on the document; an unrelated Escape must not dismiss this toast.
 function ignoreGlobalEscape() {
@@ -49,8 +60,7 @@ function ignoreGlobalEscape() {
   })
 }
 function escape(event: KeyboardEvent) {
-  if (event.defaultPrevented)
-    return
+  if (event.defaultPrevented) return
   event.preventDefault()
   event.stopPropagation()
   close()

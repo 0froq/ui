@@ -10,7 +10,8 @@ const link = useSiteLink()
     <a
       class="l-skip"
       href="#main"
-    >{{ t('site.skip') }}</a>
+      >{{ t('site.skip') }}</a
+    >
     <Banner :label="t('site.noticeLabel')">
       {{ t('site.wip') }}
       <template #actions>

@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: A delayed, non-interactive preview for an existing link.
 model:
   type: boolean
-  default: "false"
+  default: 'false'
   description: Preview open state. The disabled prop suppresses the preview without rewriting this model.
 props:
   - name: label
@@ -17,15 +17,15 @@ props:
     description: Destination for the trigger link.
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: Suppresses preview opening without disabling the link or changing the model.
   - name: openDelay
     type: number
-    default: "700"
+    default: '700'
     description: Delay in milliseconds before opening. Finite values are clamped to zero or greater; invalid values fall back to 700.
   - name: closeDelay
     type: number
-    default: "300"
+    default: '300'
     description: Delay in milliseconds before closing. Finite values are clamped to zero or greater; invalid values fall back to 300.
   - name: side
     type: "'top' | 'right' | 'bottom' | 'left'"
@@ -37,7 +37,7 @@ props:
     description: Preferred alignment against the link; collision handling may reposition the preview.
   - name: sideOffset
     type: number
-    default: "8"
+    default: '8'
     description: Distance in pixels between the link and preview.
   - name: portalTo
     type: string | HTMLElement

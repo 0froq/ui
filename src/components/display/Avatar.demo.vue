@@ -14,8 +14,6 @@ const showImage = ref(false)
       :src="showImage ? '/favicon.svg' : undefined"
       loading="eager"
     />
-    <Button @click="showImage = !showImage">
-      Toggle image
-    </Button>
+    <Button @click="showImage = !showImage"> Toggle image </Button>
   </div>
 </template>

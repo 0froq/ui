@@ -3,12 +3,15 @@ import { useControlAttrs } from '../../vue'
 
 defineOptions({ inheritAttrs: false })
 
-withDefaults(defineProps<{
-  label: string
-  type?: 'text' | 'email' | 'search'
-}>(), {
-  type: 'text',
-})
+withDefaults(
+  defineProps<{
+    label: string
+    type?: 'text' | 'email' | 'search'
+  }>(),
+  {
+    type: 'text',
+  },
+)
 
 const model = defineModel<string>({ default: '' })
 const { wrapperAttrs, controlAttrs } = useControlAttrs()
@@ -25,6 +28,6 @@ const { wrapperAttrs, controlAttrs } = useControlAttrs()
       v-model="model"
       class="ui-field-control"
       :type="type"
-    >
+    />
   </label>
 </template>

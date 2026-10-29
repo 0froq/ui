@@ -12,7 +12,7 @@ import AspectRatio from './AspectRatio.vue'
         src="/favicon.svg"
         alt="froq mark"
         loading="lazy"
-      >
+      />
     </AspectRatio>
   </div>
 </template>

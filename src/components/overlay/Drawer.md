@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: A dialog panel attached to the left, right, or bottom edge.
 model:
   type: boolean
-  default: "false"
+  default: 'false'
   description: Whether the drawer is open.
 props:
   - name: title
@@ -24,25 +24,25 @@ props:
     description: Trigger text when no trigger slot is provided; defaults to title.
   - name: showTrigger
     type: boolean
-    default: "true"
+    default: 'true'
     description: Render the built-in trigger and trigger slot. When false, neither is rendered.
   - name: returnFocus
     type: HTMLElement
     description: Optional focusable element to receive focus when the drawer closes; takes precedence over the captured opener.
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: Disable the trigger only; a parent can still open the drawer through the model.
   - name: dismissible
     type: boolean
-    default: "true"
+    default: 'true'
     description: Show the built-in close button and allow Escape or outside dismissal.
   - name: closeOnOutside
     type: boolean
-    default: "true"
+    default: 'true'
     description: Allow outside interaction to close the drawer when dismissible is true.
   - name: portalTo
-    type: "string | HTMLElement"
+    type: 'string | HTMLElement'
     description: Teleport target. Defaults to the nearest ancestor with class ui; without one, content renders inline on the client.
   - name: side
     type: "'left' | 'right' | 'bottom'"

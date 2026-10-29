@@ -16,5 +16,15 @@ export { layoutText as layoutHandwriting } from './signature/hand-font'
 export { createInkWash } from './signature/paper'
 export { createPenStroke } from './signature/pen'
 export { looseEllipse as signatureEllipse } from './signature/pen-geometry'
-export type { BloomOptions, InkMark, LayerColors, MixColors, PaperLayer, PaperOptions, PenAnchors, PenLayer, PenOptions } from './signature/types'
+export type {
+  BloomOptions,
+  InkMark,
+  LayerColors,
+  MixColors,
+  PaperLayer,
+  PaperOptions,
+  PenAnchors,
+  PenLayer,
+  PenOptions,
+} from './signature/types'
 export type { GlyphLayout } from './signature/types'

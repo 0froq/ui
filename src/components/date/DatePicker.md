@@ -49,18 +49,18 @@ props:
     type: string
     description: Optional caller-supplied YYYY-MM-DD marker; no local-today value is inferred by the component.
   - name: isDateDisabled
-    type: "(date: string) => boolean"
+    type: '(date: string) => boolean'
     description: Callback that disables a Gregorian date string.
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: Disable the trigger and clearing; the displayed popup is closed while disabled.
   - name: readonly
     type: boolean
-    default: "false"
+    default: 'false'
     description: Allow browsing but prevent selection and clearing.
   - name: weekStartsOn
-    type: "0 | 1 | 2 | 3 | 4 | 5 | 6"
+    type: '0 | 1 | 2 | 3 | 4 | 5 | 6'
     description: First weekday, from Sunday (0) through Saturday (6); defaults from the locale.
   - name: dir
     type: "'ltr' | 'rtl'"
@@ -72,7 +72,7 @@ props:
     type: string
     description: Optional HTML form ID for the hidden date input.
   - name: portalTo
-    type: "string | HTMLElement"
+    type: 'string | HTMLElement'
     description: Teleport target. Defaults to the nearest ancestor with class ui; without one, content renders inline on the client.
 slots:
   - name: day

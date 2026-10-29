@@ -5,24 +5,30 @@ import Button from './Button.vue'
 
 defineOptions({ inheritAttrs: false })
 
-const props = withDefaults(defineProps<{
-  text: string
-  label: string
-  copiedLabel: string
-  errorLabel: string
-  pendingLabel?: string
-  resetAfter?: number
-  disabled?: boolean
-}>(), {
-  resetAfter: 1600,
-  disabled: false,
-})
+const props = withDefaults(
+  defineProps<{
+    text: string
+    label: string
+    copiedLabel: string
+    errorLabel: string
+    pendingLabel?: string
+    resetAfter?: number
+    disabled?: boolean
+  }>(),
+  {
+    resetAfter: 1600,
+    disabled: false,
+  },
+)
 const emit = defineEmits<{
   copy: [text: string]
   error: [error: Error]
 }>()
 const attrs = useAttrs()
-const { status, copy } = useClipboard(() => props.text, () => props.resetAfter)
+const { status, copy } = useClipboard(
+  () => props.text,
+  () => props.resetAfter,
+)
 const labels = computed(() => ({
   idle: props.label,
   pending: props.pendingLabel ?? props.label,
@@ -31,13 +37,10 @@ const labels = computed(() => ({
 }))
 
 async function activate(): Promise<void> {
-  if (props.disabled)
-    return
+  if (props.disabled) return
   const result = await copy()
-  if (result?.ok)
-    emit('copy', result.text)
-  else if (result)
-    emit('error', result.error)
+  if (result?.ok) emit('copy', result.text)
+  else if (result) emit('error', result.error)
 }
 </script>
 
@@ -60,12 +63,14 @@ async function activate(): Promise<void> {
         :key="state"
         class="ui-copy-label"
         :class="{ 'is-visible': state === status }"
-      >{{ textLabel }}</span>
+        >{{ textLabel }}</span
+      >
     </span>
     <span
       class="ui-copy-status"
       role="status"
       aria-atomic="true"
-    >{{ status === 'copied' || status === 'error' ? labels[status] : '' }}</span>
+      >{{ status === 'copied' || status === 'error' ? labels[status] : '' }}</span
+    >
   </Button>
 </template>

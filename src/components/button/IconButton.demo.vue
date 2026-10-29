@@ -16,6 +16,8 @@ const saved = ref(false)
       :fill="saved ? 'currentColor' : 'none'"
       stroke="currentColor"
       stroke-width="1.5"
-    ><path d="M6 3h12v18l-6-4-6 4z" /></svg>
+    >
+      <path d="M6 3h12v18l-6-4-6 4z" />
+    </svg>
   </IconButton>
 </template>

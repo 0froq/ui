@@ -1,13 +1,13 @@
 <script setup lang="ts">
 export type DesignStatus = 'ai-draft' | 'reviewed' | 'stable'
 
-const props = withDefaults(defineProps<{
-  explain?: boolean
-  status?: DesignStatus
-}>(), {
-  explain: false,
-  status: 'ai-draft',
-})
+const props = withDefaults(
+  defineProps<{
+    explain?: boolean
+    status?: DesignStatus
+  }>(),
+  { explain: false, status: 'ai-draft' },
+)
 
 const { t } = useI18n()
 
@@ -47,11 +47,13 @@ const description = computed(() => {
     <span
       class="design-status-badge"
       :title="description"
-    >{{ label }}</span>
+      >{{ label }}</span
+    >
     <span
       v-if="explain"
       class="design-status-description"
-    >{{ description }}</span>
+      >{{ description }}</span
+    >
   </span>
 </template>
 

@@ -3,9 +3,8 @@ const EXTERNAL = /^[a-z][a-z\d+.-]*:/i
 /** Resolves a locale-free path such as `/docs` for the current locale. URLs pass through. */
 export function useSiteLink(): (to: string) => string {
   const localePath = useLocalePath()
-  return (to) => {
-    if (EXTERNAL.test(to))
-      return to
+  return to => {
+    if (EXTERNAL.test(to)) return to
     const [path = '/', hash] = to.split('#')
     const resolved = localePath(path || '/')
     return hash ? `${resolved}#${hash}` : resolved
@@ -13,7 +12,10 @@ export function useSiteLink(): (to: string) => string {
 }
 
 /** Nav targets. A section such as `/components` stays current on its child pages. */
-export function useSectionHref(): { href: (to: string) => string, current: (to: string) => 'page' | undefined } {
+export function useSectionHref(): {
+  href: (to: string) => string
+  current: (to: string) => 'page' | undefined
+} {
   const route = useRoute()
   const link = useSiteLink()
 
@@ -23,10 +25,8 @@ export function useSectionHref(): { href: (to: string) => string, current: (to: 
 
   function current(to: string): 'page' | undefined {
     const path = link(to)
-    if (route.path === path)
-      return 'page'
-    if (to !== '/' && route.path.startsWith(`${path}/`))
-      return 'page'
+    if (route.path === path) return 'page'
+    if (to !== '/' && route.path.startsWith(`${path}/`)) return 'page'
     return undefined
   }
 

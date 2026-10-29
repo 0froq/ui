@@ -25,9 +25,7 @@ import '@froq/ui/style.css'
 <template>
   <div class="ui">
     <Badge>Draft</Badge>
-    <Badge tone="accent">
-      Updated
-    </Badge>
+    <Badge tone="accent"> Updated </Badge>
   </div>
 </template>
 ```

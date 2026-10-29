@@ -10,7 +10,9 @@ defineProps<{
   step?: number | 'any'
 }>()
 const model = defineModel<number | undefined>()
-const value = computed(() => model.value !== undefined && Number.isFinite(model.value) ? model.value : '')
+const value = computed(() =>
+  model.value !== undefined && Number.isFinite(model.value) ? model.value : '',
+)
 const { wrapperAttrs, controlAttrs } = useControlAttrs()
 function update(event: Event): void {
   const next = (event.currentTarget as HTMLInputElement).valueAsNumber
@@ -33,6 +35,6 @@ function update(event: Event): void {
       :max="max"
       :step="step"
       @input="update"
-    >
+    />
   </label>
 </template>

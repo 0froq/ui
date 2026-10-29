@@ -7,9 +7,7 @@ const saved = ref(false)
 
 <template>
   <p class="demo-sentence">
-    <Button @click="saved = true">
-      Save
-    </Button>
+    <Button @click="saved = true"> Save </Button>
   </p>
   <p class="demo-readout">
     {{ saved ? 'saved' : 'idle' }}

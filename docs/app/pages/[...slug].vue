@@ -13,8 +13,7 @@ const { data: page } = await useAsyncData(
   () => `page-${locale.value}-${rest.value}`,
   () => queryCollection('pages').path(contentPath(rest.value)).first(),
 )
-if (!page.value)
-  throw createError({ statusCode: 404, statusMessage: 'Not found', fatal: true })
+if (!page.value) throw createError({ statusCode: 404, statusMessage: 'Not found', fatal: true })
 
 useContentOgImage(page, 'pages', {
   title: () => page.value?.title,

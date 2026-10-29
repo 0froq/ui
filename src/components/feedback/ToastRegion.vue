@@ -4,14 +4,17 @@ import { useTemplateRef } from 'vue'
 import { usePortalTarget } from '../../vue'
 
 defineOptions({ inheritAttrs: false })
-withDefaults(defineProps<{
-  label: string
-  viewportLabel: string
-  duration?: number
-  hotkey?: string[]
-  position?: 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end'
-  portalTo?: string | HTMLElement
-}>(), { duration: 5000, hotkey: () => ['F8'], position: 'bottom-end' })
+withDefaults(
+  defineProps<{
+    label: string
+    viewportLabel: string
+    duration?: number
+    hotkey?: string[]
+    position?: 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end'
+    portalTo?: string | HTMLElement
+  }>(),
+  { duration: 5000, hotkey: () => ['F8'], position: 'bottom-end' },
+)
 defineSlots<{ default?: () => unknown }>()
 const scope = useTemplateRef<HTMLElement>('scope')
 const target = usePortalTarget(scope)

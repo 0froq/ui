@@ -5,7 +5,7 @@ description: 用固定宽高比容纳媒体或其他定位内容。
 props:
   - name: ratio
     type: number
-    default: "16 / 9"
+    default: '16 / 9'
     description: 宽高比。非有限或非正数值会回退为 1。
   - name: fit
     type: "'cover' | 'contain'"
@@ -43,7 +43,7 @@ import '@froq/ui/style.css'
         src="/media/cover.webp"
         alt="湖面倒映着山脉"
         loading="lazy"
-      >
+      />
     </AspectRatio>
   </div>
 </template>

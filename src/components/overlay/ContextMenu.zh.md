@@ -13,17 +13,17 @@ props:
     description: 菜单项，可含禁用项、分隔符和嵌套子菜单。
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: 禁止在目标上打开菜单，但不禁用目标内的子内容。
   - name: modal
     type: boolean
-    default: "true"
+    default: 'true'
     description: 打开菜单时是否限制外部交互。
   - name: dir
     type: "'ltr' | 'rtl'"
     description: 菜单文字和键盘方向；默认沿用 Reka UI 方向上下文，无上下文时为 ltr。
   - name: portalTo
-    type: "string | HTMLElement"
+    type: 'string | HTMLElement'
     description: Teleport 目标。默认使用最近的消费者 class 为 ui 的元素；找不到时以内联方式渲染。
 events:
   - name: openChange
@@ -92,9 +92,7 @@ function selectItem(item: MenuItem, event: Event) {
       @select="selectItem"
       @open-change="open => console.info('菜单状态：', open)"
     >
-      <div class="document-preview">
-        右键此区域，或聚焦后按 Shift+F10。
-      </div>
+      <div class="document-preview"> 右键此区域，或聚焦后按 Shift+F10。 </div>
       <template #item="{ item }">
         {{ item.label }}
       </template>

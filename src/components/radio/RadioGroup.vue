@@ -2,14 +2,17 @@
 import type { ChoiceOption } from '../../vue'
 import { useId } from 'vue'
 
-withDefaults(defineProps<{
-  label: string
-  options: ChoiceOption<T>[]
-  name?: string
-  disabled?: boolean
-  required?: boolean
-  form?: string
-}>(), { disabled: false, required: false })
+withDefaults(
+  defineProps<{
+    label: string
+    options: ChoiceOption<T>[]
+    name?: string
+    disabled?: boolean
+    required?: boolean
+    form?: string
+  }>(),
+  { disabled: false, required: false },
+)
 const model = defineModel<T>()
 const id = useId()
 </script>
@@ -35,7 +38,7 @@ const id = useId()
         :value="option.value"
         :required="required"
         :disabled="option.disabled"
-      >
+      />
       <span>{{ option.label }}</span>
     </label>
   </fieldset>

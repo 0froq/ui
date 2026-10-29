@@ -3,12 +3,15 @@ import { useControlAttrs } from '../../vue'
 
 defineOptions({ inheritAttrs: false })
 
-withDefaults(defineProps<{
-  label: string
-  rows?: number
-}>(), {
-  rows: 3,
-})
+withDefaults(
+  defineProps<{
+    label: string
+    rows?: number
+  }>(),
+  {
+    rows: 3,
+  },
+)
 
 const model = defineModel<string>({ default: '' })
 const { wrapperAttrs, controlAttrs } = useControlAttrs()

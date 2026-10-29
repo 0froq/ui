@@ -1,20 +1,30 @@
 <script setup lang="ts">
-import { PopoverAnchor, PopoverClose, PopoverContent, PopoverPortal, PopoverRoot, PopoverTrigger } from 'reka-ui'
+import {
+  PopoverAnchor,
+  PopoverClose,
+  PopoverContent,
+  PopoverPortal,
+  PopoverRoot,
+  PopoverTrigger,
+} from 'reka-ui'
 import { useSlots, useTemplateRef } from 'vue'
 import { usePortalTarget } from '../../vue'
 
 defineOptions({ inheritAttrs: false })
-withDefaults(defineProps<{
-  label: string
-  closeLabel: string
-  triggerLabel?: string
-  disabled?: boolean
-  side?: 'top' | 'right' | 'bottom' | 'left'
-  align?: 'start' | 'center' | 'end'
-  sideOffset?: number
-  portalTo?: string | HTMLElement
-  reference?: HTMLElement
-}>(), { disabled: false, side: 'bottom', align: 'start', sideOffset: 8 })
+withDefaults(
+  defineProps<{
+    label: string
+    closeLabel: string
+    triggerLabel?: string
+    disabled?: boolean
+    side?: 'top' | 'right' | 'bottom' | 'left'
+    align?: 'start' | 'center' | 'end'
+    sideOffset?: number
+    portalTo?: string | HTMLElement
+    reference?: HTMLElement
+  }>(),
+  { disabled: false, side: 'bottom', align: 'start', sideOffset: 8 },
+)
 defineSlots<{
   trigger?: () => unknown
   default?: (scope: { close: () => void }) => unknown

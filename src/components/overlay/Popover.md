@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: A non-modal panel anchored to a trigger button or an external element.
 model:
   type: boolean
-  default: "false"
+  default: 'false'
   description: Whether the popover is open.
 props:
   - name: reference
@@ -23,7 +23,7 @@ props:
     description: Trigger text when no trigger slot is provided; defaults to label.
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: Disables the trigger button.
   - name: side
     type: "'top' | 'right' | 'bottom' | 'left'"
@@ -35,7 +35,7 @@ props:
     description: Preferred alignment against the trigger. The position may change to avoid collisions.
   - name: sideOffset
     type: number
-    default: "8"
+    default: '8'
     description: Distance in pixels between the trigger and content.
   - name: portalTo
     type: string | HTMLElement
@@ -83,9 +83,7 @@ const open = ref(false)
       </template>
       <template #default="{ close }">
         <p>This document is still a draft.</p>
-        <Button @click="close">
-          Understood
-        </Button>
+        <Button @click="close"> Understood </Button>
       </template>
     </Popover>
   </div>

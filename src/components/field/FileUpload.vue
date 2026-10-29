@@ -14,8 +14,7 @@ function change(event: Event): void {
   emit('change', Array.from((event.currentTarget as HTMLInputElement).files ?? []))
 }
 function clear(): void {
-  if (input.value)
-    input.value.value = ''
+  if (input.value) input.value.value = ''
   emit('change', [])
 }
 watch(() => props.resetKey, clear)
@@ -34,6 +33,6 @@ defineExpose({ clear })
       class="ui-file-control"
       type="file"
       @change="change"
-    >
+    />
   </label>
 </template>

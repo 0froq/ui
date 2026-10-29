@@ -5,16 +5,19 @@ import { computed, useId } from 'vue'
 import { useControlAttrs } from '../../vue'
 
 defineOptions({ inheritAttrs: false })
-const props = withDefaults(defineProps<{
-  label: string
-  options: ChoiceOption[]
-  type?: 'single' | 'multiple'
-  orientation?: 'horizontal' | 'vertical'
-  dir?: 'ltr' | 'rtl'
-  loop?: boolean
-  disabled?: boolean
-}>(), { type: 'single', orientation: 'horizontal', loop: true, disabled: false })
-defineSlots<{ option?: (scope: { option: ChoiceOption, active: boolean }) => unknown }>()
+const props = withDefaults(
+  defineProps<{
+    label: string
+    options: ChoiceOption[]
+    type?: 'single' | 'multiple'
+    orientation?: 'horizontal' | 'vertical'
+    dir?: 'ltr' | 'rtl'
+    loop?: boolean
+    disabled?: boolean
+  }>(),
+  { type: 'single', orientation: 'horizontal', loop: true, disabled: false },
+)
+defineSlots<{ option?: (scope: { option: ChoiceOption; active: boolean }) => unknown }>()
 type ModelValue = T extends string[] ? T : T | ''
 const model = defineModel<ModelValue>({ default: () => '' as ModelValue })
 const id = useId()
@@ -22,18 +25,31 @@ const { wrapperAttrs, controlAttrs } = useControlAttrs()
 const value = computed<string | string[]>(() => {
   const selected = model.value as string | string[]
   return props.type === 'multiple'
-    ? Array.isArray(selected) ? selected : selected ? [selected] : []
-    : Array.isArray(selected) ? selected[0] ?? '' : selected
+    ? Array.isArray(selected)
+      ? selected
+      : selected
+        ? [selected]
+        : []
+    : Array.isArray(selected)
+      ? (selected[0] ?? '')
+      : selected
 })
 function active(option: ChoiceOption): boolean {
-  return Array.isArray(value.value) ? value.value.includes(option.value) : value.value === option.value
+  return Array.isArray(value.value)
+    ? value.value.includes(option.value)
+    : value.value === option.value
 }
 function update(next: unknown) {
-  if (props.disabled)
-    return
-  model.value = (props.type === 'multiple'
-    ? Array.isArray(next) ? next.filter((item): item is string => typeof item === 'string') : []
-    : typeof next === 'string' ? next : '') as ModelValue
+  if (props.disabled) return
+  model.value = (
+    props.type === 'multiple'
+      ? Array.isArray(next)
+        ? next.filter((item): item is string => typeof item === 'string')
+        : []
+      : typeof next === 'string'
+        ? next
+        : ''
+  ) as ModelValue
 }
 </script>
 
@@ -45,7 +61,8 @@ function update(next: unknown) {
     <span
       :id="id"
       class="ui-field-label"
-    >{{ label }}</span>
+      >{{ label }}</span
+    >
     <ToggleGroupRoot
       v-bind="controlAttrs()"
       class="ui-toggle-group"

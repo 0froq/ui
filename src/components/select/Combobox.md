@@ -32,15 +32,15 @@ props:
     description: Placeholder for the text input.
   - name: multiple
     type: boolean
-    default: "false"
+    default: 'false'
     description: Allow selection of multiple options.
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: Disable the input and selection controls.
   - name: ignoreFilter
     type: boolean
-    default: "false"
+    default: 'false'
     description: Skip local option filtering; the consumer manages remote filtering and request races.
   - name: name
     type: string
@@ -49,7 +49,7 @@ props:
     type: "'ltr' | 'rtl'"
     description: Text and interaction direction; defaults to the Reka UI direction context, then ltr.
   - name: portalTo
-    type: "string | HTMLElement"
+    type: 'string | HTMLElement'
     description: Teleport target. Defaults to the nearest ancestor with class ui; without one, content renders inline on the client.
 slots:
   - name: option
@@ -107,9 +107,7 @@ const countries = [
       <template #option="{ option, selected }">
         {{ selected ? '✓ ' : '' }}{{ option.label }}
       </template>
-      <template #empty>
-        No matching countries
-      </template>
+      <template #empty> No matching countries </template>
     </Combobox>
   </div>
 </template>

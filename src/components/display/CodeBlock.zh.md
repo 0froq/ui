@@ -14,12 +14,12 @@ props:
     description: 分段源码。一段可以自带颜色。设置了默认插槽时忽略。
   - name: collapsible
     type: boolean
-    default: "false"
+    default: 'false'
     description: 把源码折进标题后面。没有标题的框不能折叠。默认收起。
 model:
   name: open
   type: boolean
-  default: "false"
+  default: 'false'
   description: 可折叠框是否展开。collapsible 为 false 时忽略。
 slots:
   - name: action

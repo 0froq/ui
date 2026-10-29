@@ -34,9 +34,7 @@ import '@froq/ui/style.css'
       description="收藏文档后，可以在这里找到它们。"
     >
       <template #actions>
-        <Button type="button">
-          浏览文档
-        </Button>
+        <Button type="button"> 浏览文档 </Button>
       </template>
     </EmptyState>
   </div>

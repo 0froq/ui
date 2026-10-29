@@ -2,12 +2,15 @@
 import type { NavigationItem, NavigationLinkProps } from '../../vue'
 import { useNavigation } from '../../vue'
 
-const props = withDefaults(defineProps<{
-  items: NavigationItem[]
-  current?: 'page' | 'location'
-}>(), { current: 'page' })
+const props = withDefaults(
+  defineProps<{
+    items: NavigationItem[]
+    current?: 'page' | 'location'
+  }>(),
+  { current: 'page' },
+)
 defineSlots<{
-  link?: (scope: { item: NavigationItem, props: NavigationLinkProps }) => unknown
+  link?: (scope: { item: NavigationItem; props: NavigationLinkProps }) => unknown
 }>()
 const model = defineModel<string>({ default: '' })
 const { isActive, activate } = useNavigation(model)

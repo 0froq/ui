@@ -15,10 +15,14 @@ const { t } = useI18n()
       <tbody>
         <tr>
           <th>modelValue</th>
-          <td><code>{{ doc.model.type }}</code></td>
+          <td
+            ><code>{{ doc.model.type }}</code></td
+          >
           <td>
             <span v-if="doc.model.required">{{ t('components.required') }}</span>
-            <span v-else-if="doc.model.default">{{ t('components.default') }} {{ doc.model.default }}</span>
+            <span v-else-if="doc.model.default"
+              >{{ t('components.default') }} {{ doc.model.default }}</span
+            >
             {{ doc.model.description }}
           </td>
         </tr>
@@ -34,7 +38,9 @@ const { t } = useI18n()
           :key="prop.name"
         >
           <th>{{ prop.name }}</th>
-          <td><code>{{ prop.type }}</code></td>
+          <td
+            ><code>{{ prop.type }}</code></td
+          >
           <td>
             <span v-if="prop.required">{{ t('components.required') }}</span>
             <span v-else-if="prop.default">{{ t('components.default') }} {{ prop.default }}</span>
@@ -53,7 +59,9 @@ const { t } = useI18n()
           :key="event.name"
         >
           <th>{{ event.name }}</th>
-          <td><code>{{ event.payload }}</code></td>
+          <td
+            ><code>{{ event.payload }}</code></td
+          >
           <td>{{ event.description }}</td>
         </tr>
       </tbody>

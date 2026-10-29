@@ -13,7 +13,7 @@ props:
     description: viewport 地标的非空无障碍名称；支持替换 {hotkey}。
   - name: duration
     type: number
-    default: "5000"
+    default: '5000'
     description: Toast 默认自动关闭时长，单位毫秒；单个 Toast 的 duration 可覆盖。
   - name: hotkey
     type: string[]

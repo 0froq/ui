@@ -28,11 +28,11 @@ props:
     description: Reading and keyboard direction; defaults to the Reka UI direction context, then ltr.
   - name: loop
     type: boolean
-    default: "true"
+    default: 'true'
     description: Loop arrow-key focus movement from the last enabled item to the first, and back.
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: Disable the entire group.
 slots:
   - name: option

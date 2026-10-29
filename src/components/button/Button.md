@@ -23,9 +23,7 @@ import { Button } from '@froq/ui'
 
 <template>
   <div class="ui">
-    <Button type="button">
-      Save
-    </Button>
+    <Button type="button"> Save </Button>
   </div>
 </template>
 ```

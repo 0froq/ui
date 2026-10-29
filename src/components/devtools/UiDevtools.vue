@@ -38,8 +38,7 @@ const { entries, scan } = useComponentSources(props)
 const groups = computed<Group[]>(() => {
   const byFile = new Map<string, Group>()
   for (const entry of entries.value) {
-    if (!showRoutes.value && ROUTES.test(entry.file))
-      continue
+    if (!showRoutes.value && ROUTES.test(entry.file)) continue
     const group = byFile.get(entry.file) ?? {
       file: entry.file,
       name: entry.name,
@@ -50,7 +49,9 @@ const groups = computed<Group[]>(() => {
     group.entries.push(entry)
     byFile.set(entry.file, group)
   }
-  return [...byFile.values()].sort((a, b) => b.entries.length - a.entries.length || a.name.localeCompare(b.name))
+  return [...byFile.values()].sort(
+    (a, b) => b.entries.length - a.entries.length || a.name.localeCompare(b.name),
+  )
 })
 const project = computed(() => groups.value.filter(group => group.source === 'project'))
 const library = computed(() => groups.value.filter(group => group.source === 'library'))
@@ -61,13 +62,21 @@ function measure(): void {
   for (const group of groups.value) {
     const hover = hovered.value === group.file
     const shown = hover || (group.source === 'library' ? showLibrary.value : showProject.value)
-    if (!shown)
-      continue
+    if (!shown) continue
     group.entries.forEach((entry, index) => {
       entry.elements.forEach((element, part) => {
         const rect = element.getBoundingClientRect()
         if (rect.width && rect.height)
-          next.push({ key: `${group.file}:${index}:${part}`, name: group.name, source: group.source, hover, top: rect.top, left: rect.left, width: rect.width, height: rect.height })
+          next.push({
+            key: `${group.file}:${index}:${part}`,
+            name: group.name,
+            source: group.source,
+            hover,
+            top: rect.top,
+            left: rect.left,
+            width: rect.width,
+            height: rect.height,
+          })
       })
     })
   }
@@ -78,23 +87,21 @@ let frame = 0
 let rescan = false
 function schedule(full = false): void {
   rescan ||= full
-  if (frame)
-    return
+  if (frame) return
   frame = requestAnimationFrame(() => {
     frame = 0
-    if (rescan)
-      scan()
+    if (rescan) scan()
     rescan = false
     measure()
   })
 }
 
-const observer = typeof MutationObserver === 'undefined'
-  ? undefined
-  : new MutationObserver((records) => {
-      if (records.some(record => !root.value?.contains(record.target)))
-        schedule(true)
-    })
+const observer =
+  typeof MutationObserver === 'undefined'
+    ? undefined
+    : new MutationObserver(records => {
+        if (records.some(record => !root.value?.contains(record.target))) schedule(true)
+      })
 const layout = () => schedule()
 
 function attach(): void {
@@ -141,7 +148,12 @@ onBeforeUnmount(() => {
         :key="box.key"
         class="ui-devtools-box"
         :class="[`is-${box.source}`, { 'is-hover': box.hover }]"
-        :style="{ top: `${box.top}px`, left: `${box.left}px`, width: `${box.width}px`, height: `${box.height}px` }"
+        :style="{
+          top: `${box.top}px`,
+          left: `${box.left}px`,
+          width: `${box.width}px`,
+          height: `${box.height}px`,
+        }"
       >
         <span class="ui-devtools-tag">{{ box.name }}</span>
       </span>
@@ -165,26 +177,29 @@ onBeforeUnmount(() => {
           <input
             v-model="showLibrary"
             type="checkbox"
-          >
+          />
           Library {{ library.length }}
         </label>
         <label class="ui-devtools-switch is-project">
           <input
             v-model="showProject"
             type="checkbox"
-          >
+          />
           Project {{ project.length }}
         </label>
         <label class="ui-devtools-switch">
           <input
             v-model="showRoutes"
             type="checkbox"
-          >
+          />
           Pages
         </label>
       </div>
       <div
-        v-for="list in [{ title: 'Not in the library', items: project }, { title: 'From the library', items: library }]"
+        v-for="list in [
+          { title: 'Not in the library', items: project },
+          { title: 'From the library', items: library },
+        ]"
         :key="list.title"
         class="ui-devtools-list"
       >

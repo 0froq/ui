@@ -4,7 +4,7 @@ designStatus: reviewed
 description: 支持嵌套子菜单的无障碍菜单。
 model:
   type: boolean
-  default: "false"
+  default: 'false'
   description: 菜单是否打开，支持 v-model。
 props:
   - name: label
@@ -17,11 +17,11 @@ props:
     description: 菜单项及可选的嵌套子菜单项。
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: 只禁用触发按钮；要禁用菜单项，请设置对应 MenuItem 的属性。
   - name: modal
     type: boolean
-    default: "true"
+    default: 'true'
     description: 控制打开菜单时外部交互是否采用模态行为。
   - name: dir
     type: "'ltr' | 'rtl'"
@@ -36,7 +36,7 @@ props:
     description: 相对触发按钮的首选对齐方式；碰撞处理可能重新定位菜单。
   - name: sideOffset
     type: number
-    default: "8"
+    default: '8'
     description: 触发按钮与菜单内容之间的像素距离。
   - name: portalTo
     type: string | HTMLElement

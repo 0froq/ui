@@ -28,11 +28,11 @@ props:
     description: 阅读及键盘方向；默认使用 Reka UI 方向上下文，无上下文时为 ltr。
   - name: loop
     type: boolean
-    default: "true"
+    default: 'true'
     description: 方向键焦点移动是否在首尾启用循环。
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: 禁用整个按钮组。
 slots:
   - name: option

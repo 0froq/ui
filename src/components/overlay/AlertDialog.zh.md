@@ -4,7 +4,7 @@ designStatus: ai-draft
 description: 提供明确确认和取消操作的模态确认对话框。
 model:
   type: boolean
-  default: "false"
+  default: 'false'
   description: 对话框是否打开，支持 v-model。
 props:
   - name: title
@@ -28,15 +28,15 @@ props:
     description: 未提供 trigger 插槽时的触发按钮文案，默认使用 title。
   - name: disabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: 只禁用触发按钮。父组件仍可通过模型打开对话框。
   - name: pending
     type: boolean
-    default: "false"
+    default: 'false'
     description: 禁用确认操作并在内容上设置 aria-busy；取消和 Escape 仍可用。
   - name: confirmDisabled
     type: boolean
-    default: "false"
+    default: 'false'
     description: 独立于 pending 禁用确认按钮。
   - name: portalTo
     type: string | HTMLElement
@@ -93,9 +93,7 @@ function confirm() {
       </template>
       <p>确定删除当前草稿吗？</p>
     </AlertDialog>
-    <p v-if="confirmed">
-      此示例已确认删除意图，没有发送请求。
-    </p>
+    <p v-if="confirmed"> 此示例已确认删除意图，没有发送请求。 </p>
   </div>
 </template>
 ```

@@ -5,7 +5,7 @@ description: 在加载时保留组件布局的单个占位表面。
 props:
   - name: loading
     type: boolean
-    default: "true"
+    default: 'true'
     description: 加载时显示占位表面并隐藏插槽内容。
   - name: shape
     type: "'block' | 'text' | 'circle'"
