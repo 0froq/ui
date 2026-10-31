@@ -64,7 +64,7 @@ By default, content is teleported into the closest consumer element with `class=
 
 ## Surface
 
-The list is a hairline (`--ui-line`), radius 0, and no shadow. A highlighted row is underlined. There is no fill and no accent bar. Row padding leaves a start gutter. Mark the current page with `aria-current="page"` on the item content and that gutter shows a 5px accent dot. Type is 11px `--ui-font-meta`. The same list is used by Select. See [Language](/docs/language).
+The list is a hairline (`--ui-line`), radius 0, and no shadow. A highlighted row is underlined. There is no fill and no accent bar. Row padding leaves a start gutter. Mark the current page with `aria-current="page"` on the item content and that gutter shows a 5px accent dot. Type is 11px `--ui-font-meta`. The same list is used by Select, Combobox, and ContextMenu. See [Language](/docs/language).
 
 ## Usage
 

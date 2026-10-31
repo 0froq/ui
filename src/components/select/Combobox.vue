@@ -184,7 +184,10 @@ function clear() {
                   >{{ option.label }}</slot
                 >
               </span>
-              <ComboboxItemIndicator aria-hidden="true"> ✓ </ComboboxItemIndicator>
+              <ComboboxItemIndicator
+                class="ui-combobox-indicator"
+                aria-hidden="true"
+              />
             </ComboboxItem>
           </ComboboxViewport>
         </ComboboxContent>

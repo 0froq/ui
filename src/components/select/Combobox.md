@@ -70,6 +70,8 @@ The `name` prop submits the selected identifier(s), not the search text. Undecla
 
 By default, the option list is teleported to the nearest consumer ancestor with class `.ui`; without one, it renders inline on the client. Import `style.css` and provide the `.ui` scope. A custom `portalTo` target must exist and provide the consumer's theme and UI tokens.
 
+The list matches Menu and Select: a hairline (`--ui-line`), radius 0, no shadow, and 11px `--ui-font-meta`. A highlighted row is underlined, with no fill and no accent bar. The checked option keeps `--ui-fg` and a 5px accent dot in the start gutter. The `option` slot replaces the label only; it does not draw that mark. See [Language](/docs/language).
+
 Form submission through `name` requires the component to be inside a form. Single selection submits `name=value`; multiple selection submits indexed fields such as `name[0]=value`, and an empty array contributes no selected fields. An input `form` attribute does not associate the hidden selection fields with an external form. Native form reset does not synchronize the Vue models; the consumer must reset them too. A forwarded `readonly` attribute only prevents text editing; it does not lock option selection. Use `disabled` to prevent all interaction. Clearing selection also closes the popup.
 
 ## Usage
@@ -104,8 +106,8 @@ const countries = [
       placeholder="Search countries"
       name="country"
     >
-      <template #option="{ option, selected }">
-        {{ selected ? '✓ ' : '' }}{{ option.label }}
+      <template #option="{ option }">
+        {{ option.label }}
       </template>
       <template #empty> No matching countries </template>
     </Combobox>

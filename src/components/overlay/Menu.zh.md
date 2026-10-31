@@ -64,7 +64,7 @@ Menu 是支持嵌套子菜单的无障碍菜单。trigger 插槽必须最终渲�
 
 ## 表面
 
-列表是 `--ui-line` 的细线、圆角 0、没有阴影。高亮行是下划线，没有填充，也没有 accent 竖条。行的起始侧留出槽位。在项内容上标记 `aria-current="page"` 时，槽位里出现 5px 的 accent 圆点。字是 11px 的 `--ui-font-meta`。Select 的列表用同一套。见[语言](/docs/language)。
+列表是 `--ui-line` 的细线、圆角 0、没有阴影。高亮行是下划线，没有填充，也没有 accent 竖条。行的起始侧留出槽位。在项内容上标记 `aria-current="page"` 时，槽位里出现 5px 的 accent 圆点。字是 11px 的 `--ui-font-meta`。Select、Combobox 和 ContextMenu 的列表用同一套。见[语言](/docs/language)。
 
 ## 用法
 

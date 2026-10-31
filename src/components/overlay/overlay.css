@@ -25,6 +25,7 @@
   background: color-mix(in srgb, var(--ui-bg) 75%, transparent);
 }
 
+/* Non-list overlays: 1px line and --ui-radius. No soft elevation. */
 .ui-dialog-content,
 .ui-popover-content {
   box-sizing: border-box;
@@ -36,9 +37,7 @@
   color: var(--ui-fg);
   font-family: var(--ui-font-text);
   line-height: 1.5;
-  box-shadow:
-    0 0 20px 10px var(--ui-bg),
-    0 12px 40px color-mix(in srgb, var(--ui-fg) 8%, transparent);
+  box-shadow: none;
 }
 
 .ui-context-menu-target {
@@ -79,9 +78,7 @@
   font-family: var(--ui-font-text);
   font-size: 14px;
   line-height: 1.5;
-  box-shadow:
-    0 0 20px 10px var(--ui-bg),
-    0 8px 24px color-mix(in srgb, var(--ui-fg) 8%, transparent);
+  box-shadow: none;
 }
 
 .ui-tooltip-content {
@@ -98,14 +95,13 @@
   font-size: 14px;
   font-weight: normal;
   line-height: 1.5;
-  box-shadow:
-    0 0 20px 10px var(--ui-bg),
-    0 8px 24px color-mix(in srgb, var(--ui-fg) 8%, transparent);
+  box-shadow: none;
 }
 
 /* Floating lists share one control-tier surface: hairline, square, no soft elevation. */
 .ui-menu-content,
-.ui-select-content {
+.ui-select-content,
+.ui-combobox-content {
   box-sizing: border-box;
   z-index: 1001;
   min-width: min(9.5rem, calc(100vw - 24px));
