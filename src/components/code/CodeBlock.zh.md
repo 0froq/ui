@@ -16,19 +16,42 @@ props:
     type: boolean
     default: 'false'
     description: 把源码折进标题后面。没有标题的框不能折叠。默认收起。
+  - name: copyLabel
+    type: string
+    description: 复制按钮的空闲文案。设置后渲染内置复制操作，复制 `code`。
+  - name: copiedLabel
+    type: string
+    default: "'Copied'"
+    description: 复制成功后显示的文案。
+  - name: copyErrorLabel
+    type: string
+    default: "'Copy failed'"
+    description: 复制失败后显示的文案。
+  - name: pendingLabel
+    type: string
+    description: 剪贴板写入中的文案。默认用 `copyLabel`。
+  - name: resetAfter
+    type: number
+    default: '1600'
+    description: 复制文案恢复空闲前的毫秒数。
 model:
   name: open
   type: boolean
   default: 'false'
   description: 可折叠框是否展开。collapsible 为 false 时忽略。
+events:
+  - name: copy
+    description: 内置复制成功后触发，携带复制的文本。
+  - name: copyError
+    description: 内置复制失败后触发，携带错误。
 slots:
   - name: action
-    description: 可选的操作，例如复制按钮或链接。有标题时放在标题行；没有标题时浮在源码右上角。不提供则角落留空。
+    description: 可选的操作，例如链接。有标题时放在标题行、内置复制旁边；没有标题时浮在源码右上角。不提供则角落留给复制操作或留空。
   - name: default
     description: 替换源码区域。用于组件不负责的高亮源码，或不是源码列表的内容。
 ---
 
-CodeBlock 是源码列表外面的框：一块表面、一个可选的标题、一个角落。它不负责复制、路由或高亮。需要复制时把 `CopyButton` 放进 `action` 插槽，角落要去别处时放链接，角落留空时什么都不放。
+CodeBlock 是源码列表外面的框：一块表面、一个可选的标题、一个角落。设置 `copyLabel` 后它自带复制操作，把 `code` 写进剪贴板；角落要去别处时在 `action` 插槽放链接，否则留空。
 
 `code` 输出纯文本。`spans` 把同一段文本拆开输出，每一段可以设置 `color`，颜色由调用方的色板决定。默认插槽会整个替换这块列表。语法检查、终端输出和翻译留在调用方。
 
@@ -42,7 +65,7 @@ CodeBlock 是源码列表外面的框：一块表面、一个可选的标题、�
 
 ```vue
 <script setup lang="ts">
-import { CodeBlock, CopyButton } from '@froq/ui'
+import { CodeBlock } from '@froq/ui'
 import '@froq/ui/tokens.css'
 
 const source = 'print("hello")'
@@ -53,16 +76,10 @@ const source = 'print("hello")'
     <CodeBlock
       label="hello.lua"
       :code="source"
-    >
-      <template #action>
-        <CopyButton
-          :text="source"
-          label="复制"
-          copied-label="已复制"
-          error-label="复制失败"
-        />
-      </template>
-    </CodeBlock>
+      copy-label="复制"
+      copied-label="已复制"
+      copy-error-label="复制失败"
+    />
   </div>
 </template>
 ```

@@ -26,7 +26,7 @@ Everything below is exported from `@froq/ui`.
 
 | Component                                                              | Role                                                                       |
 | ---------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Button / CopyButton                                                    | Native button. Async clipboard, stable width                               |
+| Button / IconButton                                                    | Native button. Inline text action / boxed icon                             |
 | TextInput / TextArea / Select / Checkbox                               | Native fields. Attributes and events reach the control                     |
 | FormField / NumberInput / DateInput / Slider / FileUpload / RadioGroup | Label, error, native value. Validation stays with the caller               |
 | Choice / ChoiceCircle / Toggle                                         | Controlled choice and switch. Custom radio does not submit a form value    |

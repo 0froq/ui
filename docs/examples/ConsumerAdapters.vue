@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ChoiceOption } from '@froq/ui'
-import { Button, CopyButton, Dialog, Drawer, Navigation, Tabs } from '@froq/ui'
+import { Button, CodeBlock, Dialog, Drawer, Navigation, Tabs } from '@froq/ui'
 import { useChoice, useClipboard } from '@froq/ui/vue'
 import { computed, ref, shallowRef } from 'vue'
 import '@froq/ui/tokens.css'
@@ -65,12 +65,11 @@ function showContents(event: MouseEvent) {
     />
     <section id="overview">
       <h2>Shared actions, consumer content</h2>
-      <code>pnpm add ./vendor/ui</code>
-      <CopyButton
-        text="pnpm add ./vendor/ui"
-        label="Copy command"
+      <CodeBlock
+        code="pnpm add ./vendor/ui"
+        copy-label="Copy command"
         copied-label="Copied"
-        error-label="Copy failed"
+        copy-error-label="Copy failed"
       />
       <div
         role="radiogroup"

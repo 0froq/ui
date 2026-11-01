@@ -30,7 +30,7 @@ export interface CatalogSection {
 }
 
 const SECTIONS = [
-  { id: 'foundation', concepts: ['display', 'paper', 'devtools'] },
+  { id: 'foundation', concepts: ['display', 'code', 'paper', 'devtools'] },
   { id: 'chrome', concepts: ['overlay', 'select'] },
   { id: 'control', concepts: ['button', 'checkbox', 'field', 'radio', 'toggle', 'date'] },
   { id: 'pattern', concepts: ['navigation', 'disclosure', 'feedback'] },

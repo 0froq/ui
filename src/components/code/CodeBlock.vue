@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CodeSpan } from '../../vue'
 import { computed, useId, useTemplateRef, watch } from 'vue'
-import { useDisclosure } from '../../vue'
+import { useClipboard, useDisclosure } from '../../vue'
 
 const props = withDefaults(
   defineProps<{
@@ -11,12 +11,26 @@ const props = withDefaults(
     spans?: readonly CodeSpan[]
     /** Fold the source behind the title. A frame without a title cannot fold. */
     collapsible?: boolean
+    /** Idle copy label. Set it to render the built-in copy action. */
+    copyLabel?: string
+    copiedLabel?: string
+    copyErrorLabel?: string
+    pendingLabel?: string
+    resetAfter?: number
   }>(),
   {
     label: '',
     collapsible: false,
+    copyLabel: '',
+    copiedLabel: 'Copied',
+    copyErrorLabel: 'Copy failed',
+    resetAfter: 1600,
   },
 )
+const emit = defineEmits<{
+  copy: [text: string]
+  copyError: [error: Error]
+}>()
 defineSlots<{
   action?: () => unknown
   default?: () => unknown
@@ -24,11 +38,29 @@ defineSlots<{
 const open = defineModel<boolean>('open', { default: false })
 const titled = computed(() => props.label.trim().length > 0)
 const foldable = computed(() => props.collapsible && titled.value)
+const canCopy = computed(() => props.copyLabel.trim().length > 0)
 const id = useId()
 const triggerId = `${id}-trigger`
 const panelId = `${id}-panel`
 const panel = useTemplateRef<HTMLElement>('panel')
 const { toggle } = useDisclosure(open)
+
+const { status, copy } = useClipboard(
+  () => props.code ?? '',
+  () => props.resetAfter,
+)
+const labels = computed(() => ({
+  idle: props.copyLabel,
+  pending: props.pendingLabel ?? props.copyLabel,
+  copied: props.copiedLabel,
+  error: props.copyErrorLabel,
+}))
+
+async function activate(): Promise<void> {
+  const result = await copy()
+  if (result?.ok) emit('copy', result.text)
+  else if (result) emit('copyError', result.error)
+}
 
 watch(open, value => {
   if (!foldable.value || value || typeof document === 'undefined') return
@@ -62,16 +94,72 @@ watch(open, value => {
       </button>
       <span v-else>{{ label }}</span>
       <div
-        v-if="$slots.action"
+        v-if="canCopy || $slots.action"
         class="ui-code-block-action"
       >
+        <button
+          v-if="canCopy"
+          type="button"
+          class="ui-code-block-copy"
+          :disabled="status === 'pending'"
+          :aria-busy="status === 'pending'"
+          :aria-label="labels[status]"
+          @click="activate"
+        >
+          <span
+            class="ui-code-block-copy-labels"
+            aria-hidden="true"
+          >
+            <span
+              v-for="(textLabel, state) in labels"
+              :key="state"
+              class="ui-code-block-copy-label"
+              :class="{ 'is-visible': state === status }"
+              >{{ textLabel }}</span
+            >
+          </span>
+          <span
+            class="ui-code-block-copy-status"
+            role="status"
+            aria-atomic="true"
+            >{{ status === 'copied' || status === 'error' ? labels[status] : '' }}</span
+          >
+        </button>
         <slot name="action" />
       </div>
     </header>
     <div
-      v-else-if="$slots.action"
+      v-else-if="canCopy || $slots.action"
       class="ui-code-block-action is-corner"
     >
+      <button
+        v-if="canCopy"
+        type="button"
+        class="ui-code-block-copy"
+        :disabled="status === 'pending'"
+        :aria-busy="status === 'pending'"
+        :aria-label="labels[status]"
+        @click="activate"
+      >
+        <span
+          class="ui-code-block-copy-labels"
+          aria-hidden="true"
+        >
+          <span
+            v-for="(textLabel, state) in labels"
+            :key="state"
+            class="ui-code-block-copy-label"
+            :class="{ 'is-visible': state === status }"
+            >{{ textLabel }}</span
+          >
+        </span>
+        <span
+          class="ui-code-block-copy-status"
+          role="status"
+          aria-atomic="true"
+          >{{ status === 'copied' || status === 'error' ? labels[status] : '' }}</span
+        >
+      </button>
       <slot name="action" />
     </div>
     <div
@@ -237,6 +325,9 @@ watch(open, value => {
 }
 
 .ui-code-block-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   margin-inline-start: auto;
 }
 
@@ -258,19 +349,56 @@ watch(open, value => {
   color: var(--ui-fg);
 }
 
-/*Boxed copy button, same type and metrics as the docs code block copy button*/
-.ui-code-block-action :deep(.ui-copy-button) {
+/*The built-in copy action keeps the title's meta type; a boxed pill over an untitled corner.*/
+.ui-code-block-copy {
+  position: relative;
   padding: 2px 8px;
   border: 1px solid var(--ui-line);
+  background: none;
   color: var(--ui-muted);
   font-family: var(--ui-font-text);
   font-size: 12px;
   line-height: 1.7;
-  transition: color 0.3s;
+  cursor: pointer;
+  transition: color var(--ui-dur) var(--ui-ease);
 }
 
-.ui-code-block-action :deep(.ui-copy-button:hover:not(:disabled)) {
+.ui-code-block-copy:hover:not(:disabled) {
   color: var(--ui-fg);
+}
+
+.ui-code-block-copy:focus-visible {
+  outline: 1px solid var(--ui-accent);
+  outline-offset: 3px;
+}
+
+.ui-code-block-copy:disabled {
+  cursor: default;
+}
+
+.ui-code-block-copy-labels {
+  display: inline-grid;
+  vertical-align: baseline;
+}
+
+.ui-code-block-copy-label {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  white-space: nowrap;
+}
+
+.ui-code-block-copy-label.is-visible {
+  visibility: visible;
+}
+
+.ui-code-block-copy-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .ui-code-block-clip,
@@ -292,7 +420,7 @@ watch(open, value => {
 
 @media (prefers-reduced-motion: reduce) {
   .ui-code-block-action :deep(:where(a)),
-  .ui-code-block-action :deep(.ui-copy-button),
+  .ui-code-block-copy,
   .ui-code-block-toggle,
   .ui-code-block-chevron,
   .ui-code-block.is-collapsible,

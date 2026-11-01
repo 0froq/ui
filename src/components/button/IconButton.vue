@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import Button from './Button.vue'
-
 withDefaults(
   defineProps<{
     label: string
@@ -12,7 +10,7 @@ defineSlots<{ default?: () => unknown }>()
 </script>
 
 <template>
-  <Button
+  <button
     class="ui-icon-button"
     :type="type"
     :aria-label="label"
@@ -22,11 +20,11 @@ defineSlots<{ default?: () => unknown }>()
       aria-hidden="true"
       ><slot
     /></span>
-  </Button>
+  </button>
 </template>
 
 <style scoped>
-.ui-icon-button.ui-button {
+.ui-icon-button {
   display: inline-grid;
   box-sizing: border-box;
   width: 32px;
@@ -35,6 +33,19 @@ defineSlots<{ default?: () => unknown }>()
   padding: 0;
   border: 1px solid var(--ui-line);
   border-radius: var(--ui-radius);
+  background: none;
+  color: var(--ui-fg);
+  cursor: pointer;
+  transition: color var(--ui-dur) var(--ui-ease);
+}
+
+.ui-icon-button:hover:not(:disabled) {
+  color: var(--ui-accent);
+}
+
+.ui-icon-button:disabled {
+  color: var(--ui-muted);
+  cursor: not-allowed;
 }
 
 .ui-icon-button-glyph {

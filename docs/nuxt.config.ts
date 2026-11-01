@@ -6,6 +6,7 @@ import { componentFile } from './app/utils/component-files'
 import { keepEmptyTitle } from './app/utils/empty-title'
 import { listPublicShareImages } from './app/utils/public-files'
 import { IMAGE_ORIGIN, SITE_DESCRIPTION, SITE_NAME } from './app/utils/site'
+import ligThemes from './app/assets/lig-themes.json'
 
 const siteDist = fileURLToPath(new URL('../dist', import.meta.url))
 const componentsRoot = fileURLToPath(new URL('../src/components', import.meta.url))
@@ -101,7 +102,7 @@ export default defineNuxtConfig({
     build: {
       markdown: {
         highlight: {
-          theme: { default: 'vitesse-light', dark: 'vitesse-dark' },
+          theme: { default: ligThemes.default, dark: ligThemes.dark },
           langs: ['ts', 'vue', 'bash', 'css', 'json'],
         },
       },
