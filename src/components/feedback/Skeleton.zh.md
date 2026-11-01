@@ -37,7 +37,7 @@ Skeleton 只负责视觉呈现，不读取字体、路由或网络状态。`aria
 ```vue
 <script setup lang="ts">
 import { Skeleton } from '@froq/ui'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 </script>
 
 <template>

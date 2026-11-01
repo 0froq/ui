@@ -140,3 +140,66 @@ function controlProps(page: number, kind: 'page' | 'previous' | 'next'): Paginat
     </ul>
   </nav>
 </template>
+
+<style scoped>
+.ui-pagination {
+  color: var(--ui-muted);
+  font-family: var(--ui-font-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.ui-pagination-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:deep(.ui-pagination-control),
+.ui-pagination-gap {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--ui-radius);
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+}
+
+:deep(.ui-pagination-control) {
+  cursor: pointer;
+}
+
+:deep(.ui-pagination-control:hover:not(:disabled)) {
+  color: var(--ui-fg);
+  border-color: var(--ui-line);
+}
+
+:deep(.ui-pagination-control[aria-current]) {
+  border-color: var(--ui-line);
+  background: var(--ui-faint);
+  color: var(--ui-fg);
+  box-shadow: inset 0 -2px var(--ui-accent);
+}
+
+:deep(.ui-pagination-control:disabled) {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+:deep(.ui-pagination-control:focus-visible) {
+  outline: 1px solid var(--ui-accent);
+  outline-offset: 3px;
+}
+</style>

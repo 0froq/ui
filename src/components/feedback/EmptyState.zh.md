@@ -24,7 +24,7 @@ EmptyState 渲染一个由可见 `<h2>` 命名的 `<section>`，并可附带说�
 ```vue
 <script setup lang="ts">
 import { Button, EmptyState } from '@froq/ui'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 </script>
 
 <template>

@@ -23,7 +23,7 @@ IconButton renders a real button. Use the default slot for the icon artwork only
 ```vue
 <script setup lang="ts">
 import { IconButton } from '@froq/ui'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 </script>
 
 <template>

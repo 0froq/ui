@@ -55,7 +55,7 @@ ToggleGroup 渲染可见标签和由该标签命名的按钮组。单选模式�
 <script setup lang="ts">
 import { ToggleGroup } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const alignment = ref('left')
 const emphasis = ref<string[]>(['italic'])

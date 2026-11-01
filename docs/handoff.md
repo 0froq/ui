@@ -34,7 +34,7 @@ Follow root `AGENTS.md` to embed the complete repository as ordinary `vendor/ui`
 
 ```ts
 import { Dialog, Sidebar, Skeleton } from '@froq/ui'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 ```
 
 Use an outer element with `class="ui"`. Nuxt additionally sets `build: { transpile: ['@froq/ui'] }`; the stylesheet can be in `css`. Read sibling references for each component's labels, models and slots. Existing token themes can map the twelve documented variables; page colors/data are not library dependencies.

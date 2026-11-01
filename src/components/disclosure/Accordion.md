@@ -34,7 +34,7 @@ Each trigger reuses Collapsible's native button behavior, including Enter and Sp
 <script setup lang="ts">
 import { Accordion } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const openItems = ref<string[]>([])
 const items = [

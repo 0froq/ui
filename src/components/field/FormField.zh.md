@@ -37,7 +37,7 @@ FormField 负责无障碍关联，不管理值或校验，没有模型。默认�
 <script setup lang="ts">
 import { FormField } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const title = ref('')
 const error = ref<string>()

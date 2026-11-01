@@ -197,3 +197,102 @@ defineExpose({ focus })
     </CalendarGrid>
   </CalendarRoot>
 </template>
+
+<style scoped>
+.ui-calendar {
+  box-sizing: border-box;
+  width: min(100%, 20rem);
+  color: var(--ui-fg);
+  font-family: var(--ui-font-text);
+}
+
+.ui-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-block-end: 12px;
+}
+
+.ui-calendar-heading {
+  font-family: var(--ui-font-meta);
+  font-size: 0.875em;
+}
+
+.ui-calendar-grid {
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: 2px;
+}
+
+.ui-calendar-grid :deep(td) {
+  padding: 0;
+}
+
+.ui-calendar-weekday {
+  padding: 8px 0;
+  color: var(--ui-muted);
+  font-size: 0.75em;
+  font-weight: inherit;
+}
+
+.ui-calendar-day,
+.ui-calendar-nav {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  min-height: 36px;
+  padding: 4px;
+  border: 1px solid transparent;
+  border-radius: var(--ui-radius);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.ui-calendar-day {
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.ui-calendar-nav {
+  width: 36px;
+}
+
+.ui-calendar[dir='rtl'] .ui-calendar-nav :deep(span) {
+  transform: scaleX(-1);
+}
+
+.ui-calendar-day[data-outside-view] {
+  color: var(--ui-muted);
+}
+
+.ui-calendar-day[data-today] {
+  border-color: var(--ui-line);
+}
+
+.ui-calendar-day[data-selected] {
+  background: var(--ui-faint);
+  color: var(--ui-accent);
+  border-color: var(--ui-line);
+}
+
+.ui-calendar-day:hover:not(:disabled),
+.ui-calendar-nav:hover:not(:disabled) {
+  background: var(--ui-faint);
+}
+
+.ui-calendar-day:disabled,
+.ui-calendar-nav:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ui-calendar:focus-visible,
+.ui-calendar-day:focus-visible,
+.ui-calendar-nav:focus-visible {
+  outline: 2px solid var(--ui-accent);
+  outline-offset: 2px;
+}
+</style>

@@ -37,7 +37,7 @@ Skeleton is visual only: it does not inspect fonts, routes, or network state. `a
 ```vue
 <script setup lang="ts">
 import { Skeleton } from '@froq/ui'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 </script>
 
 <template>

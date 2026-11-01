@@ -89,7 +89,7 @@ Calendar is a date-selection primitive, not a form input: it has no native form 
 <script setup lang="ts">
 import { Calendar } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const selected = ref('')
 const disabledDates = new Set(['2026-09-12'])

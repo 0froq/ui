@@ -51,7 +51,7 @@ Escape closes the toast only when focus is inside that toast. If a toast closes 
 <script setup lang="ts">
 import { Button, Toast, ToastRegion } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const open = ref(false)
 

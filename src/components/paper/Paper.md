@@ -11,6 +11,10 @@ props:
     type: boolean
     default: 'true'
     description: Draw the specks while the page is dark.
+  - name: fixed
+    type: boolean
+    default: 'false'
+    description: Pin the texture to the viewport for sticky or fixed sheets that stay put while the page scrolls.
 slots:
   - name: default
     description: Content above the texture.

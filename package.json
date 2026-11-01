@@ -17,7 +17,6 @@
   ],
   "exports": {
     ".": "./src/index.ts",
-    "./style.css": "./src/style.css",
     "./tokens.css": "./src/tokens.css",
     "./core": "./src/core/index.ts",
     "./vue": "./src/vue/index.ts"
@@ -38,15 +37,20 @@
     "fmt:check": "vp fmt --config .oxfmtrc.json . --check",
     "typecheck": "vue-tsc --noEmit && pnpm --filter docs typecheck",
     "check:tokens": "jiti scripts/check-tokens.ts",
-    "check": "vp run lint && vp run fmt:check && vp run typecheck && vp run check:tokens",
-    "prepare": "npx simple-git-hooks"
+    "check": "vp run lint && vp run fmt:check && vp run typecheck && vp run check:tokens && vp run check:wheel",
+    "prepare": "npx simple-git-hooks",
+    "check:i18n": "x18n check --strict",
+    "check:wheel": "jiti scripts/check-wheel-step.ts"
   },
   "dependencies": {
+    "@iconify-vue/solar": "^1.0.9",
     "@internationalized/date": "^3.12.4",
     "reka-ui": "^2.10.5"
   },
   "devDependencies": {
     "@types/node": "catalog:dev",
+    "@x18n/cli": "catalog:dev",
+    "@x18n/core": "catalog:dev",
     "cf": "catalog:dev",
     "jiti": "catalog:dev",
     "lint-staged": "catalog:dev",

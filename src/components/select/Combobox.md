@@ -68,7 +68,7 @@ A narrow TypeScript single-value model must include `''` to represent clearing, 
 
 The `name` prop submits the selected identifier(s), not the search text. Undeclared native attributes are applied to the input; `class` and `style` are applied to the outer field wrapper. An `id` passed as an undeclared attribute is overwritten by the component's generated input ID, which is linked to the visible label. A native `required` attribute validates that the search input contains text, not that an option is selected. Use `Select`, `RadioGroup`, or consumer-owned validation when selection-required validation is needed.
 
-By default, the option list is teleported to the nearest consumer ancestor with class `.ui`; without one, it renders inline on the client. Import `style.css` and provide the `.ui` scope. A custom `portalTo` target must exist and provide the consumer's theme and UI tokens.
+By default, the option list is teleported to the nearest consumer ancestor with class `.ui`; without one, it renders inline on the client. Import `tokens.css` and provide the `.ui` scope. A custom `portalTo` target must exist and provide the consumer's theme and UI tokens.
 
 The list matches Menu and Select: a hairline (`--ui-line`), radius 0, no shadow, and 11px `--ui-font-meta`. A highlighted row is underlined, with no fill and no accent bar. The checked option keeps `--ui-fg` and a 5px accent dot in the start gutter. The `option` slot replaces the label only; it does not draw that mark. See [Language](/docs/language).
 
@@ -80,7 +80,7 @@ Form submission through `name` requires the component to be inside a form. Singl
 <script setup lang="ts">
 import { Combobox } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const country = ref('ca')
 const search = ref('')

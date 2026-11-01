@@ -45,7 +45,7 @@ Region 的默认插槽仍包含普通子内容，并参与 SSR 渲染；ToastVie
 <script setup lang="ts">
 import { Toast, ToastRegion } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const messages = ref([
   {

@@ -32,12 +32,9 @@ usePaperOgImage(
           {{ t('hero.lede') }}
         </p>
         <div class="home-actions">
-          <NuxtLink
-            class="l-cta"
-            :to="link('/components')"
-          >
+          <CtaLink :to="link('/components')">
             {{ t('hero.browse') }}
-          </NuxtLink>
+          </CtaLink>
           <NuxtLink :to="link('/docs')">
             {{ t('hero.cta') }}
           </NuxtLink>
@@ -109,14 +106,11 @@ usePaperOgImage(
       <h2>{{ t('hero.contract') }}</h2>
       <div>
         <p>{{ t('hero.contractDescription') }}</p>
-        <NuxtLink
-          class="l-cta"
-          :to="link('/docs/tokens')"
-        >
+        <CtaLink :to="link('/docs/tokens')">
           {{ t('hero.contractLink') }}
-        </NuxtLink>
+        </CtaLink>
       </div>
-      <pre><code>import '@froq/ui/style.css'
+      <pre><code>import '@froq/ui/tokens.css'
 import { Choice, Toggle } from '@froq/ui'</code></pre>
     </section>
   </div>

@@ -57,7 +57,7 @@ The boolean `v-model` defaults to `false`. `openDelay` defaults to 700ms and `cl
 
 `disabled` suppresses preview opening but does not disable the anchor or force the parent model to `false`. If the model was already true, the preview is hidden while disabled and the model value is preserved. The preview prefers `side`, `align`, and `sideOffset`, with automatic collision handling and 12 pixels of collision padding. Undeclared attributes are forwarded to the preview content, not to the link. The component root does not add the `.ui` class.
 
-By default, preview content is teleported into the closest consumer element with `class="ui"`; if none exists, it renders inline. During SSR, only the trigger link renders; the preview appears on the client when opened and unmounts when closed. A custom `portalTo` target must already exist and provide the consumer's theme and UI tokens. Import `style.css` in the caller and provide a `.ui` ancestor for library styles and the default portal target.
+By default, preview content is teleported into the closest consumer element with `class="ui"`; if none exists, it renders inline. During SSR, only the trigger link renders; the preview appears on the client when opened and unmounts when closed. A custom `portalTo` target must already exist and provide the consumer's theme and UI tokens. Import `tokens.css` in the caller and provide a `.ui` ancestor for library styles and the default portal target.
 
 ## Usage
 
@@ -65,7 +65,7 @@ By default, preview content is teleported into the closest consumer element with
 <script setup lang="ts">
 import { HoverCard } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const open = ref(false)
 </script>

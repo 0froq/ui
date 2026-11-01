@@ -62,3 +62,38 @@ const controlProps = computed<FieldControlProps>(() => ({
     </p>
   </div>
 </template>
+
+<style scoped>
+.ui-form-field {
+  display: grid;
+  gap: 8px;
+  max-width: 20rem;
+  color: var(--ui-fg);
+  font-family: var(--ui-font-text);
+}
+
+.ui-field-description,
+.ui-field-error {
+  margin: 0;
+  font-family: var(--ui-font-text);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.ui-field-description {
+  color: var(--ui-muted);
+}
+
+.ui-field-error {
+  color: var(--ui-accent);
+  border-bottom-color: var(--ui-accent);
+}
+
+.ui-field-label {
+  color: var(--ui-muted);
+  font-family: var(--ui-font-meta);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+</style>

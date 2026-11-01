@@ -30,8 +30,10 @@ export interface CatalogSection {
 }
 
 const SECTIONS = [
-  { id: 'form', concepts: ['field', 'date', 'select', 'checkbox'] },
-  { id: 'prose', concepts: ['radio', 'toggle', 'button'] },
+  { id: 'foundation', concepts: ['display', 'paper', 'devtools'] },
+  { id: 'chrome', concepts: ['overlay', 'select'] },
+  { id: 'control', concepts: ['button', 'checkbox', 'field', 'radio', 'toggle', 'date'] },
+  { id: 'pattern', concepts: ['navigation', 'disclosure', 'feedback'] },
 ] as const
 
 type SectionId = (typeof SECTIONS)[number]['id']
@@ -69,7 +71,7 @@ function createCatalog(): ConceptGroup[] {
             name,
             to: identity.to,
             demo: group.demos.get(name) ?? mod?.demo,
-            snippet: `import '@froq/ui/style.css'\nimport { ${name} } from '@froq/ui'`,
+            snippet: `import '@froq/ui/tokens.css'\nimport { ${name} } from '@froq/ui'`,
           }
         })
       return { id, items }
@@ -83,7 +85,7 @@ export function componentCatalog(): ConceptGroup[] {
 }
 
 export function componentSectionLabel(
-  id: '' | 'form' | 'prose',
+  id: string,
   translate: (key: 'components.sections.form' | 'components.sections.prose') => string,
 ): string {
   switch (id) {

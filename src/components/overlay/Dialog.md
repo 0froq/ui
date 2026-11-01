@@ -41,6 +41,10 @@ props:
     type: boolean
     default: 'true'
     description: Allow outside interaction to close the dialog when dismissible is true.
+  - name: closeOnScrollOutside
+    type: boolean
+    default: 'false'
+    description: Close on wheel or touch movement over the backdrop when dismissible and closeOnOutside are true. Scrolling inside the dialog does not close it.
   - name: portalTo
     type: 'string | HTMLElement'
     description: Teleport destination. Defaults to the nearest ancestor with class ui; without one, content renders inline on the client.
@@ -64,6 +68,8 @@ Dialog uses a controlled boolean `v-model`, initially closed, and supports exter
 
 With `showTrigger="false"`, focus restoration uses a valid `returnFocus` target first, then the captured opener. A target is usable only when connected, not disabled, hidden, or inert, and has layout. If neither is usable, the component does not guess a page-level fallback. With the built-in trigger shown, Reka UI handles its default focus return. The declared `openAutoFocus` and `closeAutoFocus` events are synchronous and receive the cancelable DOM `Event`; call `preventDefault()` synchronously. Use `@close-auto-focus.prevent` to take over focus restoration when the external candidates are inappropriate. `dismissible` controls the built-in close button and Escape/outside dismissal. With `dismissible="false"`, `closeOnOutside` has no effect. When dismissible is true, setting `closeOnOutside="false"` prevents outside dismissal while leaving the close button and Escape available. Slot `close()` and parent model updates can always close the dialog.
 
+Set `closeOnScrollOutside` to close on wheel or touch movement over the backdrop, including when modal scroll locking prevents the page from actually scrolling. Movement inside the dialog does not close it. This option requires both `dismissible` and `closeOnOutside` to be true and defaults to false.
+
 Undeclared attributes are bound to the Reka `DialogContent`, not to the trigger or the outer scope. When `description` is absent, the component removes `aria-describedby` from those forwarded attributes so the dialog has no stale description reference. Use the trigger slot only with one native button or a component that truly forwards the supplied attributes and button ref; do not use a `div` or link as a pretend button.
 
 By default, the dialog portals into the nearest consumer ancestor with class `.ui`. If no such target exists, it renders inline on the client. During SSR, the built-in trigger renders only when `showTrigger` is true; portal content does not render. A custom `portalTo` target must exist and provide the consumer's design tokens and theme. The Dialog root does not add `.ui`; the consuming application must provide the scope and any portal destination styling.
@@ -76,7 +82,7 @@ The body and footer slots receive `close()`. Reka's default close behavior unmou
 <script setup lang="ts">
 import { Dialog } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const open = ref(false)
 </script>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Sidebar as UiSidebar } from '@froq/ui'
+
 definePageMeta({
   key: route => {
     const parts = route.path.split('/').filter(Boolean)
@@ -10,7 +12,9 @@ definePageMeta({
 const route = useRoute()
 const { site } = useAppConfig()
 const { t, locale } = useI18n()
+
 const link = useSiteLink()
+const current = useSidebarCurrent()
 const contentPath = useContentPath()
 
 const rest = computed(() => {
@@ -57,11 +61,14 @@ const groups = computed(() =>
   })),
 )
 
-const navGroups = computed(() =>
-  groups.value.map(group => ({
-    label: group.label,
-    items: group.items.map(item => ({ label: item.title, to: item.to })),
-  })),
+const sidebarGroups = computed(() =>
+  toSidebarGroups(
+    groups.value.map(group => ({
+      label: group.label,
+      items: group.items.map(item => ({ label: item.title, to: item.to })),
+    })),
+    link,
+  ),
 )
 
 const pages = computed(() =>
@@ -89,11 +96,23 @@ useContentOgImage(doc, 'docs', {
 </script>
 
 <template>
-  <SectionLayout :banner="!rest">
+  <SectionLayout :head="!rest">
     <template #nav>
-      <Sidebar :groups="navGroups" />
+      <UiSidebar
+        :groups="sidebarGroups"
+        :current="current"
+      >
+        <template #link="{ item, props: linkProps }">
+          <NuxtLink
+            v-bind="routerLinkProps(linkProps)"
+            :to="item.href!"
+          >
+            {{ item.label }}
+          </NuxtLink>
+        </template>
+      </UiSidebar>
     </template>
-    <template #banner>
+    <template #head>
       <PageHead
         v-if="indexDoc"
         :title="indexDoc.title"
@@ -109,33 +128,37 @@ useContentOgImage(doc, 'docs', {
         </template>
       </PageHead>
     </template>
-    <DocBody v-if="doc">
-      <ContentRenderer
-        :value="doc"
-        class="l-md"
-      />
-    </DocBody>
-    <nav
-      v-if="prev || next"
-      class="l-section is-pager"
+    <DocPage
+      v-if="doc"
+      :title="rest ? doc.title : undefined"
+      :lede="rest ? doc.description : undefined"
+      :kicker="rest ? doc.kicker : undefined"
+      :value="doc"
     >
-      <p class="l-label">
-        <NuxtLink
-          v-if="prev"
-          :to="link(prev.to)"
+      <template #footer>
+        <nav
+          v-if="prev || next"
+          class="l-section is-pager"
         >
-          ← {{ prev.title }}
-        </NuxtLink>
-      </p>
-      <NuxtLink
-        v-if="next"
-        class="l-body l-entry"
-        :to="link(next.to)"
-      >
-        <span class="l-kicker">{{ t('docs.next') }}</span>
-        <span class="l-entry-title">{{ next.title }}</span>
-      </NuxtLink>
-    </nav>
+          <p class="l-label">
+            <NuxtLink
+              v-if="prev"
+              :to="link(prev.to)"
+            >
+              ← {{ prev.title }}
+            </NuxtLink>
+          </p>
+          <NuxtLink
+            v-if="next"
+            class="l-body l-entry"
+            :to="link(next.to)"
+          >
+            <span class="l-kicker">{{ t('docs.next') }}</span>
+            <span class="l-entry-title">{{ next.title }}</span>
+          </NuxtLink>
+        </nav>
+      </template>
+    </DocPage>
   </SectionLayout>
 </template>
 
@@ -145,8 +168,7 @@ useContentOgImage(doc, 'docs', {
   grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
   gap: var(--gap);
   align-items: baseline;
-  padding-top: clamp(96px, 18vh, 200px);
-  padding-bottom: clamp(96px, 16vh, 180px);
+  padding-bottom: clamp(48px, 8vh, 96px);
 }
 
 .l-label {
@@ -195,7 +217,7 @@ useContentOgImage(doc, 'docs', {
   transition: color 0.3s;
 }
 
-:lang(zh) .l-entry-title {
+:is(:lang(zh), :lang(ja)) .l-entry-title {
   letter-spacing: 0;
 }
 

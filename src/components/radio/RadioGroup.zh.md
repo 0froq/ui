@@ -44,7 +44,7 @@ RadioGroup 渲染原生 `<fieldset>` 和 `<legend>`，内部是带标签的 radi
 <script setup lang="ts">
 import { RadioGroup } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const visibility = ref<string | undefined>()
 const options = [

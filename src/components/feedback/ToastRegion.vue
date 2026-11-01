@@ -46,3 +46,45 @@ const target = usePortalTarget(scope)
     </ToastProvider>
   </div>
 </template>
+
+<style scoped>
+.ui-toast-scope {
+  display: contents;
+}
+
+.ui-toast-viewport {
+  position: fixed;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+  width: min(24rem, calc(100vw - 24px));
+  max-height: calc(100dvh - 24px);
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.ui-toast-viewport[data-position^='top'] {
+  top: 12px;
+}
+
+.ui-toast-viewport[data-position^='bottom'] {
+  bottom: 12px;
+}
+
+.ui-toast-viewport[data-position$='start'] {
+  inset-inline-start: 12px;
+}
+
+.ui-toast-viewport[data-position$='end'] {
+  inset-inline-end: 12px;
+}
+
+.ui-toast-viewport:focus-visible {
+  outline: 2px solid var(--ui-accent);
+  outline-offset: 2px;
+}
+</style>

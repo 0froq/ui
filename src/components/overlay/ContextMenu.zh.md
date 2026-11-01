@@ -51,7 +51,7 @@ ContextMenu 会将默认插槽包在一个有名称且可聚焦的 `div` 中，�
 
 - `close(): void` 可通过组件 ref 关闭当前菜单或拒绝待执行的打开，不会卸载目标。组件不会自动监听全局滚动或路由变化；关闭策略由消费端决定并执行。
 
-未声明的属性会透传到菜单内容，不会传到目标包装元素。默认情况下，内容会 Teleport 到最近的消费者 `class="ui"` 元素；找不到时则在客户端以内联方式渲染。SSR 时只渲染目标，菜单内容在客户端出现。关闭时菜单内容会卸载。自定义 `portalTo` 目标必须存在，并由消费者提供主题和 UI token。消费者需引入 `style.css` 并提供 `.ui` 作用域。
+未声明的属性会透传到菜单内容，不会传到目标包装元素。默认情况下，内容会 Teleport 到最近的消费者 `class="ui"` 元素；找不到时则在客户端以内联方式渲染。SSR 时只渲染目标，菜单内容在客户端出现。关闭时菜单内容会卸载。自定义 `portalTo` 目标必须存在，并由消费者提供主题和 UI token。消费者需引入 `tokens.css` 并提供 `.ui` 作用域。
 
 ## 用法
 
@@ -60,7 +60,7 @@ ContextMenu 会将默认插槽包在一个有名称且可聚焦的 `div` 中，�
 import type { MenuItem } from '@froq/ui/vue'
 import { ContextMenu } from '@froq/ui'
 import { useTemplateRef } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const items: MenuItem[] = [
   { value: 'edit', label: '编辑' },

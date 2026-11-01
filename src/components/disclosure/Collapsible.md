@@ -36,7 +36,7 @@ The built-in trigger places a hairline after the label. Hover grows an accent fa
 <script setup lang="ts">
 import { Collapsible } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const open = ref(false)
 </script>

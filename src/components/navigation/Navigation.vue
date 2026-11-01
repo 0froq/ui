@@ -41,3 +41,36 @@ function linkProps(item: NavigationItem): NavigationLinkProps {
     </template>
   </nav>
 </template>
+
+<style scoped>
+.ui-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 28px;
+  font-family: var(--ui-font-text);
+  font-size: 0.875rem;
+}
+
+:deep(.ui-navigation-link) {
+  color: var(--ui-muted);
+  text-decoration: none;
+  transition: color var(--ui-dur) var(--ui-ease);
+}
+
+:deep(.ui-navigation-link:hover),
+:deep(.ui-navigation-link[aria-current]) {
+  color: var(--ui-fg);
+}
+
+:deep(.ui-navigation-link:focus-visible) {
+  outline: 1px solid var(--ui-accent);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :deep(.ui-navigation-link) {
+    transition: none;
+  }
+}
+</style>

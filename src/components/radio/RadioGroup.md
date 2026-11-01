@@ -44,7 +44,7 @@ Unlike `Choice` and `ChoiceCircle`, which are custom button radio controls witho
 <script setup lang="ts">
 import { RadioGroup } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const visibility = ref<string | undefined>()
 const options = [

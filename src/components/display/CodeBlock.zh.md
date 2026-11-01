@@ -36,14 +36,14 @@ CodeBlock 是源码列表外面的框：一块表面、一个可选的标题、�
 
 带标题的框，不论能否折叠，标题下都有一条分隔线。没有标题时没有标题行：操作浮在源码右上角，所以第一行较长时可能被它盖住。
 
-引入 `@froq/ui/style.css`，并放在 `.ui` 里面。这块框要显示页面以外的色板时，在组件上覆盖 `--ui-bg`、`--ui-fg`、`--ui-muted`、`--ui-line` 和 `--ui-accent`。
+引入 `@froq/ui/tokens.css`，并放在 `.ui` 里面。这块框要显示页面以外的色板时，在组件上覆盖 `--ui-bg`、`--ui-fg`、`--ui-muted`、`--ui-line` 和 `--ui-accent`。
 
 ## 用法
 
 ```vue
 <script setup lang="ts">
 import { CodeBlock, CopyButton } from '@froq/ui'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const source = 'print("hello")'
 </script>

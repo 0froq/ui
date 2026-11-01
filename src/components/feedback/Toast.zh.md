@@ -53,7 +53,7 @@ ToastRegion 会共享暂停状态和展示 viewport。区域不实现队列、ID
 <script setup lang="ts">
 import { Toast, ToastRegion } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const messages = ref([
   {

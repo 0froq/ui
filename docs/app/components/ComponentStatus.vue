@@ -49,11 +49,6 @@ const description = computed(() => {
       :title="description"
       >{{ label }}</span
     >
-    <span
-      v-if="explain"
-      class="design-status-description"
-      >{{ description }}</span
-    >
   </span>
 </template>
 
@@ -77,12 +72,5 @@ const description = computed(() => {
   font-family: var(--ui-font-meta);
   font-size: 10px;
   white-space: nowrap;
-}
-
-.design-status-description {
-  max-width: 38rem;
-  color: var(--ui-muted);
-  font-family: var(--ui-font-text);
-  font-size: 13px;
 }
 </style>

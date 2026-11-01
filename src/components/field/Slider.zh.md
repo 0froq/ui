@@ -31,7 +31,7 @@ Slider 使用原生 `<input type="range">`，包含一个滑块，不提供双�
 
 `class` 和 `style` 会应用到外层 label。其他未声明的原生属性，包括 `name`、`disabled` 和 `aria-valuetext`，会转发给 input。原生 range 输入不支持 `readonly`。重置外层表单不会自动重置 Vue model。
 
-组件没有插槽。样式只使用 UI 库 token，不依赖字体、路由或业务状态。在调用方引入 `style.css`，并将组件放在带有 `class="ui"` 的元素内。
+组件没有插槽。样式只使用 UI 库 token，不依赖字体、路由或业务状态。在调用方引入 `tokens.css`，并将组件放在带有 `class="ui"` 的元素内。
 
 ## 用法
 
@@ -39,7 +39,7 @@ Slider 使用原生 `<input type="range">`，包含一个滑块，不提供双�
 <script setup lang="ts">
 import { Slider } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const volume = ref(50)
 </script>

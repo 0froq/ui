@@ -44,7 +44,7 @@ CopyButton copies the `text` prop after a user click and presents idle, pending,
 
 The reset delay is captured when the write finishes; changing `resetAfter` does not retime an existing result. Positive finite delays are scheduled in bounded chunks to avoid native timer overflow. Actual callbacks can run later when the browser throttles a background page. Starting another copy or disposing the scope cancels the pending reset.
 
-The component uses a native button and forwards undeclared attributes to it. Its `type` is fixed to `button`; `aria-label` and `aria-busy` are managed from the current state. It has no slot and does not add the `.ui` scope class. Import `style.css` in the caller and put the component inside an element with `class="ui"`.
+The component uses a native button and forwards undeclared attributes to it. Its `type` is fixed to `button`; `aria-label` and `aria-busy` are managed from the current state. It has no slot and does not add the `.ui` scope class. Import `tokens.css` in the caller and put the component inside an element with `class="ui"`.
 
 Clipboard writing must happen directly from a user gesture and is available only in a secure context, such as HTTPS or localhost. See [MDN: Clipboard.writeText()](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/writeText).
 
@@ -53,7 +53,7 @@ Clipboard writing must happen directly from a user gesture and is available only
 ```vue
 <script setup lang="ts">
 import { CopyButton } from '@froq/ui'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 </script>
 
 <template>

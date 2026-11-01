@@ -37,7 +37,7 @@ Use the built-in label on TextInput/NumberInput for simple fields. Do not wrap t
 <script setup lang="ts">
 import { FormField } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const title = ref('')
 const error = ref<string>()

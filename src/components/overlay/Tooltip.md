@@ -51,7 +51,7 @@ Undeclared attributes are forwarded to the tooltip content, not the trigger. By 
 <script setup lang="ts">
 import { Tooltip } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const open = ref(false)
 </script>

@@ -84,31 +84,8 @@ const { t } = useI18n()
 </template>
 
 <style scoped>
-h3 {
-  margin: 2em 0 0.5em;
-  font-size: 17px;
-  font-weight: 500;
-}
-
-.api {
-  width: 100%;
-  margin: 0 0 1.6em;
-  border-collapse: collapse;
-  font-size: 15px;
-}
-
-.api th,
-.api td {
-  padding: 10px 16px 10px 0;
-  border-top: 1px solid var(--ui-line);
-  vertical-align: baseline;
-  text-align: left;
-  font-weight: 400;
-}
-
 .api th {
   width: 8rem;
   font-family: var(--ui-font-meta);
-  font-size: 13px;
 }
 </style>

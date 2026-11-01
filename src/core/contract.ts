@@ -16,6 +16,9 @@ export const TOKENS = [
   'ease',
   'dur',
   'radius',
+  'radius-sm',
+  'radius-md',
+  'radius-lg',
 ] as const
 
 export type TokenName = (typeof TOKENS)[number]

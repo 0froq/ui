@@ -8,10 +8,13 @@ const props = withDefaults(
     light?: boolean
     /** Specks while the page is dark. */
     dark?: boolean
+    /** Pin the texture to the viewport, for sticky or fixed sheets that stay put while the page scrolls. */
+    fixed?: boolean
   }>(),
   {
     light: true,
     dark: true,
+    fixed: false,
   },
 )
 
@@ -63,8 +66,8 @@ function draw(): void {
   paint.draw(node, {
     width,
     height,
-    docX: left + window.scrollX,
-    docY: top + window.scrollY,
+    docX: left + (props.fixed ? 0 : window.scrollX),
+    docY: top + (props.fixed ? 0 : window.scrollY),
     paper: readPaper(el),
     mode: mode(),
   })
@@ -115,3 +118,27 @@ watch(() => [props.light, props.dark], schedule)
     </div>
   </div>
 </template>
+
+<style scoped>
+/*Paper: fibre on a light container, specks on a dark one.*/
+.ui-paper {
+  position: relative;
+  background: var(--ui-bg);
+}
+
+.ui-paper-grain {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ui-paper-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100%;
+}
+</style>

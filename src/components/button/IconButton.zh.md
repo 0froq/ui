@@ -23,7 +23,7 @@ IconButton 渲染为真实 button。默认插槽只放图标图案；插槽内�
 ```vue
 <script setup lang="ts">
 import { IconButton } from '@froq/ui'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 </script>
 
 <template>

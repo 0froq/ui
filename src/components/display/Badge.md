@@ -19,7 +19,7 @@ Badge renders a `<span>` for a short inline label. Choose the muted or accent to
 ```vue
 <script setup lang="ts">
 import { Badge } from '@froq/ui'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 </script>
 
 <template>

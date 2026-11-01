@@ -89,7 +89,7 @@ Selecting a day closes the popover, including selecting the same day again. The 
 
 Opening the popover moves focus into the calendar, targeting a day marked `data-focused`, then the first enabled button (typically a month-navigation button), with the calendar root as a final fallback. Calendar arrow keys move between days; Enter/Space select; Tab follows native focus order through the calendar and close button. Escape and outside interaction close the popover through Reka UI. Closing from the picker returns focus to its trigger; outside dismissal leaves focus with the outside target. The component does not provide range selection, month/year dropdowns, extra paging keys, or swipe gestures.
 
-By default, the popover is teleported to the nearest consumer ancestor with class `.ui`; without one, it renders inline on the client. A custom `portalTo` target must exist and provide the consumer's theme and UI tokens. Import `style.css` and provide the `.ui` scope in the consumer.
+By default, the popover is teleported to the nearest consumer ancestor with class `.ui`; without one, it renders inline on the client. A custom `portalTo` target must exist and provide the consumer's theme and UI tokens. Import `tokens.css` and provide the `.ui` scope in the consumer.
 
 ## Usage
 
@@ -99,7 +99,7 @@ Clearing returns focus to the trigger before the clear button becomes disabled. 
 <script setup lang="ts">
 import { DatePicker } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const deliveryDate = ref('')
 const open = ref(false)

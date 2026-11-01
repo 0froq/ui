@@ -15,14 +15,14 @@ props:
 
 Separator renders a divider. By default it is horizontal and decorative, with `role="presentation"`. Set `decorative="false"` to expose `role="separator"` and the selected `aria-orientation`. It does not move or manage focus.
 
-For a vertical separator, the parent layout must provide a height for it to stretch across. The component has no slots or `v-model`. Styles use the UI library tokens and do not depend on fonts, routes, or business state. Import `style.css` in the caller and place the component inside an element with `class="ui"`.
+For a vertical separator, the parent layout must provide a height for it to stretch across. The component has no slots or `v-model`. Styles use the UI library tokens and do not depend on fonts, routes, or business state. Import `tokens.css` in the caller and place the component inside an element with `class="ui"`.
 
 ## Usage
 
 ```vue
 <script setup lang="ts">
 import { Separator } from '@froq/ui'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 </script>
 
 <template>

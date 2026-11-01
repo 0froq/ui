@@ -36,14 +36,14 @@ Set `collapsible` to fold the source. The frame starts closed and shows only the
 
 A titled frame, folded or not, draws a rule under its title. A frame without a title has no title row: its action floats over the top right of the source, so a long first line can run under it.
 
-Import `@froq/ui/style.css` and place it inside `.ui`. Override `--ui-bg`, `--ui-fg`, `--ui-muted`, `--ui-line`, and `--ui-accent` on the component when the frame should show a palette other than the surrounding page.
+Import `@froq/ui/tokens.css` and place it inside `.ui`. Override `--ui-bg`, `--ui-fg`, `--ui-muted`, `--ui-line`, and `--ui-accent` on the component when the frame should show a palette other than the surrounding page.
 
 ## Usage
 
 ```vue
 <script setup lang="ts">
 import { CodeBlock, CopyButton } from '@froq/ui'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const source = 'print("hello")'
 </script>

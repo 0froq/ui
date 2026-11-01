@@ -7,7 +7,6 @@ export { default as DatePicker } from './components/date/DatePicker.vue'
 export { default as UiDevtools } from './components/devtools/UiDevtools.vue'
 export { default as Accordion } from './components/disclosure/Accordion.vue'
 export { default as Collapsible } from './components/disclosure/Collapsible.vue'
-export { default as AspectRatio } from './components/display/AspectRatio.vue'
 export { default as Avatar } from './components/display/Avatar.vue'
 export { default as Badge } from './components/display/Badge.vue'
 export { default as Card } from './components/display/Card.vue'
@@ -49,6 +48,7 @@ export { default as ChoiceCircle } from './components/radio/ChoiceCircle.vue'
 export { default as RadioGroup } from './components/radio/RadioGroup.vue'
 export { default as Combobox } from './components/select/Combobox.vue'
 export { default as Select } from './components/select/Select.vue'
+export { default as ScrollSelect } from './components/select/ScrollSelect.vue'
 export { default as Toggle } from './components/toggle/Toggle.vue'
 export { default as ToggleGroup } from './components/toggle/ToggleGroup.vue'
 export type {
@@ -61,6 +61,7 @@ export type {
   NavigationItem,
   NavigationLinkProps,
   PaginationControlProps,
+  SidebarCurrent,
   SidebarGroup,
   SidebarItem,
   SidebarLinkProps,

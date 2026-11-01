@@ -3,7 +3,7 @@ import type { ChoiceOption } from '@froq/ui'
 import { Button, CopyButton, Dialog, Drawer, Navigation, Tabs } from '@froq/ui'
 import { useChoice, useClipboard } from '@froq/ui/vue'
 import { computed, ref, shallowRef } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 // Landing pages own labels, code blocks, section collection and scroll spy.
 const section = ref('overview')

@@ -44,7 +44,7 @@ CopyButton 在用户点击后复制 `text` 属性，并在同一个网格单元�
 
 重置时长在写入结束时读取；修改 `resetAfter` 不会重新计时当前结果。正的有限时长通过分段计时避免原生 timer 溢出；后台页面受浏览器节流时，实际回调可能更晚。开始下一次复制或销毁作用域会取消待执行的重置。
 
-组件使用原生 button，未声明的属性会透传到该按钮。它的 `type` 固定为 `button`；`aria-label` 和 `aria-busy` 由当前状态控制。组件没有插槽，也不会自行添加 `.ui` 作用域类。调用方需引入 `style.css`，并将组件放在带有 `class="ui"` 的外层元素中。
+组件使用原生 button，未声明的属性会透传到该按钮。它的 `type` 固定为 `button`；`aria-label` 和 `aria-busy` 由当前状态控制。组件没有插槽，也不会自行添加 `.ui` 作用域类。调用方需引入 `tokens.css`，并将组件放在带有 `class="ui"` 的外层元素中。
 
 写入剪贴板必须由用户手势直接触发，且只能在 HTTPS 或 localhost 等安全上下文中使用。详见 [MDN：Clipboard.writeText()](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/writeText)。
 
@@ -53,7 +53,7 @@ CopyButton 在用户点击后复制 `text` 属性，并在同一个网格单元�
 ```vue
 <script setup lang="ts">
 import { CopyButton } from '@froq/ui'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 </script>
 
 <template>

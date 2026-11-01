@@ -24,7 +24,7 @@ EmptyState renders a `<section>` named by its visible `<h2>`, with optional desc
 ```vue
 <script setup lang="ts">
 import { Button, EmptyState } from '@froq/ui'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 </script>
 
 <template>

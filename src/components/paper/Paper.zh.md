@@ -11,6 +11,10 @@ props:
     type: boolean
     default: 'true'
     description: 页面为深色时画颗粒。
+  - name: fixed
+    type: boolean
+    default: 'false'
+    description: 把纹理钉在视口上，用于页面滚动时保持不动的 sticky 或 fixed 面板。
 slots:
   - name: default
     description: 纹理上面的内容。

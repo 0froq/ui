@@ -60,7 +60,7 @@ When confirmation is activated and neither `pending` nor `confirmDisabled` block
 
 `pending` sets `aria-busy` on the content and disables only the confirm button. Cancel and Escape remain available, so pending does not lock the request or prevent cancellation. `confirmDisabled` disables confirmation without marking the content busy.
 
-Undeclared attributes are forwarded to the content, not the trigger or outer scope. By default, content portals into the closest consumer element with `class="ui"`; if there is none, it renders inline on the client. During SSR, the trigger renders but portal content does not. A custom `portalTo` target must already exist and provide the consumer's theme and UI tokens. The component root does not add the `.ui` class. Import `style.css` in the caller and provide a `.ui` ancestor for library styles and the default portal target.
+Undeclared attributes are forwarded to the content, not the trigger or outer scope. By default, content portals into the closest consumer element with `class="ui"`; if there is none, it renders inline on the client. During SSR, the trigger renders but portal content does not. A custom `portalTo` target must already exist and provide the consumer's theme and UI tokens. The component root does not add the `.ui` class. Import `tokens.css` in the caller and provide a `.ui` ancestor for library styles and the default portal target.
 
 ## Usage
 
@@ -68,7 +68,7 @@ Undeclared attributes are forwarded to the content, not the trigger or outer sco
 <script setup lang="ts">
 import { AlertDialog, Button } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const open = ref(false)
 const confirmed = ref(false)

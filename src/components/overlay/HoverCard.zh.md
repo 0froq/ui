@@ -57,7 +57,7 @@ HoverCard 将必填的 `href` 链接与延迟显示的信息预览组合起来�
 
 `disabled` 会阻止预览打开，但不会禁用锚点，也不会强制把父级模型设为 `false`。若模型已为 true，disabled 期间预览会隐藏，同时保留模型值。预览优先使用 `side`、`align` 和 `sideOffset`，并自动避让碰撞区域，留出 12 像素间距。未声明属性会转发给预览内容，不会传给链接。组件根节点不会添加 `.ui` 类。
 
-默认情况下，预览内容会 Teleport 到最近的消费者 `class="ui"` 元素；找不到时以内联方式渲染。SSR 时只渲染触发链接；客户端打开后才显示预览，关闭时会卸载预览。自定义 `portalTo` 目标必须已经存在，并由消费者提供主题和 UI token。在调用方引入 `style.css`，并提供 `.ui` 祖先元素，以供库样式和默认 portal 目标使用。
+默认情况下，预览内容会 Teleport 到最近的消费者 `class="ui"` 元素；找不到时以内联方式渲染。SSR 时只渲染触发链接；客户端打开后才显示预览，关闭时会卸载预览。自定义 `portalTo` 目标必须已经存在，并由消费者提供主题和 UI token。在调用方引入 `tokens.css`，并提供 `.ui` 祖先元素，以供库样式和默认 portal 目标使用。
 
 ## 用法
 
@@ -65,7 +65,7 @@ HoverCard 将必填的 `href` 链接与延迟显示的信息预览组合起来�
 <script setup lang="ts">
 import { HoverCard } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const open = ref(false)
 </script>

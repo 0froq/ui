@@ -34,7 +34,7 @@ Accordion 为条目列表组合 Collapsible 面板。`v-model` 是已展开条�
 <script setup lang="ts">
 import { Accordion } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const openItems = ref<string[]>([])
 const items = [

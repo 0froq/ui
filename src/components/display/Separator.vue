@@ -16,3 +16,19 @@ withDefaults(
     :aria-orientation="decorative ? undefined : orientation"
   />
 </template>
+
+<style scoped>
+.ui-separator {
+  width: 100%;
+  height: 1px;
+  flex: none;
+  background: var(--ui-line);
+}
+
+.ui-separator.is-vertical {
+  width: 1px;
+  height: auto;
+  min-height: 1em;
+  align-self: stretch;
+}
+</style>

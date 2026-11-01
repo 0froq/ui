@@ -51,7 +51,7 @@ Tooltip 在可聚焦触发元素旁显示简短文字。默认插槽必须最终
 <script setup lang="ts">
 import { Tooltip } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const open = ref(false)
 </script>

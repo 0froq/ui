@@ -18,7 +18,7 @@ Card is a simple `<div>` container with header, body, and footer slots. It has n
 ```vue
 <script setup lang="ts">
 import { Badge, Button, Card } from '@froq/ui'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 </script>
 
 <template>

@@ -3,9 +3,18 @@
     "skip": "跳到正文",
     "noticeLabel": "站点提示",
     "wip": "此网站仍在建设中。多数组件仍是待人工设计验收的 AI 初稿。",
-    "noticeAction": "查看组件初稿"
+    "noticeAction": "查看组件初稿",
+    "foot": {
+      "about": "关于",
+      "aboutText": "小巧的控件，共享的行为，统一的视觉语言。字体选用 {instrument} 与 {geist}。",
+      "site": "站点",
+      "elsewhere": "其他",
+      "prefs": "偏好",
+      "license": "许可证"
+    }
   },
   "theme": {
+    "label": "颜色主题",
     "dark": "深色",
     "light": "浅色"
   },
@@ -13,7 +22,10 @@
     "docs": "文档",
     "components": "组件",
     "changelog": "更新日志",
-    "github": "GitHub"
+    "github": "GitHub",
+    "language": "语言",
+    "section": "章节导航",
+    "close": "关闭导航"
   },
   "hero": {
     "tagline": "一份仍在打磨的界面语言。",

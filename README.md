@@ -10,7 +10,6 @@ src/
   vue/          Vue behavior without styles
   components/   One directory per concept, such as radio/ or toggle/
   index.ts      Components exported from @froq/ui
-  style.css
   tokens.css
 docs/           Docs site. It depends on this package. Component and docs changes ship together
 ```
@@ -41,7 +40,6 @@ Everything below is exported from `@froq/ui`.
 | Banner                                                                 | Site notice. Actions slot. The caller owns dismissal                       |
 | Toast / ToastRegion                                                    | Temporary notice and a shared region. The queue stays with the caller      |
 | IconButton / EmptyState                                                | Named icon button. Empty content and an actions slot                       |
-| Badge / Avatar / Separator / Card / AspectRatio / Table                | Mark, image, rule, surface, ratio, native table                            |
 | Dialog / AlertDialog / Drawer / Popover / Menu / Tooltip               | Dialog, confirm, side panel, anchored layer, menu, tip                     |
 | ContextMenu / HoverCard                                                | Context menu and link preview. The preview is not required content         |
 | Paper                                                                  | Paper texture                                                              |
@@ -75,7 +73,7 @@ Requires Node `^24.21.0 || >=26.0.0` for development of this repo; consumers may
 ## Use
 
 ```ts
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 import { Choice, Toggle } from '@froq/ui'
 ```
 
@@ -95,7 +93,7 @@ Nuxt:
 ```ts
 export default defineNuxtConfig({
   build: { transpile: ['@froq/ui'] },
-  css: ['@froq/ui/style.css'],
+  css: ['@froq/ui/tokens.css'],
 })
 ```
 

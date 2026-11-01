@@ -19,6 +19,7 @@
     "vue": "catalog:prod"
   },
   "devDependencies": {
+    "@x18n/devtools": "catalog:dev",
     "nuxtseo-devtools-host": "catalog:dev",
     "typescript": "catalog:dev",
     "vue-tsc": "catalog:dev"

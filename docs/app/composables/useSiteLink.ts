@@ -33,8 +33,14 @@ export function useSectionHref(): {
   return { href, current }
 }
 
+/** Locales that have a folder under `content/`. Any other locale reads the English one. */
+const CONTENT_LOCALES: string[] = ['en', 'zh']
+
 /** Content paths are prefixed with the locale folder: `/zh/docs/install`. */
 export function useContentPath(): (path?: string) => string {
   const { locale } = useI18n()
-  return (path = '') => `/${locale.value}${path === '/' ? '' : path}`.replace(/\/$/, '')
+  return (path = '') => {
+    const folder = CONTENT_LOCALES.includes(locale.value) ? locale.value : 'en'
+    return `/${folder}${path === '/' ? '' : path}`.replace(/\/$/, '')
+  }
 }

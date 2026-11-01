@@ -81,7 +81,7 @@ Combobox 用于在固定选项中搜索和选择，不支持自由创建选项�
 import type { ChoiceOption } from '@froq/ui/vue'
 import { Combobox } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const selected = ref<string[]>(['vue'])
 const search = ref('')

@@ -50,3 +50,39 @@ function update(event: Event): void {
     />
   </label>
 </template>
+
+<style scoped>
+.ui-slider-control {
+  box-sizing: border-box;
+  width: 100%;
+  height: 24px;
+  margin: 0;
+  background: transparent;
+  accent-color: var(--ui-accent);
+  cursor: pointer;
+}
+
+.ui-slider-control:focus-visible {
+  outline: 1px solid var(--ui-accent);
+  outline-offset: 4px;
+}
+
+.ui-slider-control:disabled {
+  color: var(--ui-muted);
+  cursor: not-allowed;
+}
+
+.ui-field {
+  display: grid;
+  gap: 8px;
+  max-width: 20rem;
+}
+
+.ui-field-label {
+  color: var(--ui-muted);
+  font-family: var(--ui-font-meta);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+</style>

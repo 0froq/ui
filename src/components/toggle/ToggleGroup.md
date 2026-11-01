@@ -55,7 +55,7 @@ The group has `role="group"` and uses its visible label as its accessible name. 
 <script setup lang="ts">
 import { ToggleGroup } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const alignment = ref('left')
 const emphasis = ref<string[]>(['italic'])

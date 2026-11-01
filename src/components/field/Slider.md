@@ -31,7 +31,7 @@ Slider wraps a native `<input type="range">` with one thumb. It does not provide
 
 `class` and `style` apply to the outer label. Other undeclared native attributes, including `name`, `disabled`, and `aria-valuetext`, are forwarded to the input. Native range inputs do not support `readonly`. Resetting the surrounding form does not automatically reset the Vue model.
 
-The component has no slots. Its styles use the UI library tokens and do not depend on fonts, routes, or business state. Import `style.css` in the caller and place the component inside an element with `class="ui"`.
+The component has no slots. Its styles use the UI library tokens and do not depend on fonts, routes, or business state. Import `tokens.css` in the caller and place the component inside an element with `class="ui"`.
 
 ## Usage
 
@@ -39,7 +39,7 @@ The component has no slots. Its styles use the UI library tokens and do not depe
 <script setup lang="ts">
 import { Slider } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const volume = ref(50)
 </script>

@@ -11,6 +11,7 @@ export type {
   PaginationControlProps,
   SidebarGroup,
   SidebarItem,
+  SidebarCurrent,
   SidebarLinkProps,
   TableColumn,
 } from './types'

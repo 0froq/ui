@@ -74,3 +74,33 @@ async function activate(): Promise<void> {
     >
   </Button>
 </template>
+
+<style scoped>
+.ui-copy-button {
+  position: relative;
+}
+
+.ui-copy-labels {
+  display: inline-grid;
+  vertical-align: baseline;
+}
+
+.ui-copy-label {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.ui-copy-label.is-visible {
+  visibility: visible;
+}
+
+.ui-copy-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+</style>

@@ -36,7 +36,7 @@ Collapsible 是受控折叠面板：`v-model` 为布尔值，默认关闭。原�
 <script setup lang="ts">
 import { Collapsible } from '@froq/ui'
 import { ref } from 'vue'
-import '@froq/ui/style.css'
+import '@froq/ui/tokens.css'
 
 const open = ref(false)
 </script>

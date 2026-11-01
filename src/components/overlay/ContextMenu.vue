@@ -116,3 +116,40 @@ function keyboard(event: KeyboardEvent) {
     </ContextMenuRoot>
   </div>
 </template>
+
+<style scoped>
+.ui-overlay-scope {
+  display: contents;
+}
+
+.ui-context-menu-target {
+  padding: 16px;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-radius);
+  color: var(--ui-fg);
+  font-family: var(--ui-font-text);
+}
+
+.ui-context-menu-target:focus-visible {
+  outline: 1px solid var(--ui-accent);
+  outline-offset: 3px;
+}
+
+/*Floating lists share one control-tier surface: hairline, square, no soft elevation.*/
+.ui-menu-content {
+  box-sizing: border-box;
+  z-index: 1001;
+  min-width: min(9.5rem, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
+  max-height: calc(100dvh - 24px);
+  padding: 4px 0;
+  overflow-y: auto;
+  border: 1px solid var(--ui-line);
+  border-radius: 0;
+  background: var(--ui-bg);
+  box-shadow: none;
+  color: var(--ui-fg);
+  font: 11px/1.3 var(--ui-font-meta);
+  outline: none;
+}
+</style>

@@ -195,3 +195,165 @@ function clear() {
     </ComboboxRoot>
   </div>
 </template>
+
+<style scoped>
+/*Floating lists share one control-tier surface: hairline, square, no soft elevation.*/
+.ui-combobox-content {
+  box-sizing: border-box;
+  z-index: 1001;
+  min-width: min(9.5rem, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
+  max-height: calc(100dvh - 24px);
+  padding: 4px 0;
+  overflow-y: auto;
+  border: 1px solid var(--ui-line);
+  border-radius: 0;
+  background: var(--ui-bg);
+  box-shadow: none;
+  color: var(--ui-fg);
+  font: 11px/1.3 var(--ui-font-meta);
+  outline: none;
+}
+
+.ui-combobox-field {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ui-combobox-anchor {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-radius);
+}
+
+.ui-combobox-anchor:focus-within {
+  outline: 2px solid var(--ui-accent);
+  outline-offset: 2px;
+}
+
+.ui-combobox-input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--ui-fg);
+  font: inherit;
+  font-family: var(--ui-font-text);
+}
+
+.ui-combobox-input::placeholder,
+.ui-combobox-empty {
+  color: var(--ui-muted);
+}
+
+.ui-combobox-button {
+  display: grid;
+  flex: 0 0 36px;
+  place-items: center;
+  min-height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ui-radius);
+  background: transparent;
+  color: var(--ui-muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.ui-combobox-button:focus-visible {
+  outline: 2px solid var(--ui-accent);
+  outline-offset: -2px;
+}
+
+.ui-combobox-button:disabled,
+.ui-combobox-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/*Panel and row chrome are the shared lig list (overlay.css, select.css).*/
+.ui-combobox-content {
+  width: min(20rem, calc(100vw - 24px));
+  max-height: min(20rem, calc(100dvh - 24px));
+}
+
+.ui-combobox-empty {
+  padding: 12px;
+}
+
+.ui-combobox-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ui-combobox-value {
+  padding: 4px 8px;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-radius);
+  color: var(--ui-muted);
+  font-family: var(--ui-font-text);
+}
+
+/*List chrome is shared with Menu in overlay.css. Rows are shared with Combobox.*/
+.ui-combobox-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  padding-block: 8px;
+  padding-inline: 36px 16px;
+  border-radius: 0;
+  outline: none;
+  cursor: default;
+  user-select: none;
+}
+
+.ui-combobox-item[data-highlighted] {
+  background: none;
+  color: var(--ui-fg);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.ui-combobox-item:focus-visible {
+  outline: none;
+}
+
+.ui-combobox-item[data-state='checked'] {
+  background: none;
+  color: var(--ui-fg);
+}
+
+.ui-combobox-indicator {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 16px;
+  flex: none;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ui-accent);
+  transform: translateY(-50%);
+}
+
+.ui-combobox-item[data-disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.ui-field-label {
+  color: var(--ui-muted);
+  font-family: var(--ui-font-meta);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+</style>

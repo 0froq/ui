@@ -66,3 +66,35 @@ function error(event: Event): void {
     </span>
   </Skeleton>
 </template>
+
+<style scoped>
+.ui-avatar {
+  display: inline-grid;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.ui-avatar :deep(.ui-skeleton-content) {
+  height: 100%;
+}
+
+.ui-avatar-body {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  background: color-mix(in srgb, var(--ui-fg) 5%, transparent);
+  color: var(--ui-muted);
+  font-family: var(--ui-font-meta);
+  font-size: 12px;
+}
+
+.ui-avatar-body :deep(img) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>

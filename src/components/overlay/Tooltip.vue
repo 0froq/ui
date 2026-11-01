@@ -64,3 +64,26 @@ const delay = computed(() =>
     </TooltipProvider>
   </div>
 </template>
+
+<style scoped>
+.ui-overlay-scope {
+  display: contents;
+}
+
+.ui-tooltip-content {
+  box-sizing: border-box;
+  z-index: 1001;
+  max-width: min(24rem, calc(100vw - 24px));
+  padding: 6px 10px;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-radius);
+  background: var(--ui-bg);
+  color: var(--ui-fg);
+  font-family: var(--ui-font-text);
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.5;
+  box-shadow: none;
+}
+</style>

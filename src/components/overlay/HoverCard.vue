@@ -84,3 +84,37 @@ function update(value: boolean) {
     </HoverCardRoot>
   </div>
 </template>
+
+<style scoped>
+.ui-overlay-scope {
+  display: contents;
+}
+
+.ui-hover-card-trigger {
+  color: var(--ui-fg);
+  text-decoration-color: var(--ui-line);
+  text-underline-offset: 4px;
+}
+
+.ui-hover-card-trigger:focus-visible {
+  outline: 1px solid var(--ui-accent);
+  outline-offset: 4px;
+}
+
+.ui-hover-card-content {
+  box-sizing: border-box;
+  z-index: 1001;
+  width: min(22rem, calc(100vw - 24px));
+  max-height: calc(100dvh - 24px);
+  padding: 16px;
+  overflow-y: auto;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-radius);
+  background: var(--ui-bg);
+  color: var(--ui-fg);
+  font-family: var(--ui-font-text);
+  font-size: 14px;
+  line-height: 1.5;
+  box-shadow: none;
+}
+</style>

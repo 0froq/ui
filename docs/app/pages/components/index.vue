@@ -8,7 +8,7 @@ usePaperOgImage({
   description: () => t('components.lede'),
 })
 
-const { docFor } = await useComponentDocs()
+const { docFor } = await useComponentSummaries()
 
 function sectionLabel(id: '' | 'form' | 'prose'): string {
   return componentSectionLabel(id, t)
@@ -16,18 +16,15 @@ function sectionLabel(id: '' | 'form' | 'prose'): string {
 </script>
 
 <template>
-  <div>
+  <DocPage>
     <p class="catalog-design-status">
       {{ t('components.statusGate') }}
     </p>
-    <section
+    <DocSection
       v-for="section in sections"
       :key="section.id || 'rest'"
-      class="component-block"
+      :title="section.id ? sectionLabel(section.id) : ''"
     >
-      <h2 v-if="section.id">
-        {{ sectionLabel(section.id) }}
-      </h2>
       <article
         v-for="group in section.concepts"
         :key="group.id"
@@ -52,8 +49,8 @@ function sectionLabel(id: '' | 'form' | 'prose'): string {
           </template>
         </p>
       </article>
-    </section>
-  </div>
+    </DocSection>
+  </DocPage>
 </template>
 
 <style scoped>
@@ -64,20 +61,14 @@ function sectionLabel(id: '' | 'form' | 'prose'): string {
   font-size: 13px;
 }
 
-.component-block {
-  scroll-margin-top: 96px;
-}
-
-.component-block + .component-block {
-  margin-top: 3.2em;
-}
-
 .home-concept + .home-concept {
   margin-top: 1.6em;
 }
 
 .home-concept h3 {
-  margin-bottom: 0.2em;
+  margin: 0 0 0.2em;
+  font-size: 17px;
+  font-weight: 500;
 }
 
 .component-summary {
