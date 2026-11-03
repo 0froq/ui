@@ -16,6 +16,8 @@ export type {
   TableColumn,
 } from './types'
 export { useAutoDismiss } from './useAutoDismiss'
+export type { ActionResult, ActionStatus } from './useAction'
+export { useAction } from './useAction'
 export { useChoice } from './useChoice'
 export type { ClipboardResult, ClipboardStatus } from './useClipboard'
 export { useClipboard } from './useClipboard'

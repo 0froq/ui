@@ -1,6 +1,6 @@
 ---
 title: Button
-designStatus: ai-draft
+designStatus: stable
 description: 采用统一轻量表面样式的原生按钮。
 props:
   - name: type

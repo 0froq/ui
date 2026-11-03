@@ -19,12 +19,31 @@ const { open: navOpen, available: hasSectionNav, trigger: navTrigger } = useSect
 
 <template>
   <header class="l-top">
-    <NuxtLink
-      class="l-brand"
-      :to="link('/')"
-    >
-      froq/ui<span class="l-dot">.</span>
-    </NuxtLink>
+    <div class="l-brand-container">
+      <button
+        v-if="hasSectionNav"
+        ref="navTrigger"
+        type="button"
+        class="l-control l-section-toggle"
+        :aria-label="t('nav.section')"
+        :aria-expanded="navOpen"
+        aria-controls="section-navigation"
+        aria-haspopup="dialog"
+        @click="navOpen = !navOpen"
+      >
+        <List
+          width="24"
+          height="24"
+          aria-hidden="true"
+        />
+      </button>
+      <NuxtLink
+        class="l-brand"
+        :to="link('/')"
+      >
+        froq/ui<span class="l-dot">.</span>
+      </NuxtLink>
+    </div>
     <div class="l-actions">
       <SiteNav class="l-nav" />
       <div class="l-controls">
@@ -50,29 +69,19 @@ const { open: navOpen, available: hasSectionNav, trigger: navTrigger } = useSect
             />
           </template>
         </Toggle>
-        <button
-          v-if="hasSectionNav"
-          ref="navTrigger"
-          type="button"
-          class="l-control l-section-toggle"
-          :aria-label="t('nav.section')"
-          :aria-expanded="navOpen"
-          aria-controls="section-navigation"
-          aria-haspopup="dialog"
-          @click="navOpen = !navOpen"
-        >
-          <List
-            width="24"
-            height="24"
-            aria-hidden="true"
-          />
-        </button>
       </div>
     </div>
   </header>
 </template>
 
 <style scoped>
+.l-brand-container {
+  grid-column: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .l-top {
   position: relative;
   display: grid;

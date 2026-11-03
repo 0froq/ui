@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref, watch } from 'vue'
+import WordSwap from './WordSwap.vue'
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     label: string
     onLabel?: string
@@ -19,22 +19,6 @@ defineSlots<{
   on?: () => unknown
 }>()
 const model = defineModel<boolean>({ default: false })
-
-const off = ref<HTMLElement>()
-const on = ref<HTMLElement>()
-const width = ref(0)
-
-function measure(): void {
-  width.value = (model.value ? on.value : off.value)?.offsetWidth ?? 0
-}
-
-watch([model, () => props.onLabel, () => props.offLabel], () => nextTick(measure))
-
-onMounted(async () => {
-  measure()
-  await document.fonts?.ready
-  measure()
-})
 </script>
 
 <template>
@@ -42,22 +26,23 @@ onMounted(async () => {
     type="button"
     role="switch"
     class="ui-toggle"
-    :style="width ? { width: `${width}px` } : undefined"
     :aria-checked="model"
     :aria-label="label"
     :disabled="disabled"
     @click="!disabled && (model = !model)"
   >
-    <span
-      ref="off"
-      :class="{ 'is-on': !model }"
-      ><slot name="off">{{ offLabel }}</slot></span
+    <WordSwap
+      :on="model"
+      :off-label="offLabel"
+      :on-label="onLabel"
     >
-    <span
-      ref="on"
-      :class="{ 'is-on': model }"
-      ><slot name="on">{{ onLabel }}</slot></span
-    >
+      <template #off>
+        <slot name="off" />
+      </template>
+      <template #on>
+        <slot name="on" />
+      </template>
+    </WordSwap>
   </button>
 </template>
 
@@ -77,32 +62,6 @@ onMounted(async () => {
   transition:
     border-color 0.3s var(--ui-ease),
     width 0.55s var(--ui-ease);
-}
-
-.ui-toggle > :deep(span) {
-  grid-area: 1 / 1;
-  justify-self: start;
-  white-space: nowrap;
-  transition:
-    translate 0.55s var(--ui-ease),
-    opacity 0.4s var(--ui-ease);
-}
-
-/* An icon in a slot sits on the text line instead of the baseline gap. */
-.ui-toggle > :deep(span svg) {
-  display: block;
-  width: 1em;
-  height: 1em;
-}
-
-.ui-toggle > :deep(span:first-child:not(.is-on)) {
-  translate: 0 -100%;
-  opacity: 0;
-}
-
-.ui-toggle > :deep(span:last-child:not(.is-on)) {
-  translate: 0 100%;
-  opacity: 0;
 }
 
 .ui-toggle:hover,

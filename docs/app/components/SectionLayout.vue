@@ -55,7 +55,7 @@ withDefaults(
       v-if="compact"
       id="section-navigation"
       v-model="navOpen"
-      side="right"
+      side="left"
       :show-trigger="false"
       :return-focus="navTrigger ?? undefined"
       :aria-label="t('nav.section')"

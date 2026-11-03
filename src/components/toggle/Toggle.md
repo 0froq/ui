@@ -1,6 +1,6 @@
 ---
 title: Toggle
-designStatus: ai-draft
+designStatus: stable
 description: Two words share one switch. The control is only as wide as the word that is on.
 model:
   type: boolean

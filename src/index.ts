@@ -1,5 +1,7 @@
 export { default as Button } from './components/button/Button.vue'
 export { default as IconButton } from './components/button/IconButton.vue'
+export { default as ToggleButton } from './components/button/ToggleButton.vue'
+export { default as ToggleIconButton } from './components/button/ToggleIconButton.vue'
 export { default as Checkbox } from './components/checkbox/Checkbox.vue'
 export { default as Calendar } from './components/date/Calendar.vue'
 export { default as DatePicker } from './components/date/DatePicker.vue'
@@ -50,6 +52,7 @@ export { default as Select } from './components/select/Select.vue'
 export { default as ScrollSelect } from './components/select/ScrollSelect.vue'
 export { default as Toggle } from './components/toggle/Toggle.vue'
 export { default as ToggleGroup } from './components/toggle/ToggleGroup.vue'
+export { default as WordSwap } from './components/toggle/WordSwap.vue'
 export type {
   BreadcrumbLinkProps,
   ChoiceOption,

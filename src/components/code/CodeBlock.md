@@ -1,6 +1,6 @@
 ---
 title: CodeBlock
-designStatus: ai-draft
+designStatus: stable
 description: A bordered source frame with a title and an optional corner action.
 props:
   - name: label

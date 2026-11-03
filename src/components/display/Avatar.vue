@@ -86,6 +86,9 @@ function error(event: Event): void {
   width: 100%;
   height: 100%;
   place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--ui-line);
+  border-radius: 50%;
   background: color-mix(in srgb, var(--ui-fg) 5%, transparent);
   color: var(--ui-muted);
   font-family: var(--ui-font-meta);

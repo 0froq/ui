@@ -1,6 +1,6 @@
 ---
 title: CodeBlock
-designStatus: ai-draft
+designStatus: stable
 description: 带标题和可选角落操作的带边框源码框。
 props:
   - name: label

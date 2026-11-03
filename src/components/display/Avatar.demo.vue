@@ -11,7 +11,7 @@ const showImage = ref(false)
     <Avatar
       label="froq"
       fallback="fq"
-      :src="showImage ? '/favicon.svg' : undefined"
+      :src="showImage ? '/froqsurfing.png' : undefined"
       loading="eager"
     />
     <Button @click="showImage = !showImage"> Toggle image </Button>

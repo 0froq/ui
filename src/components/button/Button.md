@@ -1,6 +1,6 @@
 ---
 title: Button
-designStatus: ai-draft
+designStatus: stable
 description: A native button with a small, consistent surface style.
 props:
   - name: type

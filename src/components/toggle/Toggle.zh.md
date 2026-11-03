@@ -1,6 +1,6 @@
 ---
 title: Toggle
-designStatus: ai-draft
+designStatus: stable
 description: 两个词共用一个开关。控件只和当前这个词一样宽。
 model:
   type: boolean
