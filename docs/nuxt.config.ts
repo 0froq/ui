@@ -6,7 +6,13 @@ import { componentFile } from './app/utils/component-files'
 import { keepEmptyTitle } from './app/utils/empty-title'
 import { listPublicShareImages } from './app/utils/public-files'
 import { IMAGE_ORIGIN, SITE_DESCRIPTION, SITE_NAME } from './app/utils/site'
+import type { NuxtConfig } from 'nuxt/schema'
 import ligThemes from './app/assets/lig-themes.json'
+
+const shikiThemes = {
+  default: ligThemes.default as typeof ligThemes.default & { type: 'light' },
+  dark: ligThemes.dark as typeof ligThemes.dark & { type: 'dark' },
+}
 
 const siteDist = fileURLToPath(new URL('../dist', import.meta.url))
 const componentsRoot = fileURLToPath(new URL('../src/components', import.meta.url))
@@ -32,13 +38,19 @@ function componentRoutes(): string[] {
   return routes
 }
 
-export default defineNuxtConfig({
+const nuxtConfig = {
   extends: ['@froq/og-covers-layer'],
 
   compatibilityDate: '2026-09-19',
 
   hooks: {
-    'content:file:afterParse': ({ file, content }) => {
+    'content:file:afterParse': ({
+      file,
+      content,
+    }: {
+      file: { body: unknown }
+      content: object
+    }) => {
       keepEmptyTitle(content, file.body)
       if (typeof file.body === 'string')
         (content as { words?: number }).words = countCardWords(file.body)
@@ -102,7 +114,7 @@ export default defineNuxtConfig({
     build: {
       markdown: {
         highlight: {
-          theme: { default: ligThemes.default, dark: ligThemes.dark },
+          theme: shikiThemes,
           langs: ['ts', 'vue', 'bash', 'css', 'json'],
         },
       },
@@ -149,4 +161,6 @@ export default defineNuxtConfig({
   },
 
   typescript: { strict: true },
-})
+} as unknown as NuxtConfig
+
+export default defineNuxtConfig(nuxtConfig)
