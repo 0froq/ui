@@ -96,8 +96,10 @@
     "required": "必須。",
     "default": "デフォルト",
     "sections": {
-      "form": "フォーム",
-      "prose": "本文"
+      "foundation": "基盤",
+      "chrome": "クローム",
+      "control": "コントロール",
+      "pattern": "パターン"
     }
   }
 }

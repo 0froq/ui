@@ -96,8 +96,10 @@
     "required": "Required.",
     "default": "Default",
     "sections": {
-      "form": "Form",
-      "prose": "Prose"
+      "foundation": "Foundation",
+      "chrome": "Chrome",
+      "control": "Control",
+      "pattern": "Pattern"
     }
   }
 }
