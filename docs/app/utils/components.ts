@@ -36,7 +36,13 @@ const SECTIONS = [
   { id: 'pattern', concepts: ['navigation', 'disclosure', 'feedback'] },
 ] as const
 
-type SectionId = (typeof SECTIONS)[number]['id']
+export type SectionId = (typeof SECTIONS)[number]['id']
+
+type SectionLabelKey =
+  | 'components.sections.foundation'
+  | 'components.sections.chrome'
+  | 'components.sections.control'
+  | 'components.sections.pattern'
 
 /** One group per folder in `src/components`. A sibling `Name.demo.vue` is that component's demo. */
 function createCatalog(): ConceptGroup[] {
@@ -85,16 +91,20 @@ export function componentCatalog(): ConceptGroup[] {
 }
 
 export function componentSectionLabel(
-  id: string,
-  translate: (key: 'components.sections.form' | 'components.sections.prose') => string,
+  id: SectionId | '',
+  translate: (key: SectionLabelKey) => string,
 ): string {
   switch (id) {
     case '':
       return ''
-    case 'form':
-      return translate('components.sections.form')
-    case 'prose':
-      return translate('components.sections.prose')
+    case 'foundation':
+      return translate('components.sections.foundation')
+    case 'chrome':
+      return translate('components.sections.chrome')
+    case 'control':
+      return translate('components.sections.control')
+    case 'pattern':
+      return translate('components.sections.pattern')
     default: {
       const unexpected: never = id
       return unexpected
@@ -102,7 +112,7 @@ export function componentSectionLabel(
   }
 }
 
-/** Concepts sit under a section such as form or prose. A folder with no section is still listed. */
+/** Concepts sit under a catalog section grade. A folder with no section is still listed. */
 export function componentSections(): Array<CatalogSection | { id: ''; concepts: ConceptGroup[] }> {
   const byId = new Map(catalog.map(group => [group.id, group]))
   const used = new Set<string>()

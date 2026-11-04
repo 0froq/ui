@@ -96,8 +96,10 @@
     "required": "必填。",
     "default": "默认",
     "sections": {
-      "form": "表单",
-      "prose": "正文"
+      "foundation": "基础",
+      "chrome": "装饰",
+      "control": "控件",
+      "pattern": "模式"
     }
   }
 }
