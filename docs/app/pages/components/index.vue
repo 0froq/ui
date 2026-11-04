@@ -10,7 +10,7 @@ usePaperOgImage({
 
 const { docFor } = await useComponentSummaries()
 
-function sectionLabel(id: '' | 'form' | 'prose'): string {
+function sectionLabel(id: string): string {
   return componentSectionLabel(id, t)
 }
 </script>

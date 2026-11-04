@@ -10,9 +10,19 @@ const field = z.object({
 })
 
 // Optional frontmatter `cover`: a `public/` path or an absolute https URL. It wins over `ogImage.url`.
+// ogImage mirrors nuxt-og-image's content schema without importing the module.
 const card = {
   cover: z.string().optional(),
-  ogImage: z.unknown().optional(),
+  ogImage: z
+    .union([
+      z.boolean(),
+      z.object({
+        url: z.string().optional(),
+        component: z.string().optional(),
+        props: z.record(z.string(), z.unknown()).optional(),
+      }),
+    ])
+    .optional(),
   words: z.number().optional(),
   evergreen: z.boolean().optional(),
   kind: z.string().optional(),

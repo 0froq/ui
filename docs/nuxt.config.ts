@@ -32,7 +32,6 @@ function componentRoutes(): string[] {
   return routes
 }
 
-// @ts-expect-error the og-covers layer's NuxtConfigInput generic overflows the checker
 export default defineNuxtConfig({
   extends: ['@froq/og-covers-layer'],
 
@@ -153,4 +152,4 @@ export default defineNuxtConfig({
   },
 
   typescript: { strict: true },
-})
+} as Parameters<typeof defineNuxtConfig>[0])
